@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+    <fullyQualifiedTypeName name="minecraftmage113.plugin.main.Main"/>
+    <fullyQualifiedTypeName name="org.bukkit.ChatColor"/>
+    <fullyQualifiedTypeName name="org.bukkit.plugin.java.JavaPlugin"/>
+    <fullyQualifiedTypeName name="org.bukkit.Color"/>
+    <fullyQualifiedTypeName name="org.bukkit.util.Vector"/>
+    <fullyQualifiedTypeName name="org.bukkit.entity.Arrow"/>
+    <fullyQualifiedTypeName name="org.bukkit.craftbukkit.v1_16_R2.entity.CraftArrow"/>
+    <fullyQualifiedTypeName name="org.bukkit.Bukkit"/>
+    <fullyQualifiedTypeName name="org.bukkit.entity.Projectile"/>
+    <fullyQualifiedTypeName name="net.minecraft.server.v1_16_R2.EntityArrow"/>
+    <fullyQualifiedTypeName name="java.lang.ArrayIndexOutOfBoundsException"/>
+    <fullyQualifiedTypeName name="me.Minecraftmage113.InsanityPlugin.Main"/>
+    <fullyQualifiedTypeName name="me.Minecraftmage113.InsanityPlugin.commands.CommandGamemode"/>
+    <fullyQualifiedTypeName name="org.bukkit.entity.EntityType"/>
+    <fullyQualifiedTypeName name="net.minecraft.server.v1_16_R2.EntityLightning"/>
+    <fullyQualifiedTypeName name="org.bukkit.potion.PotionEffectType"/>
+    <fullyQualifiedTypeName name="org.bukkit.Sound"/>
+    <fullyQualifiedTypeName name="net.md_5.bungee.api.chat.TextComponent"/>
+    <fullyQualifiedTypeName name="net.md_5.bungee.api.chat.ClickEvent"/>
+    <fullyQualifiedTypeName name="net.md_5.bungee.api.chat.ClickEvent.Action"/>
+    <fullyQualifiedTypeName name="org.bukkit.attribute.Attribute"/>
+    <fullyQualifiedTypeName name="net.minecraft.server.v1_16_R2.AttributeModifier"/>
+    <fullyQualifiedTypeName name="org.bukkit.attribute.AttributeModifier"/>
+    <fullyQualifiedTypeName name="org.bukkit.attribute.AttributeModifier.Operation"/>
+    <fullyQualifiedTypeName name="org.bukkit.command.Command"/>
+    <fullyQualifiedTypeName name="me.Minecraftmage113.InsanityPlugin.entities.EntitySporeZombie"/>
+    <fullyQualifiedTypeName name="net.minecraft.server.v1_16_R2.EntityZombie"/>
+    <fullyQualifiedTypeName name="net.minecraft.server.v1_16_R2.EntitySheep"/>
+    <fullyQualifiedTypeName name="org.bukkit.entity.Zombie"/>
+</qualifiedTypeNameHistroy>

@@ -1,0 +1,144 @@
+package me.Minecraftmage113.InsanityPlugin;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.bukkit.Sound;
+import org.bukkit.command.Command;
+import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Firework;
+import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
+import org.bukkit.event.block.Action;
+import org.bukkit.event.entity.CreeperPowerEvent;
+import org.bukkit.event.entity.EntityDamageEvent;
+import org.bukkit.event.entity.EntityDamageEvent.DamageCause;
+import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.plugin.java.JavaPlugin;
+
+import me.Minecraftmage113.InsanityPlugin.commands.CommandGamemode;
+import me.Minecraftmage113.InsanityPlugin.commands.CommandPurchase;
+import me.Minecraftmage113.InsanityPlugin.commands.CommandSacrifice;
+import me.Minecraftmage113.InsanityPlugin.items.ItemEnderPorter;
+
+/**
+ * A general plugin for use on the InsanityCraft server.
+ * 
+ * @author Minecraftmage113
+ * @version 24/Sept/2020
+ */
+public class Main extends JavaPlugin implements Listener {
+
+	@Override
+	public void onEnable() {
+		this.getCommand("GM").setExecutor(new CommandGamemode(this)); //Registers "/GM" command (remember to edit plugin.yml)
+		this.getCommand("Sacrifice").setExecutor(new CommandSacrifice(this)); //Registers "/Sacrifice" command (remember to edit plugin.yml)
+		this.getCommand("Purchase").setExecutor(new CommandPurchase(this)); //Registers "/Purchase" command (remember to edit plugin.yml)
+		this.getServer().getPluginManager().registerEvents(this, this);
+	}
+	
+	@Override
+	public void onDisable() {
+		
+	}
+	
+	@Override
+	public List<String> onTabComplete(CommandSender sender, Command cmd, String alias, String[] args) {
+		List<String> possibilities = new ArrayList<String>();
+		switch (alias) {
+		case "sacrifice":
+			switch(args.length) {
+			case 0:
+				possibilities.add("mars");
+				possibilities.add("thor");
+				possibilities.add("zeus");
+				break;
+			}
+			break;
+		case "gm":
+			switch(args.length) {
+			case 0:
+				possibilities.add("0");
+				possibilities.add("1");
+				possibilities.add("2");
+				possibilities.add("3");
+				possibilities.add("su");
+				possibilities.add("c");
+				possibilities.add("a");
+				possibilities.add("sp");
+				break;
+			}
+
+			break;
+		default:
+			possibilities = null;
+		}
+		return possibilities;
+	}
+	
+	@EventHandler
+	public void onRightClick(PlayerInteractEvent event) {
+		Player p = (Player) event.getPlayer();
+		p.sendMessage("Point 1");
+		if(event.getAction().equals(Action.RIGHT_CLICK_AIR)||event.getAction().equals(Action.RIGHT_CLICK_BLOCK)) {
+			p.sendMessage("Point 2");
+			if(event.getItem()!=null&&event.getItem() instanceof ItemEnderPorter) {
+				p.sendMessage("Point 3");
+				ItemEnderPorter porter = new ItemEnderPorter(event.getItem(), p);
+				if(p.isSneaking()) {
+					p.sendMessage("Point 4");
+					porter.setTarget(p.getLocation());
+				} else {
+					p.playSound(p.getLocation(), Sound.ENTITY_ENDERMAN_TELEPORT, 1, .5F);
+					p.teleport(porter.getTarget());
+					p.playSound(p.getLocation(), Sound.ENTITY_ENDERMAN_TELEPORT, 1, .5F);
+				}
+				event.setCancelled(true);
+			}
+		}
+	}
+	
+	@EventHandler
+	public void onCharge(CreeperPowerEvent event) {
+		this.getServer().broadcastMessage("A creeper has been charged!");
+		event.getEntity().getWorld().spawn(event.getEntity().getLocation(), Firework.class);
+	}
+	
+	@EventHandler
+	public void onTick(EntityDamageEvent event) {
+		if(event.getEntity().isPersistent()&&event.getEntity().getCustomName().equals("Ticker")){
+			for(Player p : event.getEntity().getWorld().getPlayers()) {
+				p.sendMessage("Haha, a tick occur.");
+			}
+			event.getEntity().setLastDamageCause(null);
+		}
+	}
+	
+	@EventHandler
+	public void onFall(EntityDamageEvent event) {
+		this.getServer().broadcastMessage("point 0");
+		if(event.getEntity() instanceof Player) {
+			Player p = (Player) event.getEntity();
+			p.sendMessage("point 1");
+			if(event.getCause().equals(DamageCause.FALL)) {
+				p.sendMessage("point 2");
+				if(p.getInventory().getItemInMainHand().getItemMeta().getCustomModelData()==1) {
+					p.sendMessage("Item looks like porter");
+					
+					p.sendMessage("point 2");
+				}
+				if(p.getInventory().getItemInMainHand() instanceof ItemEnderPorter) {
+					p.sendMessage("point 3");
+					event.setCancelled(true);
+				}
+				p.sendMessage(((ItemEnderPorter) p.getInventory().getItemInMainHand()).getDurability() + "yeets3");
+				if(((ItemEnderPorter) p.getInventory().getItemInMainHand()).maxCharge==1000) {
+					p.sendMessage("point 3");
+					event.setCancelled(true);
+				}
+			}
+		}
+	}
+	
+}

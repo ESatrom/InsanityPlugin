@@ -1,0 +1,45 @@
+package me.Minecraftmage113.InsanityPlugin.commands;
+
+import org.bukkit.ChatColor;
+import org.bukkit.command.Command;
+import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
+
+import me.Minecraftmage113.InsanityPlugin.Main;
+
+public class CommandGamemode extends InsanityCommand {
+
+	public CommandGamemode(Main plugin) { super(plugin); }
+
+	@Override
+	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
+		Player p;
+		if (args.length > 1) { 													//Checks if player supplied
+			if(plugin.getServer().getPlayer(args[1]) != null) {
+				p = plugin.getServer().getPlayer(args[0]);						//Sets p to valid player
+			} else {
+				sender.sendMessage(ChatColor.RED + "Invalid player supplied.");	//Warns invalid player
+			}
+		} else if (sender instanceof Player) {
+			p = (Player) sender;												//Uses self
+		} else {
+			sender.sendMessage(ChatColor.DARK_RED + "A player must be supplied if sent from console."); //Warns console player required
+			return true;
+		}
+		if(args[0].equals("0") || args[0].equals("su")) {
+			args[0] = "survival";
+		} else if(args[0].equals("1") || args[0].equals("c")) {
+			args[0] = "creative";
+		} else if(args[0].equals("2") || args[0].equals("a")) {
+			args[0] = "adventure";
+		} else if(args[0].equals("3") || args[0].equals("sp")) {
+			args[0] = "spectator";
+		} else {
+			sender.sendMessage(ChatColor.DARK_RED + "Invalid gamemode supplied");
+			return false;
+		}
+		plugin.getServer().dispatchCommand(sender, "gamemode " + args[0] + " " + p.getName());
+		return true;
+	}
+
+}

@@ -1,0 +1,11 @@
+package me.Minecraftmage113.InsanityPlugin.commands;
+
+import me.Minecraftmage113.InsanityPlugin.Main;
+
+public class InsanityCommand {
+	protected Main plugin;
+	public InsanityCommand(Main plugin) {
+		this.plugin = plugin;
+	}
+	
+}

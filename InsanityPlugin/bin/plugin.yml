@@ -1,0 +1,23 @@
+main: me.Minecraftmage113.InsanityPlugin.Main
+name: InsanityPlugin
+version: 1.0.1
+author: Minecraftmage113
+description: A Plugin for various functionalities on InsanityCraft.
+prefix: insanity
+
+permissions:
+  insanity.sacrifice:
+    default: false
+    
+commands:
+  GM:
+    usage: /gm [mode] <player>
+    description: a cropped down version of the /gamemode command
+  Sacrifice:
+    usage: /sacrifice [deity]
+    description: performs a sacrifice to the given deity
+    permission: insanity.sacrifice
+  Purchase:
+    usage: /purchase <item>
+    description: Purchases given item. When no item supplied lists items available.
+    aliases: buy

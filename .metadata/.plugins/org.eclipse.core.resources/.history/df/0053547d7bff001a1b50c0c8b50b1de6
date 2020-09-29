@@ -1,0 +1,26 @@
+package me.Minecraftmage113.InsanityPlugin;
+
+import org.bukkit.plugin.java.JavaPlugin;
+
+import me.Minecraftmage113.InsanityPlugin.commands.CommandGamemode;
+import me.Minecraftmage113.InsanityPlugin.commands.CommandSacrifice;
+
+/**
+ * A general plugin for use on the InsanityCraft server.
+ * 
+ * @author Minecraftmage113
+ * @version 24/Sept/2020
+ */
+public class Main extends JavaPlugin {
+
+	@Override
+	public void onEnable() {
+		this.getCommand("GM").setExecutor(new CommandGamemode(this)); //Registers "/GM" command (remember to edit plugin.yml)
+		this.getCommand("Sacrifice").setExecutor(new CommandSacrifice(this)); //Registers "/GM" command (remember to edit plugin.yml)
+	}
+
+	@Override
+	public void onDisable() {
+
+	}
+}

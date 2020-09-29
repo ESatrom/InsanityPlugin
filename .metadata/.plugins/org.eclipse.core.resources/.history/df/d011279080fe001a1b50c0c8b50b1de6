@@ -1,0 +1,37 @@
+package me.Minecraftmage113.InsanityPlugin.commands;
+
+import org.bukkit.ChatColor;
+import org.bukkit.command.Command;
+import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
+
+import me.Minecraftmage113.InsanityPlugin.Main;
+
+public class CommandSacrifice extends InsanityCommand {
+
+	public CommandSacrifice(Main plugin) {
+		super(plugin);
+	}
+
+	@Override
+	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
+		/*
+		 * Creates player object.
+		 * If sent by console, errors console player necessary
+		 */
+		Player p;
+		if (sender instanceof Player) {
+			p = (Player) sender;
+		} else {
+			sender.sendMessage(ChatColor.DARK_RED + "This command must be run by a player.");
+			return true;
+		}
+		if(args.length<1) {
+			sender.sendMessage(ChatColor.DARK_RED + "A deity must be supplied.");
+			return true;
+		}
+		
+		return false;
+	}
+
+}

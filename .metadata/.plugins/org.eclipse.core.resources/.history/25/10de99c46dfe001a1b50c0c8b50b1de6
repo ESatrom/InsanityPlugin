@@ -1,0 +1,153 @@
+package me.Minecraftmage113.InsanityPlugin;
+
+import org.bukkit.ChatColor;
+import org.bukkit.command.Command;
+import org.bukkit.command.CommandSender;
+import org.bukkit.craftbukkit.v1_16_R2.entity.CraftArrow;
+import org.bukkit.entity.Player;
+import org.bukkit.plugin.java.JavaPlugin;
+
+public class Main extends JavaPlugin {
+
+	@Override
+	public void onEnable() {
+
+	}
+
+	@Override
+	public void onDisable() {
+
+	}
+
+	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
+		switch (label.toLowerCase()) {
+		case "hello":
+			return hello(sender, cmd, label.toLowerCase(), args);
+		case "launch":
+			return launch(sender, cmd, label.toLowerCase(), args);
+		case "enchantmenu":
+		case "em":
+			return enchantMenu(sender, cmd, label.toLowerCase(), args);
+		case "shoot":
+			return bounceGun(sender, cmd, label.toLowerCase(), args);
+		case "gm":
+			return gamemode(sender, cmd, label.toLowerCase(), args);
+		default:
+			sender.sendMessage("Command not recognized.");
+		}
+		return false;
+	}
+
+	public boolean hello(CommandSender sender, Command cmd, String label, String[] args) {
+		if (sender instanceof Player) {
+			Player p = (Player) sender;
+			if (p.hasPermission("hello.use")) {
+				p.sendMessage(ChatColor.LIGHT_PURPLE + "Hello " + p.getDisplayName() + "!");
+				p.sendMessage(ChatColor.translateAlternateColorCodes('§', "§ka§r§a Hi! §r§ka"));
+			} else {
+				p.sendMessage(ChatColor.DARK_RED + "No permissions for this command.");
+			}
+			return true;
+		} else {
+			sender.sendMessage("Hello console!");
+			return true;
+		}
+	}
+
+	public boolean launch(CommandSender sender, Command cmd, String label, String[] args) {
+		Player p;
+		if (args.length > 1 && this.getServer().getPlayer(args[1]) != null) {
+			p = this.getServer().getPlayer(args[1]);
+		} else if (sender instanceof Player) {
+			p = (Player) sender;
+		} else {
+			sender.sendMessage(ChatColor.DARK_RED + "A player must be supplied if sent from console.");
+			return true;
+		}
+		if (args.length == 0) {
+			p.sendMessage("Fatooom!");
+			p.setVelocity(p.getVelocity().add(p.getLocation().getDirection().multiply(2).setY(2)));
+			this.getServer().broadcastMessage(p.getDisplayName() + "Is located at: " + p.getLocation().getX()
+					+ p.getLocation().getY() + p.getLocation().getZ());
+		} else {
+			p.setVelocity(p.getVelocity().add(p.getLocation().getDirection().multiply(Double.parseDouble(args[0]))
+					.setY(Double.parseDouble(args[0]))));
+			p.sendMessage("Fatooom! (" + args[0] + ")");
+		}
+
+		return true;
+	}
+
+	public boolean enchantMenu(CommandSender sender, Command cmd, String label, String[] args) {
+		Player p;
+		if (args.length > 0 && this.getServer().getPlayer(args[0]) != null) {
+			p = this.getServer().getPlayer(args[0]);
+		} else if (sender instanceof Player) {
+			p = (Player) sender;
+		} else {
+			sender.sendMessage(ChatColor.DARK_RED + "A player must be supplied if sent from console.");
+			return true;
+		}
+		p.openEnchanting(null, true);
+
+		return true;
+	}
+
+	public boolean bounceGun(CommandSender sender, Command cmd, String label, String[] args) {
+		Player p;
+		if (args.length > 0 && this.getServer().getPlayer(args[0]) != null) {
+			p = this.getServer().getPlayer(args[0]);
+		} else if (sender instanceof Player) {
+			p = (Player) sender;
+		} else {
+			sender.sendMessage(ChatColor.DARK_RED + "A player must be supplied if sent from console.");
+			return true;
+		}
+
+		double power;
+		try {
+			power = Double.parseDouble(args[1]);
+		} catch (NumberFormatException e) {
+			power = 5;
+		} catch (ArrayIndexOutOfBoundsException e) {
+			power = 5;
+		}
+		CraftArrow a = p.launchProjectile(CraftArrow.class);
+//		a.setVelocity(a.getVelocity().multiply(power));
+		a.setPierceLevel((int) (power * 2));
+		a.setKnockbackStrength((int) power);
+		getServer().broadcastMessage("" + a.getDamage());
+		a.setDamage(0);
+		return true;
+	}
+
+	public boolean gamemode(CommandSender sender, Command cmd, String label, String[] args) {
+		Player p;
+		if (args.length > 0 && this.getServer().getPlayer(args[0]) != null) {
+			p = this.getServer().getPlayer(args[0]);
+		} else if (sender instanceof Player) {
+			p = (Player) sender;
+		} else {
+			sender.sendMessage(ChatColor.DARK_RED + "A player must be supplied if sent from console.");
+			return true;
+		}
+		switch (args[0]) {
+		case "0":
+		case "su":
+			args[0] = "survival";
+		case "1":
+		case "c":
+			args[0] = "creative";
+		case "2":
+		case "a":
+			args[0] = "adventure";
+		case "3":
+		case "sp":
+			args[0] = "spectator";
+		default:
+			return false;
+		}
+		getServer().dispatchCommand(sender, "gamemode " + args[0] + " " + p.getName());
+		return true;
+	}
+}

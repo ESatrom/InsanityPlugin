@@ -1,0 +1,53 @@
+package me.Minecraftmage113.InsanityPlugin.commands;
+
+import org.bukkit.ChatColor;
+import org.bukkit.Sound;
+import org.bukkit.command.Command;
+import org.bukkit.command.CommandSender;
+import org.bukkit.entity.EntityType;
+import org.bukkit.entity.Player;
+import org.bukkit.potion.PotionEffect;
+import org.bukkit.potion.PotionEffectType;
+
+import me.Minecraftmage113.InsanityPlugin.Main;
+
+public class CommandSacrifice extends InsanityCommand {
+
+	public CommandSacrifice(Main plugin) {
+		super(plugin);
+	}
+
+	@Override
+	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
+		/*
+		 * Creates player object.
+		 * If sent by console, errors console player necessary
+		 */
+		Player p;
+		if (sender instanceof Player) {
+			p = (Player) sender;
+		} else {
+			sender.sendMessage(ChatColor.DARK_RED + "This command must be run by a player.");
+			return true;
+		}
+		if(args.length<1) {
+			sender.sendMessage(ChatColor.DARK_RED + "A deity must be supplied.");
+			return true;
+		}
+		String deity = args[0].toLowerCase();
+		switch(deity) {
+		case "thor":
+			/** Sacrifice */
+			p.getWorld().spawnEntity(p.getLocation(), EntityType.LIGHTNING);
+			p.getWorld().spawnEntity(p.getLocation(), EntityType.SHEEP);
+			p.getWorld().playSound(p.getLocation(), Sound.ENTITY_LIGHTNING_BOLT_IMPACT, 100, 50);
+			p.sendMessage(ChatColor.translateAlternateColorCodes('&', "&oYou have performed a sacrifice to &r&l&e&lThor&r&e&o, Norse god of Thunder"));
+			/** Boon */
+			p.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 20*20000, 0, false, false, false));
+		default:
+			sender.sendMessage(ChatColor.RED + "Invalid deity specified.");
+		}
+		return true;
+	}
+
+}
