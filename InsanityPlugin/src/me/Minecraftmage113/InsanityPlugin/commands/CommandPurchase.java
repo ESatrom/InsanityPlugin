@@ -56,7 +56,7 @@ public class CommandPurchase extends InsanityCommand {
 			return true;
 		}
 		if(p.getLevel()>=experienceCost) {
-			p.giveExpLevels(-experienceCost);
+			Main.addXP(p, -experienceCost, true);
 			p.getInventory().addItem(item);
 			p.sendMessage(message);
 			return true;

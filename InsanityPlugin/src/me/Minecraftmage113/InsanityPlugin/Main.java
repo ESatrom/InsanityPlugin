@@ -2,8 +2,10 @@ package me.Minecraftmage113.InsanityPlugin;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import org.bukkit.ChatColor;
+import org.bukkit.Color;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.Sound;
@@ -24,12 +26,16 @@ import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.EntityDamageEvent.DamageCause;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.BlockStateMeta;
 import org.bukkit.inventory.meta.Damageable;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.inventory.meta.PotionMeta;
 import org.bukkit.inventory.meta.SkullMeta;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.potion.PotionEffect;
+import org.bukkit.potion.PotionEffectType;
 
 import me.Minecraftmage113.InsanityPlugin.commands.CommandGamemode;
 import me.Minecraftmage113.InsanityPlugin.commands.CommandPurchase;
@@ -40,10 +46,16 @@ import me.Minecraftmage113.InsanityPlugin.items.ItemEnderPorter;
  * A general plugin for use on the InsanityCraft server.
  * 
  * @author Minecraftmage113
- * @version 24/Sept/2020
+ * @version 30/Sept/2020
  */
 public class Main extends JavaPlugin implements Listener {
 
+	/**
+	 * Custom Model Data: 
+	 * EnderPorter - 1 
+	 * Coffee - 2
+	 */
+	
 //	public class EnderPorterInfo {
 //		Location target;
 //		int charge;
@@ -51,6 +63,8 @@ public class Main extends JavaPlugin implements Listener {
 //	}
 //	
 //	EnderPorterIDs
+	
+	public static Random r = new Random();
 	
 	@Override
 	public void onEnable() {
@@ -109,7 +123,7 @@ public class Main extends JavaPlugin implements Listener {
 				ItemEnderPorter porter = new ItemEnderPorter(event.getItem(), p);
 				if(p.isSneaking()) {
 					porter.setTarget(p.getLocation());
-					p.sendMessage("Bound!");
+					p.sendMessage(ChatColor.DARK_GREEN + "" + ChatColor.BOLD + "Bound!");
 				} else {
 					int distanceCostCap = 160;
 					if(p.getInventory().getItemInOffHand().getType().equals(Material.ENDER_PEARL)) {
@@ -117,14 +131,14 @@ public class Main extends JavaPlugin implements Listener {
 							p.getInventory().getItemInOffHand().setAmount(p.getInventory().getItemInOffHand().getAmount()-1);
 							porter.addCharge(10);
 						}
-						p.sendMessage("Charged!");
+						p.sendMessage(ChatColor.DARK_GREEN + "" + ChatColor.BOLD + "Charged!");
 					} else if(porter.getCharge()>=(Math.sqrt(porter.getTarget().distance(p.getLocation()))>distanceCostCap?distanceCostCap:Math.floor(Math.sqrt(porter.getTarget().distance(p.getLocation()))))) {
 						porter.addCharge(0-(int) Math.floor(Math.sqrt(porter.getTarget().distance(p.getLocation()))));
 						p.playSound(p.getLocation(), Sound.ENTITY_ENDERMAN_TELEPORT, 1, .5F);
 						p.teleport(porter.getTarget());
 						p.playSound(p.getLocation(), Sound.ENTITY_ENDERMAN_TELEPORT, 1, .5F);
 					} else {
-						p.sendMessage("Not enough charge. Right click while holding ender pearls in your off-hand to charge the porter.");
+						p.sendMessage(ChatColor.RED + "Not enough charge. Right click while holding ender pearls in your off-hand to charge the porter.");
 					}
 				}
 				event.getItem().setItemMeta(porter.getItemMeta());
@@ -190,6 +204,7 @@ public class Main extends JavaPlugin implements Listener {
 		}
 	}
 	
+	int coffeeDelay = 0;
 	/**
 	 * Ticks twice per second.
 	 * @param event
@@ -200,6 +215,24 @@ public class Main extends JavaPlugin implements Listener {
 			if(event.getEntity().isPersistent()) {
 				if(event.getEntity().getCustomName()!=null&&event.getEntity().getCustomName().equals("Ticker")){
 					event.setDamage(0);
+					coffeeDelay++;
+					if(coffeeDelay==2*60*60) {
+						coffeeDelay=r.nextInt(2*60*30);
+						ItemStack coffee = new ItemStack(Material.POTION);
+						PotionMeta meta = (PotionMeta) coffee.getItemMeta();
+						meta.addItemFlags(ItemFlag.HIDE_POTION_EFFECTS);
+						meta.addCustomEffect(new PotionEffect(PotionEffectType.SPEED, 6000, 3, true, false, true), true);
+						meta.addCustomEffect(new PotionEffect(PotionEffectType.FAST_DIGGING, 3600, 1, false, false, false), true);
+						meta.addCustomEffect(new PotionEffect(PotionEffectType.JUMP, 1200, 0, false, false, false), true);
+						meta.addCustomEffect(new PotionEffect(PotionEffectType.ABSORPTION, 1200, 1, false, false, false), true);
+						meta.setColor(Color.fromRGB(127, 63, 0));
+						meta.setCustomModelData(2);
+						meta.setDisplayName("Coffee");
+						coffee.setItemMeta(meta);
+						for(Player p : event.getEntity().getWorld().getPlayers()) {
+							p.getInventory().addItem(coffee);
+						}
+					}
 //					for(Player p : event.getEntity().getWorld().getPlayers()) {
 //						if(p.getScoreboardTags().contains("mars")) {
 //							
@@ -210,4 +243,18 @@ public class Main extends JavaPlugin implements Listener {
 			}
 		}
 	}
+	
+	public static Player addXP(Player p, int amount, boolean levels) {
+		if(levels) {
+			int xp = p.getTotalExperience();
+			p.setTotalExperience(0);
+			p.giveExpLevels(Math.abs(amount));
+			int change = p.getTotalExperience();
+			p.setTotalExperience(xp+(amount>0?change:-change));
+		} else {
+			p.setTotalExperience(p.getTotalExperience()+amount);
+		}
+		return p;
+	}
+	
 }
