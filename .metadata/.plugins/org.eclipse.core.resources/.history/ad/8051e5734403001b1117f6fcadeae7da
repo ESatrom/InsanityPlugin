@@ -1,0 +1,22 @@
+package me.Minecraftmage113.InsanityPlugin;
+
+import org.bukkit.metadata.MetadataValueAdapter;
+import org.bukkit.plugin.Plugin;
+
+public class InsanityMetadataAdapter extends MetadataValueAdapter {
+
+	String value;
+	
+	public InsanityMetadataAdapter(Plugin owningPlugin) {
+		super(owningPlugin);
+	}
+
+	@Override
+	public Object value() { return value; }
+
+	@Override
+	public void invalidate() {
+		// Auto-generated method stub
+	}
+
+}

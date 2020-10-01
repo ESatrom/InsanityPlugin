@@ -15,5 +15,4 @@ public abstract class InsanityCommand implements CommandExecutor {
 	public InsanityCommand(Main plugin) {
 		this.plugin = plugin;
 	}
-	
 }

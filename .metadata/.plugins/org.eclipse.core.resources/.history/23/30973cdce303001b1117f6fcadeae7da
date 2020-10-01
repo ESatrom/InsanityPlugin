@@ -1,0 +1,166 @@
+package me.Minecraftmage113.InsanityPlugin;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+
+import org.bukkit.ChatColor;
+import org.bukkit.Color;
+import org.bukkit.Location;
+import org.bukkit.Material;
+import org.bukkit.World;
+import org.bukkit.command.Command;
+import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Firework;
+import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
+import org.bukkit.event.entity.CreeperPowerEvent;
+import org.bukkit.event.entity.EntityDamageEvent;
+import org.bukkit.event.entity.EntityDamageEvent.DamageCause;
+import org.bukkit.event.entity.PlayerDeathEvent;
+import org.bukkit.inventory.ItemFlag;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.PotionMeta;
+import org.bukkit.inventory.meta.SkullMeta;
+import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.potion.PotionEffect;
+import org.bukkit.potion.PotionEffectType;
+
+import me.Minecraftmage113.InsanityPlugin.commands.CommandGamemode;
+import me.Minecraftmage113.InsanityPlugin.commands.CommandPurchase;
+import me.Minecraftmage113.InsanityPlugin.commands.CommandSacrifice;
+import me.Minecraftmage113.InsanityPlugin.listeners.ListenerBlockBreak;
+import me.Minecraftmage113.InsanityPlugin.listeners.ListenerCharge;
+import me.Minecraftmage113.InsanityPlugin.listeners.ListenerInteract;
+import me.Minecraftmage113.InsanityPlugin.listeners.ListenerPlayerDeath;
+import me.Minecraftmage113.InsanityPlugin.listeners.ListenerTick;
+
+/**
+ * A general plugin for use on the InsanityCraft server.
+ * 
+ * @author Minecraftmage113
+ * @version 30/Sept/2020
+ */
+public class Main extends JavaPlugin implements Listener {
+
+	public enum ModelData {
+		ENDER_PORTER,
+		COFFEE,
+		BLOCK_FLAGGER;
+		public int value() {
+			switch(this) {
+			case ENDER_PORTER:
+				return 1;
+			case COFFEE:
+				return 2;
+			case BLOCK_FLAGGER:
+				return 3;
+			default:
+				return -1;
+			}
+		}
+	}
+	
+	public int coffeeDelay = 0;
+	public static Random r = new Random();
+
+	//	public class EnderPorterInfo {
+//		Location target;
+//		int charge;
+//		int maxCharge;
+//	}
+//	
+//	EnderPorterIDs
+	
+	
+	@Override
+	public void onEnable() {
+		this.getCommand("GM").setExecutor(new CommandGamemode(this)); //Registers "/GM" command (remember to edit plugin.yml)
+		this.getCommand("Sacrifice").setExecutor(new CommandSacrifice(this)); //Registers "/Sacrifice" command (remember to edit plugin.yml)
+		this.getCommand("Purchase").setExecutor(new CommandPurchase(this)); //Registers "/Purchase" command (remember to edit plugin.yml)
+		this.getServer().getPluginManager().registerEvents(this, this);
+		this.getServer().getPluginManager().registerEvents(new ListenerBlockBreak(this), this);
+		this.getServer().getPluginManager().registerEvents(new ListenerInteract(this), this);
+		this.getServer().getPluginManager().registerEvents(new ListenerCharge(this), this);
+		this.getServer().getPluginManager().registerEvents(new ListenerPlayerDeath(this), this);
+		this.getServer().getPluginManager().registerEvents(new ListenerTick(this), this);
+	}
+	
+	@Override
+	public void onDisable() {
+		
+	}
+	
+	@Override
+	public List<String> onTabComplete(CommandSender sender, Command cmd, String alias, String[] args) {
+		List<String> possibilities = new ArrayList<String>();
+		switch (alias) {
+		case "sacrifice":
+			switch(args.length) {
+			case 0:
+				possibilities.add("mars");
+				possibilities.add("thor");
+				possibilities.add("zeus");
+				break;
+			}
+			break;
+		case "gm":
+			switch(args.length) {
+			case 0:
+				possibilities.add("0");
+				possibilities.add("1");
+				possibilities.add("2");
+				possibilities.add("3");
+				possibilities.add("su");
+				possibilities.add("c");
+				possibilities.add("a");
+				possibilities.add("sp");
+				break;
+			}
+
+			break;
+		default:
+			possibilities = null;
+		}
+		return possibilities;
+	}
+	
+	@EventHandler
+	public void onCharge(CreeperPowerEvent event) {
+		this.getServer().broadcastMessage("A creeper has been charged!");
+		event.getEntity().getWorld().spawn(event.getEntity().getLocation(), Firework.class);
+	}
+	
+	@SuppressWarnings("deprecation")
+	@EventHandler
+	public void onPlayerDeath(PlayerDeathEvent event) {
+		Player p = event.getEntity();
+		if(p.getLastDamageCause().getCause().equals(DamageCause.ENTITY_ATTACK)){
+			World world = p.getWorld();
+			Location location = p.getLocation();
+			ItemStack item = new ItemStack(Material.PLAYER_HEAD);
+			SkullMeta meta = (SkullMeta) item.getItemMeta();
+			meta.setOwner(p.getName());
+			item.setItemMeta(meta);
+			world.dropItem(location, item);
+		}
+	}
+	
+	
+	
+	
+	public static Player addXP(Player p, int amount, boolean levels) {
+		if(levels) {
+			int xp = p.getTotalExperience();
+			p.setTotalExperience(0);
+			p.giveExpLevels(Math.abs(amount));
+			int change = p.getTotalExperience();
+			p.setTotalExperience(xp+(amount>0?change:-change));
+		} else {
+			p.setTotalExperience(p.getTotalExperience()+amount);
+		}
+		return p;
+	}
+	
+}

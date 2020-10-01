@@ -1,0 +1,9 @@
+package me.Minecraftmage113.InsanityPlugin.listeners;
+
+import me.Minecraftmage113.InsanityPlugin.Main;
+
+public class ListenerPlayerDeath extends InsanityListener {
+	public ListenerPlayerDeath(Main plugin) { super(plugin); }
+	
+	
+}

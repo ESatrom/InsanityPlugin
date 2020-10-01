@@ -1,0 +1,9 @@
+package me.Minecraftmage113.InsanityPlugin.listeners;
+
+import me.Minecraftmage113.InsanityPlugin.Main;
+
+public class ListenerTick extends InsanityListener {
+	public ListenerTick(Main plugin) { super(plugin); }
+	
+	
+}
