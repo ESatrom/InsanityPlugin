@@ -16,7 +16,6 @@ import me.Minecraftmage113.InsanityPlugin.commands.CommandSacrifice;
 import me.Minecraftmage113.InsanityPlugin.listeners.ListenerBlockBreak;
 import me.Minecraftmage113.InsanityPlugin.listeners.ListenerCharge;
 import me.Minecraftmage113.InsanityPlugin.listeners.ListenerInteract;
-import me.Minecraftmage113.InsanityPlugin.listeners.ListenerMetaScrubber;
 import me.Minecraftmage113.InsanityPlugin.listeners.ListenerPlayerDeath;
 import me.Minecraftmage113.InsanityPlugin.listeners.ListenerTick;
 
@@ -74,7 +73,6 @@ public class Main extends JavaPlugin {
 		this.getServer().getPluginManager().registerEvents(new ListenerCharge(this), this);
 		this.getServer().getPluginManager().registerEvents(new ListenerPlayerDeath(this), this);
 		this.getServer().getPluginManager().registerEvents(new ListenerTick(this), this);
-		this.getServer().getPluginManager().registerEvents(new ListenerMetaScrubber(this), this);
 	}
 	
 	@Override

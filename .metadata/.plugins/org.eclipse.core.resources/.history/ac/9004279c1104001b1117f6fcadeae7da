@@ -14,10 +14,6 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 import me.Minecraftmage113.InsanityPlugin.Main;
 
-/**
- * Note: Does <i>not</i> handle block metas or plugin blocks with metas (ie altars) which are handled by MetaScrubber
- * @see me.Minecraftmage113.InsanityPlugin.listeners.ListenerMetaScrubber
- */
 public class ListenerBlockBreak extends InsanityListener {
 	public ListenerBlockBreak(Main plugin) { super(plugin); }
 

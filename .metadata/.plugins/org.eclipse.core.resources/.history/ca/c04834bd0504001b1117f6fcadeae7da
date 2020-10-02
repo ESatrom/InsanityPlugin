@@ -73,10 +73,12 @@ public class ListenerInteract extends InsanityListener {
 	}
 	
 	public void flagBlock(PlayerInteractEvent event, Player p) {
-		if(p.isSneaking()){
-			event.getClickedBlock().setMetadata("Altar", new InsanityMetadata(plugin, event.getItem().getItemMeta().getDisplayName()));
-		} else {
-			p.sendMessage(""+event.getClickedBlock().getMetadata("Altar").get(0).value());
+		if(event.getItem()!=null && event.getItem().getItemMeta().getCustomModelData()==Main.ModelData.BLOCK_FLAGGER.value()){
+			if(p.isSneaking()){
+				event.getClickedBlock().setMetadata("Altar", new InsanityMetadata(plugin, event.getItem().getItemMeta().getDisplayName()));
+			} else {
+				p.sendMessage(""+event.getClickedBlock().getMetadata("Altar").get(0).value());
+			}
 		}
 	}
 }

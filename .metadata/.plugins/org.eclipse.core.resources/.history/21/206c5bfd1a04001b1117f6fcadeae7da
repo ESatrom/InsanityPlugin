@@ -1,0 +1,41 @@
+package me.Minecraftmage113.InsanityPlugin.listeners;
+
+import org.bukkit.Particle;
+import org.bukkit.block.Block;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.block.BlockBreakEvent;
+import org.bukkit.event.entity.EntityChangeBlockEvent;
+import org.bukkit.event.entity.EntityExplodeEvent;
+
+import me.Minecraftmage113.InsanityPlugin.Main;
+
+public class ListenerMetaScrubber extends InsanityListener {
+	public ListenerMetaScrubber(Main plugin) { super(plugin); }
+	
+
+	@EventHandler
+	public void onMine(BlockBreakEvent event) {
+		
+	}
+	@EventHandler
+	public void onExplode(EntityExplodeEvent event) {
+		boolean hallowed = false;
+		for(Block b : event.blockList()) {
+			if(b.hasMetadata("Altar")){
+				hallowed = true;
+			}
+		}
+		event.setCancelled(hallowed);
+		if(event.isCancelled()) {
+			event.getEntity().getWorld().spawnParticle(Particle.CRIT, event.getLocation(), 30+Main.r.nextInt(21), 3.5, 0.9, 3.5);
+		}
+	}
+	@EventHandler
+	public void onEntityChange(EntityChangeBlockEvent event) {
+		if(event.getBlock().hasMetadata("Altar")) {
+			event.setCancelled(true);
+			event.getEntity().getWorld().spawnParticle(Particle.CRIT, event.getBlock().getLocation(), 7+Main.r.nextInt(9), 0.6, 0.6, 0.6);
+		}
+	}
+	
+}

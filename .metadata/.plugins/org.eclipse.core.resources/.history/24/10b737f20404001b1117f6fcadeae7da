@@ -7,7 +7,6 @@ import java.util.Random;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import me.Minecraftmage113.InsanityPlugin.commands.CommandGamemode;
@@ -16,7 +15,6 @@ import me.Minecraftmage113.InsanityPlugin.commands.CommandSacrifice;
 import me.Minecraftmage113.InsanityPlugin.listeners.ListenerBlockBreak;
 import me.Minecraftmage113.InsanityPlugin.listeners.ListenerCharge;
 import me.Minecraftmage113.InsanityPlugin.listeners.ListenerInteract;
-import me.Minecraftmage113.InsanityPlugin.listeners.ListenerMetaScrubber;
 import me.Minecraftmage113.InsanityPlugin.listeners.ListenerPlayerDeath;
 import me.Minecraftmage113.InsanityPlugin.listeners.ListenerTick;
 
@@ -47,9 +45,6 @@ public class Main extends JavaPlugin {
 				return -1;
 			}
 		}
-		public boolean instance(ItemStack item) {
-			return item.getItemMeta().hasCustomModelData() && item.getItemMeta().getCustomModelData()==value();
-		}
 	}
 	
 	public int coffeeDelay = 0;
@@ -74,7 +69,6 @@ public class Main extends JavaPlugin {
 		this.getServer().getPluginManager().registerEvents(new ListenerCharge(this), this);
 		this.getServer().getPluginManager().registerEvents(new ListenerPlayerDeath(this), this);
 		this.getServer().getPluginManager().registerEvents(new ListenerTick(this), this);
-		this.getServer().getPluginManager().registerEvents(new ListenerMetaScrubber(this), this);
 	}
 	
 	@Override
