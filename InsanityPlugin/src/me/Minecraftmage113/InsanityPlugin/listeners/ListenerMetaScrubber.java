@@ -18,14 +18,21 @@ public class ListenerMetaScrubber extends InsanityListener {
 	@EventHandler
 	public void onMine(BlockBreakEvent event) {
 		altarBreak(event);
+		if(scrub(event.getBlock())){
+			event.setExpToDrop(0);
+		}
 	}
 	@EventHandler
 	public void onExplode(EntityExplodeEvent event) {
 		altarExplode(event);
+		for(Block b : event.blockList()) {
+			scrub(b);
+		}
 	}
 	@EventHandler
 	public void onEntityChange(EntityChangeBlockEvent event) {
 		altarEntityChange(event);
+		scrub(event.getBlock());
 	}
 	
 	public void altarExplode(EntityExplodeEvent event) {
@@ -60,6 +67,12 @@ public class ListenerMetaScrubber extends InsanityListener {
 				event.getPlayer().sendMessage("This ground is protected by " + ChatColor.BOLD + b.getMetadata("Altar").get(0).value() + ChatColor.RESET+ "!");
 			}
 		}
+	}
+	
+	public boolean scrub(Block b) {
+		boolean result = b.hasMetadata("manMade");
+		b.removeMetadata("manMade", plugin);
+		return result;
 	}
 	
 }

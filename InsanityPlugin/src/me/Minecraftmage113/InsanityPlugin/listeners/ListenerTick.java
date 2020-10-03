@@ -1,7 +1,10 @@
 package me.Minecraftmage113.InsanityPlugin.listeners;
 
+import java.util.ArrayList;
+
 import org.bukkit.ChatColor;
 import org.bukkit.Color;
+import org.bukkit.GameMode;
 import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
@@ -28,12 +31,19 @@ public class ListenerTick extends InsanityListener {
 		  && event.getEntity().isPersistent()
 		  && event.getEntity().getCustomName()!=null
 		  && event.getEntity().getCustomName().equals("Ticker")
-		  && !event.getCause().equals(DamageCause.VOID )) 
-		{
+		  && !event.getCause().equals(DamageCause.VOID )) {
 			event.setDamage(0);
 			event.getEntity().setLastDamageCause(null);
 			coffee(event.getEntity().getWorld());
 		}
+		updateGamemodes();
+	}
+	
+	public void updateGamemodes() {
+		for(Player p : plugin.creativePlayers) {
+			p.setGameMode(GameMode.SURVIVAL);
+		}
+		plugin.creativePlayers = new ArrayList<Player>();
 	}
 	
 	public void coffee(World world) {

@@ -13,10 +13,12 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import me.Minecraftmage113.InsanityPlugin.commands.CommandGamemode;
 import me.Minecraftmage113.InsanityPlugin.commands.CommandPurchase;
-import me.Minecraftmage113.InsanityPlugin.listeners.ListenerBlockBreak;
+import me.Minecraftmage113.InsanityPlugin.listeners.ListenerMine;
 import me.Minecraftmage113.InsanityPlugin.listeners.ListenerCharge;
+import me.Minecraftmage113.InsanityPlugin.listeners.ListenerEntityDamage;
 import me.Minecraftmage113.InsanityPlugin.listeners.ListenerInteract;
 import me.Minecraftmage113.InsanityPlugin.listeners.ListenerMetaScrubber;
+import me.Minecraftmage113.InsanityPlugin.listeners.ListenerPlacement;
 import me.Minecraftmage113.InsanityPlugin.listeners.ListenerPlayerDeath;
 import me.Minecraftmage113.InsanityPlugin.listeners.ListenerTick;
 
@@ -30,6 +32,7 @@ public class Main extends JavaPlugin {
 
 	private List<Mob> lassoMobs = new ArrayList<Mob>();
 	private List<Integer> lassoIDs = new ArrayList<Integer>();
+	public List<Player> creativePlayers = new ArrayList<Player>();
 	
 	public int lasso(Mob mob) {
 		int id = 0;
@@ -98,13 +101,14 @@ public class Main extends JavaPlugin {
 		/** @Deprecated this.getCommand("Sacrifice").setExecutor(new CommandSacrifice(this)); //Registers "/Sacrifice" command (remember to edit plugin.yml) */
 		this.getCommand("Purchase").setExecutor(new CommandPurchase(this)); //Registers "/Purchase" command (remember to edit plugin.yml)
 		//TODO this.getCommand("sKick").setExecutor(new CommandSuggestKick(this)); //Registers "/suggestKick" command (remember to edit plugin.yml)
-		this.getServer().getPluginManager().registerEvents(new ListenerBlockBreak(this), this);
+		this.getServer().getPluginManager().registerEvents(new ListenerMine(this), this);
 		this.getServer().getPluginManager().registerEvents(new ListenerInteract(this), this);
 		this.getServer().getPluginManager().registerEvents(new ListenerCharge(this), this);
 		this.getServer().getPluginManager().registerEvents(new ListenerPlayerDeath(this), this);
 		this.getServer().getPluginManager().registerEvents(new ListenerTick(this), this);
 		this.getServer().getPluginManager().registerEvents(new ListenerMetaScrubber(this), this);
-		//TODO this.getServer().getPluginManager().registerEvents(new ListenerEntityDamage(this), this);
+		this.getServer().getPluginManager().registerEvents(new ListenerEntityDamage(this), this);
+		this.getServer().getPluginManager().registerEvents(new ListenerPlacement(this), this);
 	}
 	
 	@Override

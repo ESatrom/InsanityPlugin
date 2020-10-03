@@ -1,5 +1,8 @@
 package me.Minecraftmage113.InsanityPlugin.commands;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -27,7 +30,8 @@ public class CommandPurchase extends InsanityCommand {
 		if(args.length < 1) {
 			p.sendMessage(ChatColor.translateAlternateColorCodes('&', "Items available for purchase: \n"
 					+ "&2&lEnder&3&lPorter&r - &a15L&r - Fueled by ender pearls, teleports to a bound location.\n"
-					+ "&bFish&r - &a5L&r - Use to perform a fish-slapping dance."));
+					+ "&bFish&r - &a5L&r - Use to perform a fish-slapping dance.\n"
+					+ "&6Lasso&r - &a30L&r - Used to transport mobs."));
 			return true;
 		}
 		if(p.getInventory().firstEmpty()==-1) {
@@ -36,7 +40,9 @@ public class CommandPurchase extends InsanityCommand {
 		}
 		int experienceCost;
 		ItemStack item;
+		ItemMeta meta;
 		String message;
+		List<String> lore = new ArrayList<String>();
 		switch(args[0].toLowerCase()) {
 		case "enderporter":
 			experienceCost = 15;
@@ -46,11 +52,46 @@ public class CommandPurchase extends InsanityCommand {
 		case "fish":
 			experienceCost = 5;
 			item = new ItemStack(Material.COD);
-			ItemMeta meta = item.getItemMeta();
+			meta = item.getItemMeta();
 			meta.addEnchant(Enchantment.KNOCKBACK, 5, true);
 			meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
 			item.setItemMeta(meta);
 			message = ChatColor.translateAlternateColorCodes('&', "You have successfully purchased a &bMontyFish&r™.");
+			break;
+		case "lasso":
+		case "lassoo":
+			experienceCost = 30;
+			item = new ItemStack(Material.LEAD);
+			meta = item.getItemMeta();
+			meta.setDisplayName(ChatColor.RESET + "" + ChatColor.GOLD + "Lasso");
+			meta.setCustomModelData(Main.ModelData.LASSO.value());
+			lore.add("Punch a mob to collect it into your lasso. Right click a block with a full lasso to release a mob.");
+			lore.add("Currently Contained: " + ChatColor.DARK_GRAY + "Nothing");
+			lore.add(ChatColor.BLACK+""+ChatColor.MAGIC+"|-1");
+			meta.setLore(lore);
+			item.setItemMeta(meta);
+			message = ChatColor.translateAlternateColorCodes('&', "You have successfully purchased a &6Lasso&r.");
+			break;
+		case "scythe":
+		case "reapers scythe":
+		case "reapers-scythe":
+		case "reapers_scythe":
+		case "reapersscythe":
+		case "reaperscythe":
+		case "death scythe":
+		case "death-scythe":
+		case "death_scythe":
+		case "deathscythe":
+			experienceCost = 100;
+			item = new ItemStack(Material.NETHERITE_HOE);
+			meta = item.getItemMeta();
+			meta.addEnchant(Enchantment.VANISHING_CURSE, 1, true);
+			meta.setDisplayName(ChatColor.RESET + "" + ChatColor.DARK_GRAY + "Reaper's Scythe");
+			meta.setCustomModelData(Main.ModelData.REAPERS_SCYTHE.value());
+			lore.add("Punch a player to harvest their head.");
+			meta.setLore(lore);
+			item.setItemMeta(meta);
+			message = ChatColor.translateAlternateColorCodes('&', "&8You have successfully summoned Death's own blade.");
 			break;
 		default:
 			p.sendMessage(ChatColor.RED + "Invalid item specified.");
