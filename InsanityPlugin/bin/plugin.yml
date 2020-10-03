@@ -1,6 +1,6 @@
 main: me.Minecraftmage113.InsanityPlugin.Main
 name: InsanityPlugin
-version: 1.0.3
+version: 1.0.4
 author: Minecraftmage113
 description: A Plugin for various functionalities on InsanityCraft.
 prefix: insanity
