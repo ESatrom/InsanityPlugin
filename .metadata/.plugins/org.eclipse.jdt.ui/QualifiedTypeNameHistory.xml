@@ -2,7 +2,6 @@
 <qualifiedTypeNameHistroy>
     <fullyQualifiedTypeName name="minecraftmage113.plugin.main.Main"/>
     <fullyQualifiedTypeName name="org.bukkit.plugin.java.JavaPlugin"/>
-    <fullyQualifiedTypeName name="org.bukkit.Color"/>
     <fullyQualifiedTypeName name="org.bukkit.util.Vector"/>
     <fullyQualifiedTypeName name="org.bukkit.entity.Arrow"/>
     <fullyQualifiedTypeName name="org.bukkit.craftbukkit.v1_16_R2.entity.CraftArrow"/>
@@ -10,11 +9,9 @@
     <fullyQualifiedTypeName name="org.bukkit.entity.Projectile"/>
     <fullyQualifiedTypeName name="net.minecraft.server.v1_16_R2.EntityArrow"/>
     <fullyQualifiedTypeName name="java.lang.ArrayIndexOutOfBoundsException"/>
-    <fullyQualifiedTypeName name="me.Minecraftmage113.InsanityPlugin.Main"/>
     <fullyQualifiedTypeName name="me.Minecraftmage113.InsanityPlugin.commands.CommandGamemode"/>
     <fullyQualifiedTypeName name="org.bukkit.entity.EntityType"/>
     <fullyQualifiedTypeName name="net.minecraft.server.v1_16_R2.EntityLightning"/>
-    <fullyQualifiedTypeName name="org.bukkit.potion.PotionEffectType"/>
     <fullyQualifiedTypeName name="net.md_5.bungee.api.chat.TextComponent"/>
     <fullyQualifiedTypeName name="net.md_5.bungee.api.chat.ClickEvent"/>
     <fullyQualifiedTypeName name="net.md_5.bungee.api.chat.ClickEvent.Action"/>
@@ -28,8 +25,6 @@
     <fullyQualifiedTypeName name="net.minecraft.server.v1_16_R2.EntitySheep"/>
     <fullyQualifiedTypeName name="org.bukkit.entity.Zombie"/>
     <fullyQualifiedTypeName name="org.bukkit.ChatColor"/>
-    <fullyQualifiedTypeName name="org.bukkit.event.Listener"/>
-    <fullyQualifiedTypeName name="org.bukkit.event.EventHandler"/>
     <fullyQualifiedTypeName name="org.bukkit.event.block.Action"/>
     <fullyQualifiedTypeName name="org.bukkit.Sound"/>
     <fullyQualifiedTypeName name="org.bukkit.entity.Player"/>
@@ -38,19 +33,31 @@
     <fullyQualifiedTypeName name="org.bukkit.enchantments.EnchantmentWrapper"/>
     <fullyQualifiedTypeName name="me.Minecraftmage113.InsanityPlugin.items.ItemEnderPorter"/>
     <fullyQualifiedTypeName name="org.bukkit.event.entity.EntityDamageEvent.DamageCause"/>
-    <fullyQualifiedTypeName name="org.bukkit.World"/>
     <fullyQualifiedTypeName name="org.bukkit.Location"/>
-    <fullyQualifiedTypeName name="org.bukkit.inventory.ItemStack"/>
     <fullyQualifiedTypeName name="org.bukkit.inventory.meta.SkullMeta"/>
     <fullyQualifiedTypeName name="org.bukkit.OfflinePlayer"/>
     <fullyQualifiedTypeName name="org.bukkit.event.hanging.HangingBreakEvent"/>
     <fullyQualifiedTypeName name="org.bukkit.event.player.PlayerChangedWorldEvent"/>
-    <fullyQualifiedTypeName name="org.bukkit.block.Block"/>
     <fullyQualifiedTypeName name="org.bukkit.inventory.meta.BlockStateMeta"/>
     <fullyQualifiedTypeName name="org.bukkit.block.CreatureSpawner"/>
     <fullyQualifiedTypeName name="org.bukkit.inventory.meta.Damageable"/>
     <fullyQualifiedTypeName name="org.bukkit.Material"/>
     <fullyQualifiedTypeName name="org.bukkit.inventory.meta.ItemMeta"/>
+    <fullyQualifiedTypeName name="org.bukkit.inventory.meta.PotionMeta"/>
     <fullyQualifiedTypeName name="org.bukkit.inventory.ItemFlag"/>
+    <fullyQualifiedTypeName name="org.bukkit.Color"/>
+    <fullyQualifiedTypeName name="org.bukkit.potion.PotionEffect"/>
+    <fullyQualifiedTypeName name="org.bukkit.potion.PotionEffectType"/>
+    <fullyQualifiedTypeName name="org.bukkit.metadata.MetadataValueAdapter"/>
+    <fullyQualifiedTypeName name="org.bukkit.event.Listener"/>
     <fullyQualifiedTypeName name="org.bukkit.enchantments.Enchantment"/>
+    <fullyQualifiedTypeName name="org.bukkit.World"/>
+    <fullyQualifiedTypeName name="me.Minecraftmage113.InsanityPlugin.Main.ModelData"/>
+    <fullyQualifiedTypeName name="org.bukkit.inventory.ItemStack"/>
+    <fullyQualifiedTypeName name="org.bukkit.event.EventHandler"/>
+    <fullyQualifiedTypeName name="org.bukkit.block.Block"/>
+    <fullyQualifiedTypeName name="org.bukkit.Particle"/>
+    <fullyQualifiedTypeName name="me.Minecraftmage113.InsanityPlugin.Main"/>
+    <fullyQualifiedTypeName name="org.bukkit.GameMode"/>
+    <fullyQualifiedTypeName name="org.bukkit.event.player.PlayerInteractEvent"/>
 </qualifiedTypeNameHistroy>

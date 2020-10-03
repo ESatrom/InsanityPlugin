@@ -9,6 +9,7 @@ import org.bukkit.event.entity.EntityChangeBlockEvent;
 import org.bukkit.event.entity.EntityExplodeEvent;
 
 import me.Minecraftmage113.InsanityPlugin.Main;
+import net.md_5.bungee.api.ChatColor;
 
 public class ListenerMetaScrubber extends InsanityListener {
 	public ListenerMetaScrubber(Main plugin) { super(plugin); }
@@ -56,7 +57,7 @@ public class ListenerMetaScrubber extends InsanityListener {
 				b.removeMetadata("Altar", plugin);
 			} else {
 				event.setCancelled(true);
-				event.getPlayer().sendMessage("This ground is protected by " + b.getMetadata("Altar").get(0).value() + "!");
+				event.getPlayer().sendMessage("This ground is protected by " + ChatColor.BOLD + b.getMetadata("Altar").get(0).value() + ChatColor.RESET+ "!");
 			}
 		}
 	}

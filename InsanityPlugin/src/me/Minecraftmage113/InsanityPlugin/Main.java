@@ -6,13 +6,13 @@ import java.util.Random;
 
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Mob;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import me.Minecraftmage113.InsanityPlugin.commands.CommandGamemode;
 import me.Minecraftmage113.InsanityPlugin.commands.CommandPurchase;
-import me.Minecraftmage113.InsanityPlugin.commands.CommandSacrifice;
 import me.Minecraftmage113.InsanityPlugin.listeners.ListenerBlockBreak;
 import me.Minecraftmage113.InsanityPlugin.listeners.ListenerCharge;
 import me.Minecraftmage113.InsanityPlugin.listeners.ListenerInteract;
@@ -28,11 +28,33 @@ import me.Minecraftmage113.InsanityPlugin.listeners.ListenerTick;
  */
 public class Main extends JavaPlugin {
 
+	private List<Mob> lassoMobs = new ArrayList<Mob>();
+	private List<Integer> lassoIDs = new ArrayList<Integer>();
+	
+	public int lasso(Mob mob) {
+		int id = 0;
+		while(lassoIDs.contains(id)) {
+			id++;
+		}
+		lassoMobs.add(mob);
+		lassoIDs.add(id);
+		return id;
+	}
+	
+	public Mob releaseLasso(int id) {
+		int index = lassoIDs.indexOf(id);
+		lassoIDs.remove(index);
+		return lassoMobs.remove(index);
+	}
+	
 	public enum ModelData {
 		ENDER_PORTER,
 		COFFEE,
 		BLOCK_FLAGGER,
-		DEPRESSION_WAND;
+		DEPRESSION_WAND,
+		BLINK_WAND,
+		LASSO,
+		REAPERS_SCYTHE;
 		public int value() {
 			switch(this) {
 			case ENDER_PORTER:
@@ -43,6 +65,12 @@ public class Main extends JavaPlugin {
 				return 3;
 			case DEPRESSION_WAND:
 				return 4;
+			case BLINK_WAND:
+				return 5;
+			case LASSO:
+				return 6;
+			case REAPERS_SCYTHE:
+				return 7;
 			default:
 				return -1;
 			}
@@ -67,14 +95,16 @@ public class Main extends JavaPlugin {
 	@Override
 	public void onEnable() {
 		this.getCommand("GM").setExecutor(new CommandGamemode(this)); //Registers "/GM" command (remember to edit plugin.yml)
-		this.getCommand("Sacrifice").setExecutor(new CommandSacrifice(this)); //Registers "/Sacrifice" command (remember to edit plugin.yml)
+		/** @Deprecated this.getCommand("Sacrifice").setExecutor(new CommandSacrifice(this)); //Registers "/Sacrifice" command (remember to edit plugin.yml) */
 		this.getCommand("Purchase").setExecutor(new CommandPurchase(this)); //Registers "/Purchase" command (remember to edit plugin.yml)
+		//TODO this.getCommand("sKick").setExecutor(new CommandSuggestKick(this)); //Registers "/suggestKick" command (remember to edit plugin.yml)
 		this.getServer().getPluginManager().registerEvents(new ListenerBlockBreak(this), this);
 		this.getServer().getPluginManager().registerEvents(new ListenerInteract(this), this);
 		this.getServer().getPluginManager().registerEvents(new ListenerCharge(this), this);
 		this.getServer().getPluginManager().registerEvents(new ListenerPlayerDeath(this), this);
 		this.getServer().getPluginManager().registerEvents(new ListenerTick(this), this);
 		this.getServer().getPluginManager().registerEvents(new ListenerMetaScrubber(this), this);
+		//TODO this.getServer().getPluginManager().registerEvents(new ListenerEntityDamage(this), this);
 	}
 	
 	@Override

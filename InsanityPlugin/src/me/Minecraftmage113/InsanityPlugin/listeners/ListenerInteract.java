@@ -79,4 +79,6 @@ public class ListenerInteract extends InsanityListener {
 			p.sendMessage(""+event.getClickedBlock().getMetadata("Altar").get(0).value());
 		}
 	}
+	
+	
 }

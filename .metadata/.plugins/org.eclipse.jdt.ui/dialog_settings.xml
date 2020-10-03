@@ -73,6 +73,9 @@
 		<item key="JarManifestWizardPage.MANIFEST_LOCATION" value=""/>
 		<item key="JarManifestWizardPage.SEAL_JAR" value="false"/>
 		<list key="JarPackageWizardPage.DESTINATION_NAMES_ID">
+			<item value="C:\Users\elija\Desktop\Games\Servers\Minecraft\1.16.3\Plugin_Servers\Test\plugins\InsanityPluginTest.jar"/>
+			<item value="C:\Users\elija\Desktop\Software\me\Products\Plugins\InsanityPlugin\InsanityPluginv1.0.3.jar"/>
+			<item value="C:\Users\elija\Desktop\Software\me\Products\Plugins\InsanityPlugin\InsanityPluginv1.0.2.jar"/>
 			<item value="D:\InsanityPluginv1.0.1.jar"/>
 			<item value="C:\Users\elija\Desktop\Games\Servers\Minecraft\1.16.3\Plugin_Servers\Test2\plugins\InsanityPluginv1.0.0.jar"/>
 			<item value="D:\InsanityPluginv1.0.0.jar"/>

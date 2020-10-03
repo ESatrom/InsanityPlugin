@@ -1,0 +1,17 @@
+package me.Minecraftmage113.InsanityPlugin.listeners;
+
+import org.bukkit.entity.Zombie;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.player.PlayerInteractEntityEvent;
+import org.bukkit.event.player.PlayerInteractEvent;
+
+import me.Minecraftmage113.InsanityPlugin.Main;
+
+public class ListenerEntityDamage extends InsanityListener {
+	public ListenerEntityDamage(Main plugin) { super(plugin); }
+	
+	@EventHandler
+	public void onInteraction(PlayerInteractEvent event) {
+		
+	}
+}

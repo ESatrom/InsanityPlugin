@@ -1,7 +1,0 @@
-package me.Minecraftmage113.InsanityPlugin.commands;
-
-public class SacrificeComponents {
-	public void sacrifice();
-	public void boon();
-	public void 
-}

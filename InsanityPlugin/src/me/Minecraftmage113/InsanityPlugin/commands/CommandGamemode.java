@@ -57,7 +57,7 @@ public class CommandGamemode extends InsanityCommand {
 			args[0] = "spectator";
 			break;
 		default:
-			sender.sendMessage(ChatColor.DARK_RED + "Invalid gamemode supplied");
+			sender.sendMessage(ChatColor.RED + "Invalid gamemode supplied");
 			return false;
 		}
 		// sends gamemode command, perms handled by command, all errors should be handled before now.

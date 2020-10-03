@@ -11,6 +11,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 import me.Minecraftmage113.InsanityPlugin.Main;
 import me.Minecraftmage113.InsanityPlugin.items.ItemEnderPorter;
+import net.md_5.bungee.api.ChatColor;
 
 public class CommandPurchase extends InsanityCommand {
 
@@ -24,13 +25,13 @@ public class CommandPurchase extends InsanityCommand {
 		}
 		Player p = (Player) sender;
 		if(args.length < 1) {
-			p.sendMessage("Items available for purchase: \n"
-					+ "EnderPorter - 15L - Fueled by ender pearls, teleports to a bound location.\n"
-					+ "Fish - 5L - Use to perform a fish-slapping dance.");
+			p.sendMessage(ChatColor.translateAlternateColorCodes('&', "Items available for purchase: \n"
+					+ "&2&lEnder&3&lPorter&r - &a15L&r - Fueled by ender pearls, teleports to a bound location.\n"
+					+ "&bFish&r - &a5L&r - Use to perform a fish-slapping dance."));
 			return true;
 		}
 		if(p.getInventory().firstEmpty()==-1) {
-			p.sendMessage("Empty inventory slot required for purchase.");
+			p.sendMessage(ChatColor.RED + "Empty inventory slot required for purchase.");
 			return true;
 		}
 		int experienceCost;
@@ -40,7 +41,7 @@ public class CommandPurchase extends InsanityCommand {
 		case "enderporter":
 			experienceCost = 15;
 			item = new ItemEnderPorter();
-			message = "You have successfully purchased an EnderPorter™. Fill it full of ender pearls to charge.";
+			message = ChatColor.translateAlternateColorCodes('&', "You have successfully purchased an &2&lEnder&3&lPorter&r™. Fill it full of ender pearls to charge.");
 			break;
 		case "fish":
 			experienceCost = 5;
@@ -49,10 +50,10 @@ public class CommandPurchase extends InsanityCommand {
 			meta.addEnchant(Enchantment.KNOCKBACK, 5, true);
 			meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
 			item.setItemMeta(meta);
-			message = "You have successfully purchased a MontyFish™.";
+			message = ChatColor.translateAlternateColorCodes('&', "You have successfully purchased a &bMontyFish&r™.");
 			break;
 		default:
-			p.sendMessage("Invalid item specified.");
+			p.sendMessage(ChatColor.RED + "Invalid item specified.");
 			return true;
 		}
 		if(p.getLevel()>=experienceCost) {
@@ -61,7 +62,7 @@ public class CommandPurchase extends InsanityCommand {
 			p.sendMessage(message);
 			return true;
 		} else {
-			p.sendMessage("Not enough experience to purchase.");
+			p.sendMessage(ChatColor.RED + "Not enough experience to purchase.");
 			return true;
 		}
 	}
