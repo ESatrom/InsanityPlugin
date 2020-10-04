@@ -34,7 +34,7 @@ public class ListenerInteract extends InsanityListener {
 			}
 		}
 		if(event.getAction().equals(Action.RIGHT_CLICK_BLOCK)) {
-//			altar(event, p);
+			altar(event, p);
 			if(item!=null) {
 				if(Main.ModelData.ENDER_PORTER.instance(item)) {
 					chargedPorter(event, p);
@@ -79,7 +79,15 @@ public class ListenerInteract extends InsanityListener {
 	}
 	
 	public void altar(PlayerInteractEvent event, Player p) {
-		p.sendMessage("" + event.getClickedBlock().getMetadata("Altar").get(0).value());
+		if(event.getClickedBlock().getMetadata("Altar")!=null) {
+			switch(event.getClickedBlock().getMetadata("Altar").get(0).value()+"") {
+			case "Phthisis":
+				if(Main.Modifiers.ROTTING_PRESERVATION.apply(p)) {
+					p.sendMessage("You have been preserved by Phthisis.");
+				}
+				break;
+			}
+		}
 	}
 	
 	public void flagBlock(PlayerInteractEvent event, Player p) {

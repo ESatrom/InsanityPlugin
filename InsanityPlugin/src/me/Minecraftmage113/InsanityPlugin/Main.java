@@ -4,6 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import org.bukkit.attribute.Attributable;
+import org.bukkit.attribute.Attribute;
+import org.bukkit.attribute.AttributeModifier;
+import org.bukkit.attribute.AttributeModifier.Operation;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Mob;
@@ -11,13 +15,14 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import me.Minecraftmage113.InsanityPlugin.commands.CommandCleanse;
 import me.Minecraftmage113.InsanityPlugin.commands.CommandGamemode;
 import me.Minecraftmage113.InsanityPlugin.commands.CommandPurchase;
-import me.Minecraftmage113.InsanityPlugin.listeners.ListenerMine;
 import me.Minecraftmage113.InsanityPlugin.listeners.ListenerCharge;
 import me.Minecraftmage113.InsanityPlugin.listeners.ListenerEntityDamage;
 import me.Minecraftmage113.InsanityPlugin.listeners.ListenerInteract;
 import me.Minecraftmage113.InsanityPlugin.listeners.ListenerMetaScrubber;
+import me.Minecraftmage113.InsanityPlugin.listeners.ListenerMine;
 import me.Minecraftmage113.InsanityPlugin.listeners.ListenerPlacement;
 import me.Minecraftmage113.InsanityPlugin.listeners.ListenerPlayerDeath;
 import me.Minecraftmage113.InsanityPlugin.listeners.ListenerTick;
@@ -83,6 +88,55 @@ public class Main extends JavaPlugin {
 		}
 	}
 	
+	public enum Modifiers {
+		ROTTING_PRESERVATION,
+		ROTTED;
+		private AttributeModifier value() {
+			switch(this) {
+			case ROTTING_PRESERVATION:
+				return new AttributeModifier("Rotting Preservation", -2, Operation.ADD_NUMBER);
+			case ROTTED:
+				return new AttributeModifier("Rotting Preservation", -.5, Operation.MULTIPLY_SCALAR_1 );
+			default:
+				return null;
+			}
+		}
+		private AttributeModifier getApplied(Attributable a, Attribute at) {
+			for(AttributeModifier m : a.getAttribute(at).getModifiers()) {
+				if(m.getName().equals(value().getName())) {
+					return m;
+				}
+			}
+			return null;
+		}
+		public boolean apply(Attributable a) {
+			switch(this) {
+			case ROTTING_PRESERVATION:
+			case ROTTED:
+				if(getApplied(a, Attribute.GENERIC_MAX_HEALTH)!=null) {
+					return false;
+				}
+				a.getAttribute(Attribute.GENERIC_MAX_HEALTH).addModifier(value());
+				break;
+			}
+			return true;
+		}
+		public boolean remove(Attributable a) {
+			
+			switch(this) {
+			case ROTTING_PRESERVATION:
+			case ROTTED:
+				AttributeModifier targetMod = getApplied(a, Attribute.GENERIC_MAX_HEALTH);
+				if(targetMod==null) {
+					return false;
+				}
+				a.getAttribute(Attribute.GENERIC_MAX_HEALTH).removeModifier(targetMod);
+				break;
+			}
+			return true;
+		}
+	}
+	
 	public int coffeeDelay = 0;
 	public static Random r = new Random();
 
@@ -97,9 +151,15 @@ public class Main extends JavaPlugin {
 	
 	@Override
 	public void onEnable() {
+		/**
+		 * TODO GUIs = custom inventory, set the items, make a listener for it that always cancels the action.
+		 */
+		
+		
 		this.getCommand("GM").setExecutor(new CommandGamemode(this)); //Registers "/GM" command (remember to edit plugin.yml)
 		/** @Deprecated this.getCommand("Sacrifice").setExecutor(new CommandSacrifice(this)); //Registers "/Sacrifice" command (remember to edit plugin.yml) */
 		this.getCommand("Purchase").setExecutor(new CommandPurchase(this)); //Registers "/Purchase" command (remember to edit plugin.yml)
+		this.getCommand("Cleanse").setExecutor(new CommandCleanse(this)); //Registers "/Purchase" command (remember to edit plugin.yml)
 		//TODO this.getCommand("sKick").setExecutor(new CommandSuggestKick(this)); //Registers "/suggestKick" command (remember to edit plugin.yml)
 		this.getServer().getPluginManager().registerEvents(new ListenerMine(this), this);
 		this.getServer().getPluginManager().registerEvents(new ListenerInteract(this), this);

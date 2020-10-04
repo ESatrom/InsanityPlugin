@@ -2450,3 +2450,1333 @@ user global configuration and to define the default location to store repositori
 not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
 EGit might behave differently since they see different configuration options.
 This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+
+!ENTRY org.eclipse.jdt.ui 4 2 2020-10-03 10:48:58.251
+!MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.jdt.ui".
+!STACK 0
+java.lang.IndexOutOfBoundsException: Index -1 out of bounds for length 0
+	at java.base/jdk.internal.util.Preconditions.outOfBounds(Preconditions.java:64)
+	at java.base/jdk.internal.util.Preconditions.outOfBoundsCheckIndex(Preconditions.java:70)
+	at java.base/jdk.internal.util.Preconditions.checkIndex(Preconditions.java:248)
+	at java.base/java.util.Objects.checkIndex(Objects.java:373)
+	at java.base/java.util.ArrayList.get(ArrayList.java:427)
+	at org.eclipse.jdt.core.dom.ASTNode$NodeList.get(ASTNode.java:1472)
+	at org.eclipse.jdt.core.dom.ASTConverter.checkAndAddMultipleFieldDeclaration(ASTConverter.java:537)
+	at org.eclipse.jdt.core.dom.ASTConverter.buildBodyDeclarations(ASTConverter.java:355)
+	at org.eclipse.jdt.core.dom.ASTConverter.convertToEnumDeclaration(ASTConverter.java:3552)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:3233)
+	at org.eclipse.jdt.core.dom.ASTConverter.buildBodyDeclarations(ASTConverter.java:213)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:3302)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1513)
+	at org.eclipse.jdt.core.dom.AST.convertCompilationUnit(AST.java:450)
+	at org.eclipse.jdt.internal.core.CompilationUnit.buildStructure(CompilationUnit.java:200)
+	at org.eclipse.jdt.internal.core.Openable.generateInfos(Openable.java:268)
+	at org.eclipse.jdt.internal.core.JavaElement.openWhenClosed(JavaElement.java:596)
+	at org.eclipse.jdt.internal.core.CompilationUnit.makeConsistent(CompilationUnit.java:1138)
+	at org.eclipse.jdt.internal.core.ReconcileWorkingCopyOperation.makeConsistent(ReconcileWorkingCopyOperation.java:173)
+	at org.eclipse.jdt.internal.core.ReconcileWorkingCopyOperation.executeOperation(ReconcileWorkingCopyOperation.java:94)
+	at org.eclipse.jdt.internal.core.JavaModelOperation.run(JavaModelOperation.java:736)
+	at org.eclipse.jdt.internal.core.JavaModelOperation.runOperation(JavaModelOperation.java:802)
+	at org.eclipse.jdt.internal.core.CompilationUnit.reconcile(CompilationUnit.java:1315)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:131)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.access$0(JavaReconcilingStrategy.java:113)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy$1.run(JavaReconcilingStrategy.java:93)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:90)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:157)
+	at org.eclipse.jdt.internal.ui.text.CompositeReconcilingStrategy.reconcile(CompositeReconcilingStrategy.java:94)
+	at org.eclipse.jdt.internal.ui.text.JavaCompositeReconcilingStrategy.reconcile(JavaCompositeReconcilingStrategy.java:107)
+	at org.eclipse.jface.text.reconciler.MonoReconciler.process(MonoReconciler.java:76)
+	at org.eclipse.jface.text.reconciler.AbstractReconciler$BackgroundThread.run(AbstractReconciler.java:210)
+
+!ENTRY org.eclipse.jdt.ui 4 0 2020-10-03 10:48:58.317
+!MESSAGE Error in JDT Core during reconcile
+!STACK 0
+java.lang.IndexOutOfBoundsException: Index -1 out of bounds for length 0
+	at java.base/jdk.internal.util.Preconditions.outOfBounds(Preconditions.java:64)
+	at java.base/jdk.internal.util.Preconditions.outOfBoundsCheckIndex(Preconditions.java:70)
+	at java.base/jdk.internal.util.Preconditions.checkIndex(Preconditions.java:248)
+	at java.base/java.util.Objects.checkIndex(Objects.java:373)
+	at java.base/java.util.ArrayList.get(ArrayList.java:427)
+	at org.eclipse.jdt.core.dom.ASTNode$NodeList.get(ASTNode.java:1472)
+	at org.eclipse.jdt.core.dom.ASTConverter.checkAndAddMultipleFieldDeclaration(ASTConverter.java:537)
+	at org.eclipse.jdt.core.dom.ASTConverter.buildBodyDeclarations(ASTConverter.java:355)
+	at org.eclipse.jdt.core.dom.ASTConverter.convertToEnumDeclaration(ASTConverter.java:3552)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:3233)
+	at org.eclipse.jdt.core.dom.ASTConverter.buildBodyDeclarations(ASTConverter.java:213)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:3302)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1513)
+	at org.eclipse.jdt.core.dom.AST.convertCompilationUnit(AST.java:450)
+	at org.eclipse.jdt.internal.core.CompilationUnit.buildStructure(CompilationUnit.java:200)
+	at org.eclipse.jdt.internal.core.Openable.generateInfos(Openable.java:268)
+	at org.eclipse.jdt.internal.core.JavaElement.openWhenClosed(JavaElement.java:596)
+	at org.eclipse.jdt.internal.core.CompilationUnit.makeConsistent(CompilationUnit.java:1138)
+	at org.eclipse.jdt.internal.core.ReconcileWorkingCopyOperation.makeConsistent(ReconcileWorkingCopyOperation.java:173)
+	at org.eclipse.jdt.internal.core.ReconcileWorkingCopyOperation.executeOperation(ReconcileWorkingCopyOperation.java:94)
+	at org.eclipse.jdt.internal.core.JavaModelOperation.run(JavaModelOperation.java:736)
+	at org.eclipse.jdt.internal.core.JavaModelOperation.runOperation(JavaModelOperation.java:802)
+	at org.eclipse.jdt.internal.core.CompilationUnit.reconcile(CompilationUnit.java:1315)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:131)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.access$0(JavaReconcilingStrategy.java:113)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy$1.run(JavaReconcilingStrategy.java:93)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:90)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:157)
+	at org.eclipse.jdt.internal.ui.text.CompositeReconcilingStrategy.reconcile(CompositeReconcilingStrategy.java:94)
+	at org.eclipse.jdt.internal.ui.text.JavaCompositeReconcilingStrategy.reconcile(JavaCompositeReconcilingStrategy.java:107)
+	at org.eclipse.jface.text.reconciler.MonoReconciler.process(MonoReconciler.java:76)
+	at org.eclipse.jface.text.reconciler.AbstractReconciler$BackgroundThread.run(AbstractReconciler.java:210)
+
+!ENTRY org.eclipse.jdt.core 4 4 2020-10-03 11:05:54.024
+!MESSAGE Exception occurred during compilation unit conversion:
+----------------------------------- SOURCE BEGIN -------------------------------------
+package me.Minecraftmage113.InsanityPlugin;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+
+import org.bukkit.attribute.AttributeModifier;
+import org.bukkit.attribute.AttributeModifier.Operation;
+import org.bukkit.command.Command;
+import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Mob;
+import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.plugin.java.JavaPlugin;
+
+import me.Minecraftmage113.InsanityPlugin.commands.CommandGamemode;
+import me.Minecraftmage113.InsanityPlugin.commands.CommandPurchase;
+import me.Minecraftmage113.InsanityPlugin.listeners.ListenerMine;
+import me.Minecraftmage113.InsanityPlugin.listeners.ListenerCharge;
+import me.Minecraftmage113.InsanityPlugin.listeners.ListenerEntityDamage;
+import me.Minecraftmage113.InsanityPlugin.listeners.ListenerInteract;
+import me.Minecraftmage113.InsanityPlugin.listeners.ListenerMetaScrubber;
+import me.Minecraftmage113.InsanityPlugin.listeners.ListenerPlacement;
+import me.Minecraftmage113.InsanityPlugin.listeners.ListenerPlayerDeath;
+import me.Minecraftmage113.InsanityPlugin.listeners.ListenerTick;
+
+/**
+ * A general plugin for use on the InsanityCraft server.
+ * 
+ * @author Minecraftmage113
+ * @version 30/Sept/2020
+ */
+public class Main extends JavaPlugin {
+
+	private List<Mob> lassoMobs = new ArrayList<Mob>();
+	private List<Integer> lassoIDs = new ArrayList<Integer>();
+	public List<Player> creativePlayers = new ArrayList<Player>();
+	
+	public int lasso(Mob mob) {
+		int id = 0;
+		while(lassoIDs.contains(id)) {
+			id++;
+		}
+		lassoMobs.add(mob);
+		lassoIDs.add(id);
+		return id;
+	}
+	
+	public Mob releaseLasso(int id) {
+		int index = lassoIDs.indexOf(id);
+		lassoIDs.remove(index);
+		return lassoMobs.remove(index);
+	}
+	
+	public enum ModelData {
+		ENDER_PORTER,
+		COFFEE,
+		BLOCK_FLAGGER,
+		DEPRESSION_WAND,
+		BLINK_WAND,
+		LASSO,
+		REAPERS_SCYTHE;
+		public int value() {
+			switch(this) {
+			case ENDER_PORTER:
+				return 1;
+			case COFFEE:
+				return 2;
+			case BLOCK_FLAGGER:
+				return 3;
+			case DEPRESSION_WAND:
+				return 4;
+			case BLINK_WAND:
+				return 5;
+			case LASSO:
+				return 6;
+			case REAPERS_SCYTHE:
+				return 7;
+			default:
+				return -1;
+			}
+		}
+		public boolean instance(ItemStack item) {
+			return item.getItemMeta().hasCustomModelData() && item.getItemMeta().getCustomModelData()==value();
+		}
+	}
+	
+	public enum Modifiers {
+		ROTTING_PRESERVATION,
+		ROTTED;
+		public AttributeModifier value() {
+			switch(this) {
+			case ROTTING_PRESERVATION:
+				return new AttributeModifier("Rotting Preservation", -2, Operation.ADD_NUMBER);
+			case ROTTED:
+				return new AttributeModifier("Rotting Preservation", -.5, Operation.MULTIPLY_SCALAR_1 );
+			default:
+				return null;
+			}
+		}
+		public boolean apply(Attributable)
+		public boolean remove(Attributable a) {
+			
+		}
+	}
+	
+	public int coffeeDelay = 0;
+	public static Random r = new Random();
+
+	//	public class EnderPorterInfo {
+//		Location target;
+//		int charge;
+//		int maxCharge;
+//	}
+//	
+//	EnderPorterIDs
+	
+	
+	@Override
+	public void onEnable() {
+		/**
+		 * TODO GUIs = custom inventory, set the items, make a listener for it that always cancels the action.
+		 */
+		
+		
+		this.getCommand("GM").setExecutor(new CommandGamemode(this)); //Registers "/GM" command (remember to edit plugin.yml)
+		/** @Deprecated this.getCommand("Sacrifice").setExecutor(new CommandSacrifice(this)); //Registers "/Sacrifice" command (remember to edit plugin.yml) */
+		this.getCommand("Purchase").setExecutor(new CommandPurchase(this)); //Registers "/Purchase" command (remember to edit plugin.yml)
+		//TODO this.getCommand("sKick").setExecutor(new CommandSuggestKick(this)); //Registers "/suggestKick" command (remember to edit plugin.yml)
+		this.getServer().getPluginManager().registerEvents(new ListenerMine(this), this);
+		this.getServer().getPluginManager().registerEvents(new ListenerInteract(this), this);
+		this.getServer().getPluginManager().registerEvents(new ListenerCharge(this), this);
+		this.getServer().getPluginManager().registerEvents(new ListenerPlayerDeath(this), this);
+		this.getServer().getPluginManager().registerEvents(new ListenerTick(this), this);
+		this.getServer().getPluginManager().registerEvents(new ListenerMetaScrubber(this), this);
+		this.getServer().getPluginManager().registerEvents(new ListenerEntityDamage(this), this);
+		this.getServer().getPluginManager().registerEvents(new ListenerPlacement(this), this);
+	}
+	
+	@Override
+	public void onDisable() {
+		
+	}
+	
+	@Override
+	public List<String> onTabComplete(CommandSender sender, Command cmd, String alias, String[] args) {
+		List<String> possibilities = new ArrayList<String>();
+		switch (alias) {
+		case "sacrifice":
+			switch(args.length) {
+			case 0:
+				possibilities.add("mars");
+				possibilities.add("thor");
+				possibilities.add("zeus");
+				break;
+			}
+			break;
+		case "gm":
+			switch(args.length) {
+			case 0:
+				possibilities.add("0");
+				possibilities.add("1");
+				possibilities.add("2");
+				possibilities.add("3");
+				possibilities.add("su");
+				possibilities.add("c");
+				possibilities.add("a");
+				possibilities.add("sp");
+				break;
+			}
+
+			break;
+		default:
+			possibilities = null;
+		}
+		return possibilities;
+	}
+
+	public static Player addXP(Player p, int amount, boolean levels) {
+		boolean add = amount>0;
+		amount = Math.abs(amount);
+		int xp;
+		if(levels) {
+			if(amount<17) {
+				xp = (int) Math.pow(amount,2)+(amount*6);
+			} else if(amount<32) {
+				int amt = amount-16;
+				xp = (int) (2.5*Math.pow(amt, 2)+(39.5*amt)+352);
+			} else {
+				int amt = amount-31;
+				xp = (int) ((4.5*Math.pow(amt, 2))+(116.5*amt)+1507);
+			}
+		} else {
+			xp = amount;
+		}
+		p.giveExp(add?xp:-xp);
+		return p;
+	}
+	
+}
+----------------------------------- SOURCE END -------------------------------------
+!STACK 0
+java.lang.IllegalArgumentException
+	at org.eclipse.jdt.core.dom.ASTNode.setSourceRange(ASTNode.java:3105)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:738)
+	at org.eclipse.jdt.core.dom.ASTConverter.buildBodyDeclarations(ASTConverter.java:362)
+	at org.eclipse.jdt.core.dom.ASTConverter.convertToEnumDeclaration(ASTConverter.java:3552)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:3233)
+	at org.eclipse.jdt.core.dom.ASTConverter.buildBodyDeclarations(ASTConverter.java:213)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:3302)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1513)
+	at org.eclipse.jdt.core.dom.AST.convertCompilationUnit(AST.java:450)
+	at org.eclipse.jdt.internal.core.CompilationUnit.buildStructure(CompilationUnit.java:200)
+	at org.eclipse.jdt.internal.core.Openable.generateInfos(Openable.java:268)
+	at org.eclipse.jdt.internal.core.JavaElement.openWhenClosed(JavaElement.java:596)
+	at org.eclipse.jdt.internal.core.CompilationUnit.makeConsistent(CompilationUnit.java:1138)
+	at org.eclipse.jdt.internal.core.ReconcileWorkingCopyOperation.makeConsistent(ReconcileWorkingCopyOperation.java:173)
+	at org.eclipse.jdt.internal.core.ReconcileWorkingCopyOperation.executeOperation(ReconcileWorkingCopyOperation.java:94)
+	at org.eclipse.jdt.internal.core.JavaModelOperation.run(JavaModelOperation.java:736)
+	at org.eclipse.jdt.internal.core.JavaModelOperation.runOperation(JavaModelOperation.java:802)
+	at org.eclipse.jdt.internal.core.CompilationUnit.reconcile(CompilationUnit.java:1315)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:131)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.access$0(JavaReconcilingStrategy.java:113)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy$1.run(JavaReconcilingStrategy.java:93)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:90)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:157)
+	at org.eclipse.jdt.internal.ui.text.CompositeReconcilingStrategy.reconcile(CompositeReconcilingStrategy.java:94)
+	at org.eclipse.jdt.internal.ui.text.JavaCompositeReconcilingStrategy.reconcile(JavaCompositeReconcilingStrategy.java:107)
+	at org.eclipse.jface.text.reconciler.MonoReconciler.process(MonoReconciler.java:76)
+	at org.eclipse.jface.text.reconciler.AbstractReconciler$BackgroundThread.run(AbstractReconciler.java:210)
+
+!ENTRY org.eclipse.jdt.ui 4 2 2020-10-03 11:05:54.045
+!MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.jdt.ui".
+!STACK 0
+java.lang.IllegalArgumentException
+	at org.eclipse.jdt.core.dom.ASTNode.setSourceRange(ASTNode.java:3105)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:738)
+	at org.eclipse.jdt.core.dom.ASTConverter.buildBodyDeclarations(ASTConverter.java:362)
+	at org.eclipse.jdt.core.dom.ASTConverter.convertToEnumDeclaration(ASTConverter.java:3552)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:3233)
+	at org.eclipse.jdt.core.dom.ASTConverter.buildBodyDeclarations(ASTConverter.java:213)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:3302)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1513)
+	at org.eclipse.jdt.core.dom.AST.convertCompilationUnit(AST.java:450)
+	at org.eclipse.jdt.internal.core.CompilationUnit.buildStructure(CompilationUnit.java:200)
+	at org.eclipse.jdt.internal.core.Openable.generateInfos(Openable.java:268)
+	at org.eclipse.jdt.internal.core.JavaElement.openWhenClosed(JavaElement.java:596)
+	at org.eclipse.jdt.internal.core.CompilationUnit.makeConsistent(CompilationUnit.java:1138)
+	at org.eclipse.jdt.internal.core.ReconcileWorkingCopyOperation.makeConsistent(ReconcileWorkingCopyOperation.java:173)
+	at org.eclipse.jdt.internal.core.ReconcileWorkingCopyOperation.executeOperation(ReconcileWorkingCopyOperation.java:94)
+	at org.eclipse.jdt.internal.core.JavaModelOperation.run(JavaModelOperation.java:736)
+	at org.eclipse.jdt.internal.core.JavaModelOperation.runOperation(JavaModelOperation.java:802)
+	at org.eclipse.jdt.internal.core.CompilationUnit.reconcile(CompilationUnit.java:1315)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:131)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.access$0(JavaReconcilingStrategy.java:113)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy$1.run(JavaReconcilingStrategy.java:93)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:90)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:157)
+	at org.eclipse.jdt.internal.ui.text.CompositeReconcilingStrategy.reconcile(CompositeReconcilingStrategy.java:94)
+	at org.eclipse.jdt.internal.ui.text.JavaCompositeReconcilingStrategy.reconcile(JavaCompositeReconcilingStrategy.java:107)
+	at org.eclipse.jface.text.reconciler.MonoReconciler.process(MonoReconciler.java:76)
+	at org.eclipse.jface.text.reconciler.AbstractReconciler$BackgroundThread.run(AbstractReconciler.java:210)
+
+!ENTRY org.eclipse.jdt.ui 4 0 2020-10-03 11:05:54.054
+!MESSAGE Error in JDT Core during reconcile
+!STACK 0
+java.lang.IllegalArgumentException
+	at org.eclipse.jdt.core.dom.ASTNode.setSourceRange(ASTNode.java:3105)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:738)
+	at org.eclipse.jdt.core.dom.ASTConverter.buildBodyDeclarations(ASTConverter.java:362)
+	at org.eclipse.jdt.core.dom.ASTConverter.convertToEnumDeclaration(ASTConverter.java:3552)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:3233)
+	at org.eclipse.jdt.core.dom.ASTConverter.buildBodyDeclarations(ASTConverter.java:213)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:3302)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1513)
+	at org.eclipse.jdt.core.dom.AST.convertCompilationUnit(AST.java:450)
+	at org.eclipse.jdt.internal.core.CompilationUnit.buildStructure(CompilationUnit.java:200)
+	at org.eclipse.jdt.internal.core.Openable.generateInfos(Openable.java:268)
+	at org.eclipse.jdt.internal.core.JavaElement.openWhenClosed(JavaElement.java:596)
+	at org.eclipse.jdt.internal.core.CompilationUnit.makeConsistent(CompilationUnit.java:1138)
+	at org.eclipse.jdt.internal.core.ReconcileWorkingCopyOperation.makeConsistent(ReconcileWorkingCopyOperation.java:173)
+	at org.eclipse.jdt.internal.core.ReconcileWorkingCopyOperation.executeOperation(ReconcileWorkingCopyOperation.java:94)
+	at org.eclipse.jdt.internal.core.JavaModelOperation.run(JavaModelOperation.java:736)
+	at org.eclipse.jdt.internal.core.JavaModelOperation.runOperation(JavaModelOperation.java:802)
+	at org.eclipse.jdt.internal.core.CompilationUnit.reconcile(CompilationUnit.java:1315)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:131)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.access$0(JavaReconcilingStrategy.java:113)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy$1.run(JavaReconcilingStrategy.java:93)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:90)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:157)
+	at org.eclipse.jdt.internal.ui.text.CompositeReconcilingStrategy.reconcile(CompositeReconcilingStrategy.java:94)
+	at org.eclipse.jdt.internal.ui.text.JavaCompositeReconcilingStrategy.reconcile(JavaCompositeReconcilingStrategy.java:107)
+	at org.eclipse.jface.text.reconciler.MonoReconciler.process(MonoReconciler.java:76)
+	at org.eclipse.jface.text.reconciler.AbstractReconciler$BackgroundThread.run(AbstractReconciler.java:210)
+
+!ENTRY org.eclipse.jdt.core 4 4 2020-10-03 11:05:55.593
+!MESSAGE Exception occurred during compilation unit conversion:
+----------------------------------- SOURCE BEGIN -------------------------------------
+package me.Minecraftmage113.InsanityPlugin;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+
+import org.bukkit.attribute.AttributeModifier;
+import org.bukkit.attribute.AttributeModifier.Operation;
+import org.bukkit.command.Command;
+import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Mob;
+import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.plugin.java.JavaPlugin;
+
+import me.Minecraftmage113.InsanityPlugin.commands.CommandGamemode;
+import me.Minecraftmage113.InsanityPlugin.commands.CommandPurchase;
+import me.Minecraftmage113.InsanityPlugin.listeners.ListenerMine;
+import me.Minecraftmage113.InsanityPlugin.listeners.ListenerCharge;
+import me.Minecraftmage113.InsanityPlugin.listeners.ListenerEntityDamage;
+import me.Minecraftmage113.InsanityPlugin.listeners.ListenerInteract;
+import me.Minecraftmage113.InsanityPlugin.listeners.ListenerMetaScrubber;
+import me.Minecraftmage113.InsanityPlugin.listeners.ListenerPlacement;
+import me.Minecraftmage113.InsanityPlugin.listeners.ListenerPlayerDeath;
+import me.Minecraftmage113.InsanityPlugin.listeners.ListenerTick;
+
+/**
+ * A general plugin for use on the InsanityCraft server.
+ * 
+ * @author Minecraftmage113
+ * @version 30/Sept/2020
+ */
+public class Main extends JavaPlugin {
+
+	private List<Mob> lassoMobs = new ArrayList<Mob>();
+	private List<Integer> lassoIDs = new ArrayList<Integer>();
+	public List<Player> creativePlayers = new ArrayList<Player>();
+	
+	public int lasso(Mob mob) {
+		int id = 0;
+		while(lassoIDs.contains(id)) {
+			id++;
+		}
+		lassoMobs.add(mob);
+		lassoIDs.add(id);
+		return id;
+	}
+	
+	public Mob releaseLasso(int id) {
+		int index = lassoIDs.indexOf(id);
+		lassoIDs.remove(index);
+		return lassoMobs.remove(index);
+	}
+	
+	public enum ModelData {
+		ENDER_PORTER,
+		COFFEE,
+		BLOCK_FLAGGER,
+		DEPRESSION_WAND,
+		BLINK_WAND,
+		LASSO,
+		REAPERS_SCYTHE;
+		public int value() {
+			switch(this) {
+			case ENDER_PORTER:
+				return 1;
+			case COFFEE:
+				return 2;
+			case BLOCK_FLAGGER:
+				return 3;
+			case DEPRESSION_WAND:
+				return 4;
+			case BLINK_WAND:
+				return 5;
+			case LASSO:
+				return 6;
+			case REAPERS_SCYTHE:
+				return 7;
+			default:
+				return -1;
+			}
+		}
+		public boolean instance(ItemStack item) {
+			return item.getItemMeta().hasCustomModelData() && item.getItemMeta().getCustomModelData()==value();
+		}
+	}
+	
+	public enum Modifiers {
+		ROTTING_PRESERVATION,
+		ROTTED;
+		public AttributeModifier value() {
+			switch(this) {
+			case ROTTING_PRESERVATION:
+				return new AttributeModifier("Rotting Preservation", -2, Operation.ADD_NUMBER);
+			case ROTTED:
+				return new AttributeModifier("Rotting Preservation", -.5, Operation.MULTIPLY_SCALAR_1 );
+			default:
+				return null;
+			}
+		}
+		public boolean apply(Attributable a)
+		public boolean remove(Attributable a) {
+			
+		}
+	}
+	
+	public int coffeeDelay = 0;
+	public static Random r = new Random();
+
+	//	public class EnderPorterInfo {
+//		Location target;
+//		int charge;
+//		int maxCharge;
+//	}
+//	
+//	EnderPorterIDs
+	
+	
+	@Override
+	public void onEnable() {
+		/**
+		 * TODO GUIs = custom inventory, set the items, make a listener for it that always cancels the action.
+		 */
+		
+		
+		this.getCommand("GM").setExecutor(new CommandGamemode(this)); //Registers "/GM" command (remember to edit plugin.yml)
+		/** @Deprecated this.getCommand("Sacrifice").setExecutor(new CommandSacrifice(this)); //Registers "/Sacrifice" command (remember to edit plugin.yml) */
+		this.getCommand("Purchase").setExecutor(new CommandPurchase(this)); //Registers "/Purchase" command (remember to edit plugin.yml)
+		//TODO this.getCommand("sKick").setExecutor(new CommandSuggestKick(this)); //Registers "/suggestKick" command (remember to edit plugin.yml)
+		this.getServer().getPluginManager().registerEvents(new ListenerMine(this), this);
+		this.getServer().getPluginManager().registerEvents(new ListenerInteract(this), this);
+		this.getServer().getPluginManager().registerEvents(new ListenerCharge(this), this);
+		this.getServer().getPluginManager().registerEvents(new ListenerPlayerDeath(this), this);
+		this.getServer().getPluginManager().registerEvents(new ListenerTick(this), this);
+		this.getServer().getPluginManager().registerEvents(new ListenerMetaScrubber(this), this);
+		this.getServer().getPluginManager().registerEvents(new ListenerEntityDamage(this), this);
+		this.getServer().getPluginManager().registerEvents(new ListenerPlacement(this), this);
+	}
+	
+	@Override
+	public void onDisable() {
+		
+	}
+	
+	@Override
+	public List<String> onTabComplete(CommandSender sender, Command cmd, String alias, String[] args) {
+		List<String> possibilities = new ArrayList<String>();
+		switch (alias) {
+		case "sacrifice":
+			switch(args.length) {
+			case 0:
+				possibilities.add("mars");
+				possibilities.add("thor");
+				possibilities.add("zeus");
+				break;
+			}
+			break;
+		case "gm":
+			switch(args.length) {
+			case 0:
+				possibilities.add("0");
+				possibilities.add("1");
+				possibilities.add("2");
+				possibilities.add("3");
+				possibilities.add("su");
+				possibilities.add("c");
+				possibilities.add("a");
+				possibilities.add("sp");
+				break;
+			}
+
+			break;
+		default:
+			possibilities = null;
+		}
+		return possibilities;
+	}
+
+	public static Player addXP(Player p, int amount, boolean levels) {
+		boolean add = amount>0;
+		amount = Math.abs(amount);
+		int xp;
+		if(levels) {
+			if(amount<17) {
+				xp = (int) Math.pow(amount,2)+(amount*6);
+			} else if(amount<32) {
+				int amt = amount-16;
+				xp = (int) (2.5*Math.pow(amt, 2)+(39.5*amt)+352);
+			} else {
+				int amt = amount-31;
+				xp = (int) ((4.5*Math.pow(amt, 2))+(116.5*amt)+1507);
+			}
+		} else {
+			xp = amount;
+		}
+		p.giveExp(add?xp:-xp);
+		return p;
+	}
+	
+}
+----------------------------------- SOURCE END -------------------------------------
+!STACK 0
+java.lang.IllegalArgumentException
+	at org.eclipse.jdt.core.dom.ASTNode.setSourceRange(ASTNode.java:3105)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:738)
+	at org.eclipse.jdt.core.dom.ASTConverter.buildBodyDeclarations(ASTConverter.java:362)
+	at org.eclipse.jdt.core.dom.ASTConverter.convertToEnumDeclaration(ASTConverter.java:3552)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:3233)
+	at org.eclipse.jdt.core.dom.ASTConverter.buildBodyDeclarations(ASTConverter.java:213)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:3302)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1513)
+	at org.eclipse.jdt.core.dom.AST.convertCompilationUnit(AST.java:450)
+	at org.eclipse.jdt.internal.core.CompilationUnit.buildStructure(CompilationUnit.java:200)
+	at org.eclipse.jdt.internal.core.Openable.generateInfos(Openable.java:268)
+	at org.eclipse.jdt.internal.core.JavaElement.openWhenClosed(JavaElement.java:596)
+	at org.eclipse.jdt.internal.core.CompilationUnit.makeConsistent(CompilationUnit.java:1138)
+	at org.eclipse.jdt.internal.core.ReconcileWorkingCopyOperation.makeConsistent(ReconcileWorkingCopyOperation.java:173)
+	at org.eclipse.jdt.internal.core.ReconcileWorkingCopyOperation.executeOperation(ReconcileWorkingCopyOperation.java:94)
+	at org.eclipse.jdt.internal.core.JavaModelOperation.run(JavaModelOperation.java:736)
+	at org.eclipse.jdt.internal.core.JavaModelOperation.runOperation(JavaModelOperation.java:802)
+	at org.eclipse.jdt.internal.core.CompilationUnit.reconcile(CompilationUnit.java:1315)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:131)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.access$0(JavaReconcilingStrategy.java:113)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy$1.run(JavaReconcilingStrategy.java:93)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:90)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:157)
+	at org.eclipse.jdt.internal.ui.text.CompositeReconcilingStrategy.reconcile(CompositeReconcilingStrategy.java:94)
+	at org.eclipse.jdt.internal.ui.text.JavaCompositeReconcilingStrategy.reconcile(JavaCompositeReconcilingStrategy.java:107)
+	at org.eclipse.jface.text.reconciler.MonoReconciler.process(MonoReconciler.java:76)
+	at org.eclipse.jface.text.reconciler.AbstractReconciler$BackgroundThread.run(AbstractReconciler.java:210)
+
+!ENTRY org.eclipse.jdt.ui 4 2 2020-10-03 11:05:55.614
+!MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.jdt.ui".
+!STACK 0
+java.lang.IllegalArgumentException
+	at org.eclipse.jdt.core.dom.ASTNode.setSourceRange(ASTNode.java:3105)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:738)
+	at org.eclipse.jdt.core.dom.ASTConverter.buildBodyDeclarations(ASTConverter.java:362)
+	at org.eclipse.jdt.core.dom.ASTConverter.convertToEnumDeclaration(ASTConverter.java:3552)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:3233)
+	at org.eclipse.jdt.core.dom.ASTConverter.buildBodyDeclarations(ASTConverter.java:213)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:3302)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1513)
+	at org.eclipse.jdt.core.dom.AST.convertCompilationUnit(AST.java:450)
+	at org.eclipse.jdt.internal.core.CompilationUnit.buildStructure(CompilationUnit.java:200)
+	at org.eclipse.jdt.internal.core.Openable.generateInfos(Openable.java:268)
+	at org.eclipse.jdt.internal.core.JavaElement.openWhenClosed(JavaElement.java:596)
+	at org.eclipse.jdt.internal.core.CompilationUnit.makeConsistent(CompilationUnit.java:1138)
+	at org.eclipse.jdt.internal.core.ReconcileWorkingCopyOperation.makeConsistent(ReconcileWorkingCopyOperation.java:173)
+	at org.eclipse.jdt.internal.core.ReconcileWorkingCopyOperation.executeOperation(ReconcileWorkingCopyOperation.java:94)
+	at org.eclipse.jdt.internal.core.JavaModelOperation.run(JavaModelOperation.java:736)
+	at org.eclipse.jdt.internal.core.JavaModelOperation.runOperation(JavaModelOperation.java:802)
+	at org.eclipse.jdt.internal.core.CompilationUnit.reconcile(CompilationUnit.java:1315)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:131)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.access$0(JavaReconcilingStrategy.java:113)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy$1.run(JavaReconcilingStrategy.java:93)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:90)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:157)
+	at org.eclipse.jdt.internal.ui.text.CompositeReconcilingStrategy.reconcile(CompositeReconcilingStrategy.java:94)
+	at org.eclipse.jdt.internal.ui.text.JavaCompositeReconcilingStrategy.reconcile(JavaCompositeReconcilingStrategy.java:107)
+	at org.eclipse.jface.text.reconciler.MonoReconciler.process(MonoReconciler.java:76)
+	at org.eclipse.jface.text.reconciler.AbstractReconciler$BackgroundThread.run(AbstractReconciler.java:210)
+
+!ENTRY org.eclipse.jdt.ui 4 0 2020-10-03 11:05:55.636
+!MESSAGE Error in JDT Core during reconcile
+!STACK 0
+java.lang.IllegalArgumentException
+	at org.eclipse.jdt.core.dom.ASTNode.setSourceRange(ASTNode.java:3105)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:738)
+	at org.eclipse.jdt.core.dom.ASTConverter.buildBodyDeclarations(ASTConverter.java:362)
+	at org.eclipse.jdt.core.dom.ASTConverter.convertToEnumDeclaration(ASTConverter.java:3552)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:3233)
+	at org.eclipse.jdt.core.dom.ASTConverter.buildBodyDeclarations(ASTConverter.java:213)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:3302)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1513)
+	at org.eclipse.jdt.core.dom.AST.convertCompilationUnit(AST.java:450)
+	at org.eclipse.jdt.internal.core.CompilationUnit.buildStructure(CompilationUnit.java:200)
+	at org.eclipse.jdt.internal.core.Openable.generateInfos(Openable.java:268)
+	at org.eclipse.jdt.internal.core.JavaElement.openWhenClosed(JavaElement.java:596)
+	at org.eclipse.jdt.internal.core.CompilationUnit.makeConsistent(CompilationUnit.java:1138)
+	at org.eclipse.jdt.internal.core.ReconcileWorkingCopyOperation.makeConsistent(ReconcileWorkingCopyOperation.java:173)
+	at org.eclipse.jdt.internal.core.ReconcileWorkingCopyOperation.executeOperation(ReconcileWorkingCopyOperation.java:94)
+	at org.eclipse.jdt.internal.core.JavaModelOperation.run(JavaModelOperation.java:736)
+	at org.eclipse.jdt.internal.core.JavaModelOperation.runOperation(JavaModelOperation.java:802)
+	at org.eclipse.jdt.internal.core.CompilationUnit.reconcile(CompilationUnit.java:1315)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:131)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.access$0(JavaReconcilingStrategy.java:113)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy$1.run(JavaReconcilingStrategy.java:93)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:90)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:157)
+	at org.eclipse.jdt.internal.ui.text.CompositeReconcilingStrategy.reconcile(CompositeReconcilingStrategy.java:94)
+	at org.eclipse.jdt.internal.ui.text.JavaCompositeReconcilingStrategy.reconcile(JavaCompositeReconcilingStrategy.java:107)
+	at org.eclipse.jface.text.reconciler.MonoReconciler.process(MonoReconciler.java:76)
+	at org.eclipse.jface.text.reconciler.AbstractReconciler$BackgroundThread.run(AbstractReconciler.java:210)
+
+!ENTRY org.eclipse.jdt.core 4 4 2020-10-03 11:50:45.885
+!MESSAGE Exception occurred during compilation unit conversion:
+----------------------------------- SOURCE BEGIN -------------------------------------
+package me.Minecraftmage113.InsanityPlugin;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+
+import org.bukkit.attribute.Attributable;
+import org.bukkit.attribute.Attribute;
+import org.bukkit.attribute.AttributeModifier;
+import org.bukkit.attribute.AttributeModifier.Operation;
+import org.bukkit.command.Command;
+import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Mob;
+import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.plugin.java.JavaPlugin;
+
+import me.Minecraftmage113.InsanityPlugin.commands.CommandGamemode;
+import me.Minecraftmage113.InsanityPlugin.commands.CommandPurchase;
+import me.Minecraftmage113.InsanityPlugin.listeners.ListenerMine;
+import me.Minecraftmage113.InsanityPlugin.listeners.ListenerCharge;
+import me.Minecraftmage113.InsanityPlugin.listeners.ListenerEntityDamage;
+import me.Minecraftmage113.InsanityPlugin.listeners.ListenerInteract;
+import me.Minecraftmage113.InsanityPlugin.listeners.ListenerMetaScrubber;
+import me.Minecraftmage113.InsanityPlugin.listeners.ListenerPlacement;
+import me.Minecraftmage113.InsanityPlugin.listeners.ListenerPlayerDeath;
+import me.Minecraftmage113.InsanityPlugin.listeners.ListenerTick;
+
+/**
+ * A general plugin for use on the InsanityCraft server.
+ * 
+ * @author Minecraftmage113
+ * @version 30/Sept/2020
+ */
+public class Main extends JavaPlugin {
+
+	private List<Mob> lassoMobs = new ArrayList<Mob>();
+	private List<Integer> lassoIDs = new ArrayList<Integer>();
+	public List<Player> creativePlayers = new ArrayList<Player>();
+	
+	public int lasso(Mob mob) {
+		int id = 0;
+		while(lassoIDs.contains(id)) {
+			id++;
+		}
+		lassoMobs.add(mob);
+		lassoIDs.add(id);
+		return id;
+	}
+	
+	public Mob releaseLasso(int id) {
+		int index = lassoIDs.indexOf(id);
+		lassoIDs.remove(index);
+		return lassoMobs.remove(index);
+	}
+	
+	public enum ModelData {
+		ENDER_PORTER,
+		COFFEE,
+		BLOCK_FLAGGER,
+		DEPRESSION_WAND,
+		BLINK_WAND,
+		LASSO,
+		REAPERS_SCYTHE;
+		public int value() {
+			switch(this) {
+			case ENDER_PORTER:
+				return 1;
+			case COFFEE:
+				return 2;
+			case BLOCK_FLAGGER:
+				return 3;
+			case DEPRESSION_WAND:
+				return 4;
+			case BLINK_WAND:
+				return 5;
+			case LASSO:
+				return 6;
+			case REAPERS_SCYTHE:
+				return 7;
+			default:
+				return -1;
+			}
+		}
+		public boolean instance(ItemStack item) {
+			return item.getItemMeta().hasCustomModelData() && item.getItemMeta().getCustomModelData()==value();
+		}
+	}
+	
+	public enum Modifiers {
+		ROTTING_PRESERVATION,
+		ROTTED;
+		private AttributeModifier value() {
+			switch(this) {
+			case ROTTING_PRESERVATION:
+				return new AttributeModifier("Rotting Preservation", -2, Operation.ADD_NUMBER);
+			case ROTTED:
+				return new AttributeModifier("Rotting Preservation", -.5, Operation.MULTIPLY_SCALAR_1 );
+			default:
+				return null;
+			}
+		}
+		public boolean has()
+		public boolean apply(Attributable a) {
+			switch(this) {
+			case ROTTING_PRESERVATION:
+			case ROTTED:
+				if(a.getAttribute(Attribute.GENERIC_MAX_HEALTH).getModifiers().contains(value())) {
+					((Player) a).sendMessage("You're already rotted!");
+					return false;
+				}
+				a.getAttribute(Attribute.GENERIC_MAX_HEALTH).addModifier(value());
+				break;
+			}
+			return true;
+		}
+		public boolean remove(Attributable a) {
+			
+			switch(this) {
+			case ROTTING_PRESERVATION:
+			case ROTTED:
+				if(!a.getAttribute(Attribute.GENERIC_MAX_HEALTH).getModifiers().contains(value())) {
+					return false;
+				}
+				a.getAttribute(Attribute.GENERIC_MAX_HEALTH).removeModifier(value());
+				break;
+			}
+			return true;
+		}
+	}
+	
+	public int coffeeDelay = 0;
+	public static Random r = new Random();
+
+	//	public class EnderPorterInfo {
+//		Location target;
+//		int charge;
+//		int maxCharge;
+//	}
+//	
+//	EnderPorterIDs
+	
+	
+	@Override
+	public void onEnable() {
+		/**
+		 * TODO GUIs = custom inventory, set the items, make a listener for it that always cancels the action.
+		 */
+		
+		
+		this.getCommand("GM").setExecutor(new CommandGamemode(this)); //Registers "/GM" command (remember to edit plugin.yml)
+		/** @Deprecated this.getCommand("Sacrifice").setExecutor(new CommandSacrifice(this)); //Registers "/Sacrifice" command (remember to edit plugin.yml) */
+		this.getCommand("Purchase").setExecutor(new CommandPurchase(this)); //Registers "/Purchase" command (remember to edit plugin.yml)
+		//TODO this.getCommand("sKick").setExecutor(new CommandSuggestKick(this)); //Registers "/suggestKick" command (remember to edit plugin.yml)
+		this.getServer().getPluginManager().registerEvents(new ListenerMine(this), this);
+		this.getServer().getPluginManager().registerEvents(new ListenerInteract(this), this);
+		this.getServer().getPluginManager().registerEvents(new ListenerCharge(this), this);
+		this.getServer().getPluginManager().registerEvents(new ListenerPlayerDeath(this), this);
+		this.getServer().getPluginManager().registerEvents(new ListenerTick(this), this);
+		this.getServer().getPluginManager().registerEvents(new ListenerMetaScrubber(this), this);
+		this.getServer().getPluginManager().registerEvents(new ListenerEntityDamage(this), this);
+		this.getServer().getPluginManager().registerEvents(new ListenerPlacement(this), this);
+	}
+	
+	@Override
+	public void onDisable() {
+		
+	}
+	
+	@Override
+	public List<String> onTabComplete(CommandSender sender, Command cmd, String alias, String[] args) {
+		List<String> possibilities = new ArrayList<String>();
+		switch (alias) {
+		case "sacrifice":
+			switch(args.length) {
+			case 0:
+				possibilities.add("mars");
+				possibilities.add("thor");
+				possibilities.add("zeus");
+				break;
+			}
+			break;
+		case "gm":
+			switch(args.length) {
+			case 0:
+				possibilities.add("0");
+				possibilities.add("1");
+				possibilities.add("2");
+				possibilities.add("3");
+				possibilities.add("su");
+				possibilities.add("c");
+				possibilities.add("a");
+				possibilities.add("sp");
+				break;
+			}
+
+			break;
+		default:
+			possibilities = null;
+		}
+		return possibilities;
+	}
+
+	public static Player addXP(Player p, int amount, boolean levels) {
+		boolean add = amount>0;
+		amount = Math.abs(amount);
+		int xp;
+		if(levels) {
+			if(amount<17) {
+				xp = (int) Math.pow(amount,2)+(amount*6);
+			} else if(amount<32) {
+				int amt = amount-16;
+				xp = (int) (2.5*Math.pow(amt, 2)+(39.5*amt)+352);
+			} else {
+				int amt = amount-31;
+				xp = (int) ((4.5*Math.pow(amt, 2))+(116.5*amt)+1507);
+			}
+		} else {
+			xp = amount;
+		}
+		p.giveExp(add?xp:-xp);
+		return p;
+	}
+	
+}
+----------------------------------- SOURCE END -------------------------------------
+!STACK 0
+java.lang.IllegalArgumentException
+	at org.eclipse.jdt.core.dom.ASTNode.setSourceRange(ASTNode.java:3105)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:738)
+	at org.eclipse.jdt.core.dom.ASTConverter.buildBodyDeclarations(ASTConverter.java:362)
+	at org.eclipse.jdt.core.dom.ASTConverter.convertToEnumDeclaration(ASTConverter.java:3552)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:3233)
+	at org.eclipse.jdt.core.dom.ASTConverter.buildBodyDeclarations(ASTConverter.java:213)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:3302)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1513)
+	at org.eclipse.jdt.core.dom.AST.convertCompilationUnit(AST.java:450)
+	at org.eclipse.jdt.internal.core.CompilationUnit.buildStructure(CompilationUnit.java:200)
+	at org.eclipse.jdt.internal.core.Openable.generateInfos(Openable.java:268)
+	at org.eclipse.jdt.internal.core.JavaElement.openWhenClosed(JavaElement.java:596)
+	at org.eclipse.jdt.internal.core.CompilationUnit.makeConsistent(CompilationUnit.java:1138)
+	at org.eclipse.jdt.internal.core.ReconcileWorkingCopyOperation.makeConsistent(ReconcileWorkingCopyOperation.java:173)
+	at org.eclipse.jdt.internal.core.ReconcileWorkingCopyOperation.executeOperation(ReconcileWorkingCopyOperation.java:94)
+	at org.eclipse.jdt.internal.core.JavaModelOperation.run(JavaModelOperation.java:736)
+	at org.eclipse.jdt.internal.core.JavaModelOperation.runOperation(JavaModelOperation.java:802)
+	at org.eclipse.jdt.internal.core.CompilationUnit.reconcile(CompilationUnit.java:1315)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:131)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.access$0(JavaReconcilingStrategy.java:113)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy$1.run(JavaReconcilingStrategy.java:93)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:90)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:157)
+	at org.eclipse.jdt.internal.ui.text.CompositeReconcilingStrategy.reconcile(CompositeReconcilingStrategy.java:94)
+	at org.eclipse.jdt.internal.ui.text.JavaCompositeReconcilingStrategy.reconcile(JavaCompositeReconcilingStrategy.java:107)
+	at org.eclipse.jface.text.reconciler.MonoReconciler.process(MonoReconciler.java:76)
+	at org.eclipse.jface.text.reconciler.AbstractReconciler$BackgroundThread.run(AbstractReconciler.java:210)
+
+!ENTRY org.eclipse.jdt.ui 4 2 2020-10-03 11:50:45.911
+!MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.jdt.ui".
+!STACK 0
+java.lang.IllegalArgumentException
+	at org.eclipse.jdt.core.dom.ASTNode.setSourceRange(ASTNode.java:3105)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:738)
+	at org.eclipse.jdt.core.dom.ASTConverter.buildBodyDeclarations(ASTConverter.java:362)
+	at org.eclipse.jdt.core.dom.ASTConverter.convertToEnumDeclaration(ASTConverter.java:3552)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:3233)
+	at org.eclipse.jdt.core.dom.ASTConverter.buildBodyDeclarations(ASTConverter.java:213)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:3302)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1513)
+	at org.eclipse.jdt.core.dom.AST.convertCompilationUnit(AST.java:450)
+	at org.eclipse.jdt.internal.core.CompilationUnit.buildStructure(CompilationUnit.java:200)
+	at org.eclipse.jdt.internal.core.Openable.generateInfos(Openable.java:268)
+	at org.eclipse.jdt.internal.core.JavaElement.openWhenClosed(JavaElement.java:596)
+	at org.eclipse.jdt.internal.core.CompilationUnit.makeConsistent(CompilationUnit.java:1138)
+	at org.eclipse.jdt.internal.core.ReconcileWorkingCopyOperation.makeConsistent(ReconcileWorkingCopyOperation.java:173)
+	at org.eclipse.jdt.internal.core.ReconcileWorkingCopyOperation.executeOperation(ReconcileWorkingCopyOperation.java:94)
+	at org.eclipse.jdt.internal.core.JavaModelOperation.run(JavaModelOperation.java:736)
+	at org.eclipse.jdt.internal.core.JavaModelOperation.runOperation(JavaModelOperation.java:802)
+	at org.eclipse.jdt.internal.core.CompilationUnit.reconcile(CompilationUnit.java:1315)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:131)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.access$0(JavaReconcilingStrategy.java:113)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy$1.run(JavaReconcilingStrategy.java:93)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:90)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:157)
+	at org.eclipse.jdt.internal.ui.text.CompositeReconcilingStrategy.reconcile(CompositeReconcilingStrategy.java:94)
+	at org.eclipse.jdt.internal.ui.text.JavaCompositeReconcilingStrategy.reconcile(JavaCompositeReconcilingStrategy.java:107)
+	at org.eclipse.jface.text.reconciler.MonoReconciler.process(MonoReconciler.java:76)
+	at org.eclipse.jface.text.reconciler.AbstractReconciler$BackgroundThread.run(AbstractReconciler.java:210)
+
+!ENTRY org.eclipse.jdt.ui 4 0 2020-10-03 11:50:45.925
+!MESSAGE Error in JDT Core during reconcile
+!STACK 0
+java.lang.IllegalArgumentException
+	at org.eclipse.jdt.core.dom.ASTNode.setSourceRange(ASTNode.java:3105)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:738)
+	at org.eclipse.jdt.core.dom.ASTConverter.buildBodyDeclarations(ASTConverter.java:362)
+	at org.eclipse.jdt.core.dom.ASTConverter.convertToEnumDeclaration(ASTConverter.java:3552)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:3233)
+	at org.eclipse.jdt.core.dom.ASTConverter.buildBodyDeclarations(ASTConverter.java:213)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:3302)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1513)
+	at org.eclipse.jdt.core.dom.AST.convertCompilationUnit(AST.java:450)
+	at org.eclipse.jdt.internal.core.CompilationUnit.buildStructure(CompilationUnit.java:200)
+	at org.eclipse.jdt.internal.core.Openable.generateInfos(Openable.java:268)
+	at org.eclipse.jdt.internal.core.JavaElement.openWhenClosed(JavaElement.java:596)
+	at org.eclipse.jdt.internal.core.CompilationUnit.makeConsistent(CompilationUnit.java:1138)
+	at org.eclipse.jdt.internal.core.ReconcileWorkingCopyOperation.makeConsistent(ReconcileWorkingCopyOperation.java:173)
+	at org.eclipse.jdt.internal.core.ReconcileWorkingCopyOperation.executeOperation(ReconcileWorkingCopyOperation.java:94)
+	at org.eclipse.jdt.internal.core.JavaModelOperation.run(JavaModelOperation.java:736)
+	at org.eclipse.jdt.internal.core.JavaModelOperation.runOperation(JavaModelOperation.java:802)
+	at org.eclipse.jdt.internal.core.CompilationUnit.reconcile(CompilationUnit.java:1315)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:131)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.access$0(JavaReconcilingStrategy.java:113)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy$1.run(JavaReconcilingStrategy.java:93)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:90)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:157)
+	at org.eclipse.jdt.internal.ui.text.CompositeReconcilingStrategy.reconcile(CompositeReconcilingStrategy.java:94)
+	at org.eclipse.jdt.internal.ui.text.JavaCompositeReconcilingStrategy.reconcile(JavaCompositeReconcilingStrategy.java:107)
+	at org.eclipse.jface.text.reconciler.MonoReconciler.process(MonoReconciler.java:76)
+	at org.eclipse.jface.text.reconciler.AbstractReconciler$BackgroundThread.run(AbstractReconciler.java:210)
+
+!ENTRY org.eclipse.jdt.core 4 4 2020-10-03 11:50:50.969
+!MESSAGE Exception occurred during compilation unit conversion:
+----------------------------------- SOURCE BEGIN -------------------------------------
+package me.Minecraftmage113.InsanityPlugin;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+
+import org.bukkit.attribute.Attributable;
+import org.bukkit.attribute.Attribute;
+import org.bukkit.attribute.AttributeModifier;
+import org.bukkit.attribute.AttributeModifier.Operation;
+import org.bukkit.command.Command;
+import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Mob;
+import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.plugin.java.JavaPlugin;
+
+import me.Minecraftmage113.InsanityPlugin.commands.CommandGamemode;
+import me.Minecraftmage113.InsanityPlugin.commands.CommandPurchase;
+import me.Minecraftmage113.InsanityPlugin.listeners.ListenerMine;
+import me.Minecraftmage113.InsanityPlugin.listeners.ListenerCharge;
+import me.Minecraftmage113.InsanityPlugin.listeners.ListenerEntityDamage;
+import me.Minecraftmage113.InsanityPlugin.listeners.ListenerInteract;
+import me.Minecraftmage113.InsanityPlugin.listeners.ListenerMetaScrubber;
+import me.Minecraftmage113.InsanityPlugin.listeners.ListenerPlacement;
+import me.Minecraftmage113.InsanityPlugin.listeners.ListenerPlayerDeath;
+import me.Minecraftmage113.InsanityPlugin.listeners.ListenerTick;
+
+/**
+ * A general plugin for use on the InsanityCraft server.
+ * 
+ * @author Minecraftmage113
+ * @version 30/Sept/2020
+ */
+public class Main extends JavaPlugin {
+
+	private List<Mob> lassoMobs = new ArrayList<Mob>();
+	private List<Integer> lassoIDs = new ArrayList<Integer>();
+	public List<Player> creativePlayers = new ArrayList<Player>();
+	
+	public int lasso(Mob mob) {
+		int id = 0;
+		while(lassoIDs.contains(id)) {
+			id++;
+		}
+		lassoMobs.add(mob);
+		lassoIDs.add(id);
+		return id;
+	}
+	
+	public Mob releaseLasso(int id) {
+		int index = lassoIDs.indexOf(id);
+		lassoIDs.remove(index);
+		return lassoMobs.remove(index);
+	}
+	
+	public enum ModelData {
+		ENDER_PORTER,
+		COFFEE,
+		BLOCK_FLAGGER,
+		DEPRESSION_WAND,
+		BLINK_WAND,
+		LASSO,
+		REAPERS_SCYTHE;
+		public int value() {
+			switch(this) {
+			case ENDER_PORTER:
+				return 1;
+			case COFFEE:
+				return 2;
+			case BLOCK_FLAGGER:
+				return 3;
+			case DEPRESSION_WAND:
+				return 4;
+			case BLINK_WAND:
+				return 5;
+			case LASSO:
+				return 6;
+			case REAPERS_SCYTHE:
+				return 7;
+			default:
+				return -1;
+			}
+		}
+		public boolean instance(ItemStack item) {
+			return item.getItemMeta().hasCustomModelData() && item.getItemMeta().getCustomModelData()==value();
+		}
+	}
+	
+	public enum Modifiers {
+		ROTTING_PRESERVATION,
+		ROTTED;
+		private AttributeModifier value() {
+			switch(this) {
+			case ROTTING_PRESERVATION:
+				return new AttributeModifier("Rotting Preservation", -2, Operation.ADD_NUMBER);
+			case ROTTED:
+				return new AttributeModifier("Rotting Preservation", -.5, Operation.MULTIPLY_SCALAR_1 );
+			default:
+				return null;
+			}
+		}
+		public boolean has(Attributable a)
+		public boolean apply(Attributable a) {
+			switch(this) {
+			case ROTTING_PRESERVATION:
+			case ROTTED:
+				if(a.getAttribute(Attribute.GENERIC_MAX_HEALTH).getModifiers().contains(value())) {
+					((Player) a).sendMessage("You're already rotted!");
+					return false;
+				}
+				a.getAttribute(Attribute.GENERIC_MAX_HEALTH).addModifier(value());
+				break;
+			}
+			return true;
+		}
+		public boolean remove(Attributable a) {
+			
+			switch(this) {
+			case ROTTING_PRESERVATION:
+			case ROTTED:
+				if(!a.getAttribute(Attribute.GENERIC_MAX_HEALTH).getModifiers().contains(value())) {
+					return false;
+				}
+				a.getAttribute(Attribute.GENERIC_MAX_HEALTH).removeModifier(value());
+				break;
+			}
+			return true;
+		}
+	}
+	
+	public int coffeeDelay = 0;
+	public static Random r = new Random();
+
+	//	public class EnderPorterInfo {
+//		Location target;
+//		int charge;
+//		int maxCharge;
+//	}
+//	
+//	EnderPorterIDs
+	
+	
+	@Override
+	public void onEnable() {
+		/**
+		 * TODO GUIs = custom inventory, set the items, make a listener for it that always cancels the action.
+		 */
+		
+		
+		this.getCommand("GM").setExecutor(new CommandGamemode(this)); //Registers "/GM" command (remember to edit plugin.yml)
+		/** @Deprecated this.getCommand("Sacrifice").setExecutor(new CommandSacrifice(this)); //Registers "/Sacrifice" command (remember to edit plugin.yml) */
+		this.getCommand("Purchase").setExecutor(new CommandPurchase(this)); //Registers "/Purchase" command (remember to edit plugin.yml)
+		//TODO this.getCommand("sKick").setExecutor(new CommandSuggestKick(this)); //Registers "/suggestKick" command (remember to edit plugin.yml)
+		this.getServer().getPluginManager().registerEvents(new ListenerMine(this), this);
+		this.getServer().getPluginManager().registerEvents(new ListenerInteract(this), this);
+		this.getServer().getPluginManager().registerEvents(new ListenerCharge(this), this);
+		this.getServer().getPluginManager().registerEvents(new ListenerPlayerDeath(this), this);
+		this.getServer().getPluginManager().registerEvents(new ListenerTick(this), this);
+		this.getServer().getPluginManager().registerEvents(new ListenerMetaScrubber(this), this);
+		this.getServer().getPluginManager().registerEvents(new ListenerEntityDamage(this), this);
+		this.getServer().getPluginManager().registerEvents(new ListenerPlacement(this), this);
+	}
+	
+	@Override
+	public void onDisable() {
+		
+	}
+	
+	@Override
+	public List<String> onTabComplete(CommandSender sender, Command cmd, String alias, String[] args) {
+		List<String> possibilities = new ArrayList<String>();
+		switch (alias) {
+		case "sacrifice":
+			switch(args.length) {
+			case 0:
+				possibilities.add("mars");
+				possibilities.add("thor");
+				possibilities.add("zeus");
+				break;
+			}
+			break;
+		case "gm":
+			switch(args.length) {
+			case 0:
+				possibilities.add("0");
+				possibilities.add("1");
+				possibilities.add("2");
+				possibilities.add("3");
+				possibilities.add("su");
+				possibilities.add("c");
+				possibilities.add("a");
+				possibilities.add("sp");
+				break;
+			}
+
+			break;
+		default:
+			possibilities = null;
+		}
+		return possibilities;
+	}
+
+	public static Player addXP(Player p, int amount, boolean levels) {
+		boolean add = amount>0;
+		amount = Math.abs(amount);
+		int xp;
+		if(levels) {
+			if(amount<17) {
+				xp = (int) Math.pow(amount,2)+(amount*6);
+			} else if(amount<32) {
+				int amt = amount-16;
+				xp = (int) (2.5*Math.pow(amt, 2)+(39.5*amt)+352);
+			} else {
+				int amt = amount-31;
+				xp = (int) ((4.5*Math.pow(amt, 2))+(116.5*amt)+1507);
+			}
+		} else {
+			xp = amount;
+		}
+		p.giveExp(add?xp:-xp);
+		return p;
+	}
+	
+}
+----------------------------------- SOURCE END -------------------------------------
+!STACK 0
+java.lang.IllegalArgumentException
+	at org.eclipse.jdt.core.dom.ASTNode.setSourceRange(ASTNode.java:3105)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:738)
+	at org.eclipse.jdt.core.dom.ASTConverter.buildBodyDeclarations(ASTConverter.java:362)
+	at org.eclipse.jdt.core.dom.ASTConverter.convertToEnumDeclaration(ASTConverter.java:3552)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:3233)
+	at org.eclipse.jdt.core.dom.ASTConverter.buildBodyDeclarations(ASTConverter.java:213)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:3302)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1513)
+	at org.eclipse.jdt.core.dom.AST.convertCompilationUnit(AST.java:450)
+	at org.eclipse.jdt.internal.core.CompilationUnit.buildStructure(CompilationUnit.java:200)
+	at org.eclipse.jdt.internal.core.Openable.generateInfos(Openable.java:268)
+	at org.eclipse.jdt.internal.core.JavaElement.openWhenClosed(JavaElement.java:596)
+	at org.eclipse.jdt.internal.core.CompilationUnit.makeConsistent(CompilationUnit.java:1138)
+	at org.eclipse.jdt.internal.core.ReconcileWorkingCopyOperation.makeConsistent(ReconcileWorkingCopyOperation.java:173)
+	at org.eclipse.jdt.internal.core.ReconcileWorkingCopyOperation.executeOperation(ReconcileWorkingCopyOperation.java:94)
+	at org.eclipse.jdt.internal.core.JavaModelOperation.run(JavaModelOperation.java:736)
+	at org.eclipse.jdt.internal.core.JavaModelOperation.runOperation(JavaModelOperation.java:802)
+	at org.eclipse.jdt.internal.core.CompilationUnit.reconcile(CompilationUnit.java:1315)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:131)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.access$0(JavaReconcilingStrategy.java:113)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy$1.run(JavaReconcilingStrategy.java:93)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:90)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:157)
+	at org.eclipse.jdt.internal.ui.text.CompositeReconcilingStrategy.reconcile(CompositeReconcilingStrategy.java:94)
+	at org.eclipse.jdt.internal.ui.text.JavaCompositeReconcilingStrategy.reconcile(JavaCompositeReconcilingStrategy.java:107)
+	at org.eclipse.jface.text.reconciler.MonoReconciler.process(MonoReconciler.java:76)
+	at org.eclipse.jface.text.reconciler.AbstractReconciler$BackgroundThread.run(AbstractReconciler.java:210)
+
+!ENTRY org.eclipse.jdt.ui 4 2 2020-10-03 11:50:50.998
+!MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.jdt.ui".
+!STACK 0
+java.lang.IllegalArgumentException
+	at org.eclipse.jdt.core.dom.ASTNode.setSourceRange(ASTNode.java:3105)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:738)
+	at org.eclipse.jdt.core.dom.ASTConverter.buildBodyDeclarations(ASTConverter.java:362)
+	at org.eclipse.jdt.core.dom.ASTConverter.convertToEnumDeclaration(ASTConverter.java:3552)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:3233)
+	at org.eclipse.jdt.core.dom.ASTConverter.buildBodyDeclarations(ASTConverter.java:213)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:3302)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1513)
+	at org.eclipse.jdt.core.dom.AST.convertCompilationUnit(AST.java:450)
+	at org.eclipse.jdt.internal.core.CompilationUnit.buildStructure(CompilationUnit.java:200)
+	at org.eclipse.jdt.internal.core.Openable.generateInfos(Openable.java:268)
+	at org.eclipse.jdt.internal.core.JavaElement.openWhenClosed(JavaElement.java:596)
+	at org.eclipse.jdt.internal.core.CompilationUnit.makeConsistent(CompilationUnit.java:1138)
+	at org.eclipse.jdt.internal.core.ReconcileWorkingCopyOperation.makeConsistent(ReconcileWorkingCopyOperation.java:173)
+	at org.eclipse.jdt.internal.core.ReconcileWorkingCopyOperation.executeOperation(ReconcileWorkingCopyOperation.java:94)
+	at org.eclipse.jdt.internal.core.JavaModelOperation.run(JavaModelOperation.java:736)
+	at org.eclipse.jdt.internal.core.JavaModelOperation.runOperation(JavaModelOperation.java:802)
+	at org.eclipse.jdt.internal.core.CompilationUnit.reconcile(CompilationUnit.java:1315)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:131)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.access$0(JavaReconcilingStrategy.java:113)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy$1.run(JavaReconcilingStrategy.java:93)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:90)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:157)
+	at org.eclipse.jdt.internal.ui.text.CompositeReconcilingStrategy.reconcile(CompositeReconcilingStrategy.java:94)
+	at org.eclipse.jdt.internal.ui.text.JavaCompositeReconcilingStrategy.reconcile(JavaCompositeReconcilingStrategy.java:107)
+	at org.eclipse.jface.text.reconciler.MonoReconciler.process(MonoReconciler.java:76)
+	at org.eclipse.jface.text.reconciler.AbstractReconciler$BackgroundThread.run(AbstractReconciler.java:210)
+
+!ENTRY org.eclipse.jdt.ui 4 0 2020-10-03 11:50:51.019
+!MESSAGE Error in JDT Core during reconcile
+!STACK 0
+java.lang.IllegalArgumentException
+	at org.eclipse.jdt.core.dom.ASTNode.setSourceRange(ASTNode.java:3105)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:738)
+	at org.eclipse.jdt.core.dom.ASTConverter.buildBodyDeclarations(ASTConverter.java:362)
+	at org.eclipse.jdt.core.dom.ASTConverter.convertToEnumDeclaration(ASTConverter.java:3552)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:3233)
+	at org.eclipse.jdt.core.dom.ASTConverter.buildBodyDeclarations(ASTConverter.java:213)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:3302)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1513)
+	at org.eclipse.jdt.core.dom.AST.convertCompilationUnit(AST.java:450)
+	at org.eclipse.jdt.internal.core.CompilationUnit.buildStructure(CompilationUnit.java:200)
+	at org.eclipse.jdt.internal.core.Openable.generateInfos(Openable.java:268)
+	at org.eclipse.jdt.internal.core.JavaElement.openWhenClosed(JavaElement.java:596)
+	at org.eclipse.jdt.internal.core.CompilationUnit.makeConsistent(CompilationUnit.java:1138)
+	at org.eclipse.jdt.internal.core.ReconcileWorkingCopyOperation.makeConsistent(ReconcileWorkingCopyOperation.java:173)
+	at org.eclipse.jdt.internal.core.ReconcileWorkingCopyOperation.executeOperation(ReconcileWorkingCopyOperation.java:94)
+	at org.eclipse.jdt.internal.core.JavaModelOperation.run(JavaModelOperation.java:736)
+	at org.eclipse.jdt.internal.core.JavaModelOperation.runOperation(JavaModelOperation.java:802)
+	at org.eclipse.jdt.internal.core.CompilationUnit.reconcile(CompilationUnit.java:1315)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:131)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.access$0(JavaReconcilingStrategy.java:113)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy$1.run(JavaReconcilingStrategy.java:93)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:90)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:157)
+	at org.eclipse.jdt.internal.ui.text.CompositeReconcilingStrategy.reconcile(CompositeReconcilingStrategy.java:94)
+	at org.eclipse.jdt.internal.ui.text.JavaCompositeReconcilingStrategy.reconcile(JavaCompositeReconcilingStrategy.java:107)
+	at org.eclipse.jface.text.reconciler.MonoReconciler.process(MonoReconciler.java:76)
+	at org.eclipse.jface.text.reconciler.AbstractReconciler$BackgroundThread.run(AbstractReconciler.java:210)
