@@ -17,3 +17,7 @@ commands:
     usage: /purchase <item>
     description: Purchases given item. When no item supplied lists items available.
     aliases: buy
+  Cleanse:
+    usage: /cleanse
+    description: Removes all active effects from the player. Typically used for residual sacrifice effects.
+    aliases: purge
