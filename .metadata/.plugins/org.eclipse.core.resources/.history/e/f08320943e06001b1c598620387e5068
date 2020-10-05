@@ -96,7 +96,7 @@ public class Main extends JavaPlugin {
 			case ROTTING_PRESERVATION:
 				return new AttributeModifier("Rotting Preservation", -2, Operation.ADD_NUMBER);
 			case ROTTED:
-				return new AttributeModifier("Rotted", -.5, Operation.MULTIPLY_SCALAR_1 );
+				return new AttributeModifier("Rotting Preservation", -.5, Operation.MULTIPLY_SCALAR_1 );
 			default:
 				return null;
 			}

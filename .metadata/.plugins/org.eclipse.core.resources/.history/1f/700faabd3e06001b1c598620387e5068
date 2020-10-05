@@ -27,11 +27,9 @@ public class CommandCleanse extends InsanityCommand {
 	}
 	
 	public void cleanseModifier(Player p, Attribute a) {
-		if(p.getAttribute(a)!=null) {
-			Collection<AttributeModifier> modifiers = p.getAttribute(a).getModifiers();
-			for(AttributeModifier m : modifiers) {
-				p.getAttribute(a).removeModifier(m);
-			}
+		Collection<AttributeModifier> modifiers = p.getAttribute(a).getModifiers();
+		for(AttributeModifier m : modifiers) {
+			p.getAttribute(a).removeModifier(m);
 		}
 	}
 	
@@ -62,7 +60,7 @@ public class CommandCleanse extends InsanityCommand {
 			for(String s : tags) {
 				p.removeScoreboardTag(s);
 			}
-			p.addPotionEffect(new PotionEffect(PotionEffectType.CONFUSION, 20*60, 9, false, false, false));
+			p.addPotionEffect(new PotionEffect(PotionEffectType.CONFUSION, 20*60, 0, false, false, false));
 			p.sendMessage(ChatColor.LIGHT_PURPLE + "Your body has been purged of external influence.");
 			return true;
 		} else {
