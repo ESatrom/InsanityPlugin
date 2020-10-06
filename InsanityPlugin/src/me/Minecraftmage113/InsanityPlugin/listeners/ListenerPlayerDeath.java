@@ -16,6 +16,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.SkullMeta;
 
 import me.Minecraftmage113.InsanityPlugin.Main;
+import me.Minecraftmage113.InsanityPlugin.helpers.InsanityEnums;
 
 public class ListenerPlayerDeath extends InsanityListener {
 	public ListenerPlayerDeath(Main plugin) { super(plugin); }
@@ -40,15 +41,15 @@ public class ListenerPlayerDeath extends InsanityListener {
 	}
 	
 	void tags(Player p) {
-		Main.Modifiers.ROTTED.remove(p);
-		if(Main.Modifiers.ROTTING_PRESERVATION.remove(p)) {
-			Main.Modifiers.ROTTED.apply(p);
+		InsanityEnums.Modifiers.ROTTED.remove(p);
+		if(InsanityEnums.Modifiers.ROTTING_PRESERVATION.remove(p)) {
+			InsanityEnums.Modifiers.ROTTED.apply(p);
 			for(Entity e : p.getNearbyEntities(5, 2, 5)) {
 				if(e instanceof Attributable) {
 					if(e instanceof Damageable) {
 						Damageable d = (Damageable) e;
 						plugin.getServer().broadcastMessage(d.getName() + " will be Rotted! (" + d.getHealth() + "/" + ((Attributable) d).getAttribute(Attribute.GENERIC_MAX_HEALTH).getValue() + ")");
-						Main.Modifiers.ROTTED.apply((Attributable) d);
+						InsanityEnums.Modifiers.ROTTED.apply((Attributable) d);
 						plugin.getServer().broadcastMessage(d.getName() + " got Rotted! (" + d.getHealth() + "/" + ((Attributable) d).getAttribute(Attribute.GENERIC_MAX_HEALTH).getValue() + ")");
 					} else {
 						plugin.getServer().broadcastMessage("What are you doing???");

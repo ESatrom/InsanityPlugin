@@ -18,6 +18,7 @@ import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
 import me.Minecraftmage113.InsanityPlugin.Main;
+import me.Minecraftmage113.InsanityPlugin.helpers.InsanityEnums;
 
 public class ListenerEntityDamage extends InsanityListener {
 	public ListenerEntityDamage(Main plugin) { super(plugin); }
@@ -28,11 +29,11 @@ public class ListenerEntityDamage extends InsanityListener {
 			Player p = (Player) event.getDamager();
 			ItemStack item = p.getInventory().getItemInMainHand();
 			if(item!=null) {
-				if(Main.ModelData.DEPRESSION_WAND.instance(item)) {
+				if(InsanityEnums.ModelData.DEPRESSION_WAND.instance(item)) {
 					saddify(event);
-				} else if(Main.ModelData.REAPERS_SCYTHE.instance(item)) {
+				} else if(InsanityEnums.ModelData.REAPERS_SCYTHE.instance(item)) {
 					behead(event, p);
-				} else if(Main.ModelData.LASSO.instance(item)) {
+				} else if(InsanityEnums.ModelData.LASSO.instance(item)) {
 					lasso(event, p, item);
 				}
 			}

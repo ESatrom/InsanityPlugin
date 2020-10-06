@@ -4,20 +4,19 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import org.bukkit.attribute.Attributable;
-import org.bukkit.attribute.Attribute;
-import org.bukkit.attribute.AttributeModifier;
-import org.bukkit.attribute.AttributeModifier.Operation;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Mob;
 import org.bukkit.entity.Player;
-import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import me.Minecraftmage113.InsanityPlugin.commands.CommandCleanse;
 import me.Minecraftmage113.InsanityPlugin.commands.CommandGamemode;
 import me.Minecraftmage113.InsanityPlugin.commands.CommandPurchase;
+import me.Minecraftmage113.InsanityPlugin.commands.CommandSuggestKick;
+import me.Minecraftmage113.InsanityPlugin.commands.CommandSuggestRestart;
+import me.Minecraftmage113.InsanityPlugin.helpers.Saver;
+import me.Minecraftmage113.InsanityPlugin.helpers.TimedEvents;
 import me.Minecraftmage113.InsanityPlugin.listeners.ListenerCharge;
 import me.Minecraftmage113.InsanityPlugin.listeners.ListenerEntityDamage;
 import me.Minecraftmage113.InsanityPlugin.listeners.ListenerInteract;
@@ -38,6 +37,7 @@ public class Main extends JavaPlugin {
 	private List<Mob> lassoMobs = new ArrayList<Mob>();
 	private List<Integer> lassoIDs = new ArrayList<Integer>();
 	public List<Player> creativePlayers = new ArrayList<Player>();
+	public Saver saver = new Saver(this);
 	
 	public int lasso(Mob mob) {
 		int id = 0;
@@ -55,87 +55,6 @@ public class Main extends JavaPlugin {
 		return lassoMobs.remove(index);
 	}
 	
-	public enum ModelData {
-		ENDER_PORTER,
-		COFFEE,
-		BLOCK_FLAGGER,
-		DEPRESSION_WAND,
-		BLINK_WAND,
-		LASSO,
-		REAPERS_SCYTHE;
-		public int value() {
-			switch(this) {
-			case ENDER_PORTER:
-				return 1;
-			case COFFEE:
-				return 2;
-			case BLOCK_FLAGGER:
-				return 3;
-			case DEPRESSION_WAND:
-				return 4;
-			case BLINK_WAND:
-				return 5;
-			case LASSO:
-				return 6;
-			case REAPERS_SCYTHE:
-				return 7;
-			default:
-				return -1;
-			}
-		}
-		public boolean instance(ItemStack item) {
-			return item.getItemMeta().hasCustomModelData() && item.getItemMeta().getCustomModelData()==value();
-		}
-	}
-	
-	public enum Modifiers {
-		ROTTING_PRESERVATION,
-		ROTTED;
-		private AttributeModifier value() {
-			switch(this) {
-			case ROTTING_PRESERVATION:
-				return new AttributeModifier("Rotting Preservation", -2, Operation.ADD_NUMBER);
-			case ROTTED:
-				return new AttributeModifier("Rotted", -.5, Operation.MULTIPLY_SCALAR_1 );
-			default:
-				return null;
-			}
-		}
-		private AttributeModifier getApplied(Attributable a, Attribute at) {
-			for(AttributeModifier m : a.getAttribute(at).getModifiers()) {
-				if(m.getName().equals(value().getName())) {
-					return m;
-				}
-			}
-			return null;
-		}
-		public boolean apply(Attributable a) {
-			switch(this) {
-			case ROTTING_PRESERVATION:
-			case ROTTED:
-				if(getApplied(a, Attribute.GENERIC_MAX_HEALTH)!=null) {
-					return false;
-				}
-				a.getAttribute(Attribute.GENERIC_MAX_HEALTH).addModifier(value());
-				break;
-			}
-			return true;
-		}
-		public boolean remove(Attributable a) {
-			
-			switch(this) {
-			case ROTTING_PRESERVATION:
-			case ROTTED:
-				AttributeModifier targetMod = getApplied(a, Attribute.GENERIC_MAX_HEALTH);
-				if(targetMod==null) {
-					return false;
-				}
-				a.getAttribute(Attribute.GENERIC_MAX_HEALTH).removeModifier(targetMod);
-				break;
-			}
-			return true;
-		}
-	}
 	
 	public int coffeeDelay = 0;
 	public static Random r = new Random();
@@ -154,13 +73,13 @@ public class Main extends JavaPlugin {
 		/**
 		 * TODO GUIs = custom inventory, set the items, make a listener for it that always cancels the action.
 		 */
-		
-		
+		saver.load();
 		this.getCommand("GM").setExecutor(new CommandGamemode(this)); //Registers "/GM" command (remember to edit plugin.yml)
 		/** @Deprecated this.getCommand("Sacrifice").setExecutor(new CommandSacrifice(this)); //Registers "/Sacrifice" command (remember to edit plugin.yml) */
 		this.getCommand("Purchase").setExecutor(new CommandPurchase(this)); //Registers "/Purchase" command (remember to edit plugin.yml)
 		this.getCommand("Cleanse").setExecutor(new CommandCleanse(this)); //Registers "/Purchase" command (remember to edit plugin.yml)
-		//TODO this.getCommand("sKick").setExecutor(new CommandSuggestKick(this)); //Registers "/suggestKick" command (remember to edit plugin.yml)
+		this.getCommand("sKick").setExecutor(new CommandSuggestKick(this)); //Registers "/suggestKick" command (remember to edit plugin.yml)
+		this.getCommand("sRestart").setExecutor(new CommandSuggestRestart(this)); //Registers "/suggestRestart" command (remember to edit plugin.yml)
 		this.getServer().getPluginManager().registerEvents(new ListenerMine(this), this);
 		this.getServer().getPluginManager().registerEvents(new ListenerInteract(this), this);
 		this.getServer().getPluginManager().registerEvents(new ListenerCharge(this), this);
@@ -169,11 +88,12 @@ public class Main extends JavaPlugin {
 		this.getServer().getPluginManager().registerEvents(new ListenerMetaScrubber(this), this);
 		this.getServer().getPluginManager().registerEvents(new ListenerEntityDamage(this), this);
 		this.getServer().getPluginManager().registerEvents(new ListenerPlacement(this), this);
+		TimedEvents.plugin = this;
 	}
 	
 	@Override
 	public void onDisable() {
-		
+		saver.save();
 	}
 	
 	@Override

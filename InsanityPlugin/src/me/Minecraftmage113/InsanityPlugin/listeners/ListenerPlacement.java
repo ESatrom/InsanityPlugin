@@ -7,6 +7,7 @@ import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
 
+import me.Minecraftmage113.InsanityPlugin.InsanityMetadata;
 import me.Minecraftmage113.InsanityPlugin.Main;
 
 public class ListenerPlacement extends InsanityListener {
@@ -28,6 +29,7 @@ public class ListenerPlacement extends InsanityListener {
 				} else {
 					event.getPlayer().getInventory().setItemInOffHand(item);
 				}
+				event.getBlock().setMetadata("manMade", new InsanityMetadata(plugin, "true"));
 			} else {
 				event.getPlayer().setGameMode(GameMode.CREATIVE);
 				plugin.creativePlayers.add(event.getPlayer());

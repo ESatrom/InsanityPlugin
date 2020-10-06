@@ -18,6 +18,7 @@ import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
 import me.Minecraftmage113.InsanityPlugin.Main;
+import me.Minecraftmage113.InsanityPlugin.helpers.TimedEvents;
 /**
  * Ticks twice per second.
  */
@@ -37,6 +38,8 @@ public class ListenerTick extends InsanityListener {
 			coffee(event.getEntity().getWorld());
 		}
 		updateGamemodes();
+		TimedEvents.KickList.tick();
+		TimedEvents.Restarter.tick();
 	}
 	
 	public void updateGamemodes() {

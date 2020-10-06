@@ -50,6 +50,8 @@
 	<section name="completion_proposal_size">
 		<item key="contextSelector.size.x" value="331"/>
 		<item key="contextSelector.size.y" value="221"/>
+		<item key="size.x" value="451"/>
+		<item key="size.y" value="1050"/>
 	</section>
 	<section name="quick_assist_proposal_size">
 	</section>
@@ -74,6 +76,8 @@
 		<item key="JarManifestWizardPage.SEAL_JAR" value="false"/>
 		<list key="JarPackageWizardPage.DESTINATION_NAMES_ID">
 			<item value="C:\Users\elija\Desktop\Games\Servers\Minecraft\1.16.3\Plugin_Servers\Test\plugins\InsanityPluginTest.jar"/>
+			<item value="C:\Users\elija\Desktop\Software\me\Products\Plugins\InsanityPlugin\InsanityPluginv1.0.5.jar"/>
+			<item value="C:\Users\elija\Desktop\Software\me\Products\Plugins\InsanityPlugin\InsanityPluginv1.0.4.jar"/>
 			<item value="C:\Users\elija\Desktop\Software\me\Products\Plugins\InsanityPlugin\InsanityPluginv1.0.3.jar"/>
 			<item value="C:\Users\elija\Desktop\Software\me\Products\Plugins\InsanityPlugin\InsanityPluginv1.0.2.jar"/>
 			<item value="D:\InsanityPluginv1.0.1.jar"/>

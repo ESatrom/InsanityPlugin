@@ -1,0 +1,19 @@
+package me.Minecraftmage113.InsanityPlugin.commands;
+
+import org.bukkit.command.Command;
+import org.bukkit.command.CommandExecutor;
+import org.bukkit.command.CommandSender;
+
+import me.Minecraftmage113.InsanityPlugin.Main;
+
+public class CommandSuggestRestart extends InsanityCommand {
+
+	public CommandSuggestRestart(Main plugin) { super(plugin); }
+
+	@Override
+	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+}

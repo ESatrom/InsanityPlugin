@@ -14,7 +14,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 public class ItemEnderPorter extends ItemStack {
 	ItemMeta meta;
-	double x, y, z;
+	int x, y, z;
 	int id;
 	boolean bound;
 	int charge;
@@ -107,9 +107,9 @@ public class ItemEnderPorter extends ItemStack {
 	}
 	@SuppressWarnings("deprecation")
 	public void setTarget(Location target) {
-		x = target.getX();
-		y = target.getY();
-		z = target.getZ();
+		x = (int) target.getX();
+		y = (int) target.getY();
+		z = (int) target.getZ();
 		id = target.getWorld().getEnvironment().getId();
 		bound = true;
 		updateMeta();
@@ -119,11 +119,11 @@ public class ItemEnderPorter extends ItemStack {
 	}
 	public void decodeData(String data) {
 		String dat = data.substring(data.indexOf('|')+1);
-		x = Double.parseDouble(dat.substring(0, dat.indexOf('|')));
+		x = Integer.parseInt(dat.substring(0, dat.indexOf('|')));
 		dat = dat.substring(dat.indexOf('|')+1);
-		y = Double.parseDouble(dat.substring(0, dat.indexOf('|')));
+		y = Integer.parseInt(dat.substring(0, dat.indexOf('|')));
 		dat = dat.substring(dat.indexOf('|')+1);
-		z = Double.parseDouble(dat.substring(0, dat.indexOf('|')));
+		z = Integer.parseInt(dat.substring(0, dat.indexOf('|')));
 		dat = dat.substring(dat.indexOf('|')+1);
 		id = Integer.parseInt(dat.substring(0, dat.indexOf('|')));
 		dat = dat.substring(dat.indexOf('|')+1);

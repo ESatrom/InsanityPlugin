@@ -71,6 +71,8 @@ public class ListenerMetaScrubber extends InsanityListener {
 	
 	public boolean scrub(Block b) {
 		boolean result = b.hasMetadata("manMade");
+		result = result?b.getMetadata("manMade").size()>0:result;
+		result = result?b.getMetadata("manMade").get(0).value().equals("true"):result;
 		b.removeMetadata("manMade", plugin);
 		return result;
 	}

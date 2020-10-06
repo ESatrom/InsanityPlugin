@@ -13,6 +13,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
 import me.Minecraftmage113.InsanityPlugin.Main;
+import me.Minecraftmage113.InsanityPlugin.helpers.InsanityEnums;
 import me.Minecraftmage113.InsanityPlugin.items.ItemEnderPorter;
 import net.md_5.bungee.api.ChatColor;
 
@@ -64,7 +65,7 @@ public class CommandPurchase extends InsanityCommand {
 			item = new ItemStack(Material.LEAD);
 			meta = item.getItemMeta();
 			meta.setDisplayName(ChatColor.RESET + "" + ChatColor.GOLD + "Lasso");
-			meta.setCustomModelData(Main.ModelData.LASSO.value());
+			meta.setCustomModelData(InsanityEnums.ModelData.LASSO.value());
 			lore.add("Punch a mob to collect it into your lasso. Right click a block with a full lasso to release a mob.");
 			lore.add("Currently Contained: " + ChatColor.DARK_GRAY + "Nothing");
 			lore.add(ChatColor.BLACK+""+ChatColor.MAGIC+"|-1");
@@ -87,7 +88,7 @@ public class CommandPurchase extends InsanityCommand {
 			meta = item.getItemMeta();
 			meta.addEnchant(Enchantment.VANISHING_CURSE, 1, true);
 			meta.setDisplayName(ChatColor.RESET + "" + ChatColor.DARK_GRAY + "Reaper's Scythe");
-			meta.setCustomModelData(Main.ModelData.REAPERS_SCYTHE.value());
+			meta.setCustomModelData(InsanityEnums.ModelData.REAPERS_SCYTHE.value());
 			lore.add("Punch a player to harvest their head.");
 			meta.setLore(lore);
 			item.setItemMeta(meta);

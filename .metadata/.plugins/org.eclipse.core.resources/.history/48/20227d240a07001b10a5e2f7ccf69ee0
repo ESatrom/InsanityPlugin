@@ -1,0 +1,10 @@
+package me.Minecraftmage113.InsanityPlugin;
+
+public class Saver {
+	public static void save(Main plugin) {
+		
+	}
+	public static void load(Main plugin) {
+		
+	}
+}

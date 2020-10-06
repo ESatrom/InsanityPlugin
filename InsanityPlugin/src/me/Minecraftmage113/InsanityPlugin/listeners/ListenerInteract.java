@@ -17,6 +17,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 import me.Minecraftmage113.InsanityPlugin.InsanityMetadata;
 import me.Minecraftmage113.InsanityPlugin.Main;
+import me.Minecraftmage113.InsanityPlugin.helpers.InsanityEnums;
 import me.Minecraftmage113.InsanityPlugin.items.ItemEnderPorter;
 
 public class ListenerInteract extends InsanityListener {
@@ -27,20 +28,20 @@ public class ListenerInteract extends InsanityListener {
 		Player p = (Player) event.getPlayer();
 		ItemStack item = event.getItem();
 		if(event.getAction().equals(Action.RIGHT_CLICK_AIR)) {
-			if(item!=null && Main.ModelData.ENDER_PORTER.instance(item)){
+			if(item!=null && InsanityEnums.ModelData.ENDER_PORTER.instance(item)){
 				chargedPorter(event, p);
-			} else if(item!=null && Main.ModelData.LASSO.instance(item)) {
+			} else if(item!=null && InsanityEnums.ModelData.LASSO.instance(item)) {
 				event.setCancelled(true);
 			}
 		}
 		if(event.getAction().equals(Action.RIGHT_CLICK_BLOCK)) {
 			altar(event, p);
 			if(item!=null) {
-				if(Main.ModelData.ENDER_PORTER.instance(item)) {
+				if(InsanityEnums.ModelData.ENDER_PORTER.instance(item)) {
 					chargedPorter(event, p);
-				} else if(Main.ModelData.BLOCK_FLAGGER.instance(item)) {
+				} else if(InsanityEnums.ModelData.BLOCK_FLAGGER.instance(item)) {
 					flagBlock(event, p);
-				} else if(Main.ModelData.LASSO.instance(item)) {
+				} else if(InsanityEnums.ModelData.LASSO.instance(item)) {
 					lassoRelease(event, item);
 				}
 			}
@@ -82,7 +83,7 @@ public class ListenerInteract extends InsanityListener {
 		if(event.getClickedBlock().getMetadata("Altar")!=null) {
 			switch(event.getClickedBlock().getMetadata("Altar").get(0).value()+"") {
 			case "Phthisis":
-				if(Main.Modifiers.ROTTING_PRESERVATION.apply(p)) {
+				if(InsanityEnums.Modifiers.ROTTING_PRESERVATION.apply(p)) {
 					p.sendMessage("You have been preserved by Phthisis.");
 				}
 				break;
