@@ -1,0 +1,36 @@
+main: me.Minecraftmage113.InsanityPlugin.Main
+name: InsanityPlugin
+version: 1.2.0
+author: Minecraftmage113
+description: A Plugin for various functionalities on InsanityCraft.
+prefix: insanity
+
+permissions:
+  insanity.sacrifice:
+    default: false
+  insanity.softOp:
+    default: true
+    
+commands:
+  GM:
+    usage: /gm [mode] <player>
+    description: A cropped down version of the /gamemode command
+  Purchase:
+    usage: /purchase <item>
+    description: Purchases given item. When no item supplied lists items available.
+    aliases: buy
+  Cleanse:
+    usage: /cleanse
+    description: Removes all active effects from the player. Typically used for residual sacrifice effects.
+    aliases: purge
+  Srestart:
+    usage: /sRestart
+    description: Suggests a restart of the server. Other online players may deny the restart.
+    aliases: [softRestart, soft-restart, soft_restart]
+    permission: insanity.softOp
+  Skick:
+    usage: /sKick [player]
+    description: Suggests that target player leave the server (in case of afk players). Targetted player may deny the command.
+    aliases: [softKick, soft-kick, soft_kick]
+    permission: insanity.softOp
+  

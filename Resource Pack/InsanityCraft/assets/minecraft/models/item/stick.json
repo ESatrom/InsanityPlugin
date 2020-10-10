@@ -1,0 +1,12 @@
+{
+	"parent": "item/generated",
+	"textures": {
+		"layer0": "item/stick"
+	},
+	
+	"overrides": [
+		{"predicate": {"custom_model_data":3}, "model": "item/custom/flagger"},
+		{"predicate": {"custom_model_data":4}, "model": "item/custom/big_sad"},
+		{"predicate": {"custom_model_data":6}, "model": "item/custom/lasso"}
+	]
+}

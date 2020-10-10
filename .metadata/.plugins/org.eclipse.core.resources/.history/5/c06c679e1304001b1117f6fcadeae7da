@@ -1,7 +1,0 @@
-package me.Minecraftmage113.InsanityPlugin.listeners;
-
-import org.bukkit.event.Listener;
-
-public class ListenerMetaScrubber extends InsanityListener implements Listener {
-
-}
