@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-    <fullyQualifiedTypeName name="me.Minecraftmage113.InsanityPlugin.items.ItemEnderPorter"/>
-    <fullyQualifiedTypeName name="org.bukkit.inventory.meta.SkullMeta"/>
-    <fullyQualifiedTypeName name="org.bukkit.OfflinePlayer"/>
     <fullyQualifiedTypeName name="org.bukkit.event.hanging.HangingBreakEvent"/>
     <fullyQualifiedTypeName name="org.bukkit.event.player.PlayerChangedWorldEvent"/>
     <fullyQualifiedTypeName name="org.bukkit.inventory.meta.BlockStateMeta"/>
@@ -13,7 +10,6 @@
     <fullyQualifiedTypeName name="org.bukkit.Color"/>
     <fullyQualifiedTypeName name="org.bukkit.metadata.MetadataValueAdapter"/>
     <fullyQualifiedTypeName name="org.bukkit.event.Listener"/>
-    <fullyQualifiedTypeName name="org.bukkit.enchantments.Enchantment"/>
     <fullyQualifiedTypeName name="org.bukkit.World"/>
     <fullyQualifiedTypeName name="org.bukkit.event.EventHandler"/>
     <fullyQualifiedTypeName name="org.bukkit.event.player.PlayerInteractEvent"/>
@@ -39,7 +35,6 @@
     <fullyQualifiedTypeName name="org.bukkit.entity.Entity"/>
     <fullyQualifiedTypeName name="org.bukkit.attribute.Attributable"/>
     <fullyQualifiedTypeName name="me.Minecraftmage113.InsanityPlugin.Main.Modifiers"/>
-    <fullyQualifiedTypeName name="org.bukkit.Particle"/>
     <fullyQualifiedTypeName name="org.bukkit.attribute.AttributeModifier"/>
     <fullyQualifiedTypeName name="me.Minecraftmage113.InsanityPlugin.Main"/>
     <fullyQualifiedTypeName name="me.Minecraftmage113.InsanityPlugin.commands.CommandCleanse"/>
@@ -48,8 +43,6 @@
     <fullyQualifiedTypeName name="org.bukkit.plugin.Plugin"/>
     <fullyQualifiedTypeName name="java.io.File"/>
     <fullyQualifiedTypeName name="java.util.Scanner"/>
-    <fullyQualifiedTypeName name="org.bukkit.block.Block"/>
-    <fullyQualifiedTypeName name="org.bukkit.metadata.MetadataValue"/>
     <fullyQualifiedTypeName name="java.lang.Integer"/>
     <fullyQualifiedTypeName name="java.util.List"/>
     <fullyQualifiedTypeName name="net.md_5.bungee.api.ChatColor"/>
@@ -60,4 +53,11 @@
     <fullyQualifiedTypeName name="me.Minecraftmage113.InsanityPlugin.helpers.Enums"/>
     <fullyQualifiedTypeName name="me.Minecraftmage113.InsanityPlugin.helpers.TimedEvents"/>
     <fullyQualifiedTypeName name="me.Minecraftmage113.InsanityPlugin.helpers.TimedEvents.Restarter"/>
+    <fullyQualifiedTypeName name="org.bukkit.Particle"/>
+    <fullyQualifiedTypeName name="org.bukkit.enchantments.Enchantment"/>
+    <fullyQualifiedTypeName name="org.bukkit.potion.PotionData"/>
+    <fullyQualifiedTypeName name="org.bukkit.potion.PotionType"/>
+    <fullyQualifiedTypeName name="me.Minecraftmage113.InsanityPlugin.commands.CommandGamemode"/>
+    <fullyQualifiedTypeName name="org.bukkit.metadata.MetadataValue"/>
+    <fullyQualifiedTypeName name="org.bukkit.block.Block"/>
 </qualifiedTypeNameHistroy>

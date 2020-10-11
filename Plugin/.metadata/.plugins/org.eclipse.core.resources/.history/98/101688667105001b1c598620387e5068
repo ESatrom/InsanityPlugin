@@ -1,9 +1,0 @@
-package me.Minecraftmage113.InsanityPlugin.listeners;
-
-import me.Minecraftmage113.InsanityPlugin.Main;
-
-public class ListenerPlacement extends InsanityListener {
-	public ListenerPlacement(Main plugin) { super(plugin); }
-	
-	
-}

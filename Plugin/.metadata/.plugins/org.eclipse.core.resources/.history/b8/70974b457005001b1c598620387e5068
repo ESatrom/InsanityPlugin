@@ -1,7 +1,0 @@
-package me.Minecraftmage113.InsanityPlugin.listeners;
-
-import org.bukkit.event.Listener;
-
-public class ListenerPlacement extends InsanityListener implements Listener {
-
-}

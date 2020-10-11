@@ -77,7 +77,7 @@ public class Main extends JavaPlugin {
 		 */
 		//TODO don't include this yet you moron. saver.load();
 		/** @Deprecated this.getCommand("Sacrifice").setExecutor(new CommandSacrifice(this)); //Registers "/Sacrifice" command (remember to edit plugin.yml) */
-		//saver = new Saver(this);
+		saver = new Saver(this);
 		this.getCommand("GM").setExecutor(new CommandGamemode(this)); //Registers "/GM" command (remember to edit plugin.yml)
 		this.getCommand("Purchase").setExecutor(new CommandPurchase(this)); //Registers "/Purchase" command (remember to edit plugin.yml)
 		this.getCommand("Cleanse").setExecutor(new CommandCleanse(this)); //Registers "/Purchase" command (remember to edit plugin.yml)

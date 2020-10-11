@@ -63,7 +63,7 @@ public class ListenerTick extends InsanityListener {
 			meta.addCustomEffect(new PotionEffect(PotionEffectType.JUMP, 1200, 0, false, false, false), true);
 			meta.addCustomEffect(new PotionEffect(PotionEffectType.ABSORPTION, 1200, 1, false, false, false), true);
 			meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
-			meta.setColor(Color.fromRGB(128, 64, 0));
+			meta.setColor(Color.fromRGB(255, 255, 255));
 			meta.setCustomModelData(2);
 			meta.setBasePotionData(new PotionData(PotionType.WATER));
 			meta.setDisplayName(ChatColor.RESET + "Coffee");

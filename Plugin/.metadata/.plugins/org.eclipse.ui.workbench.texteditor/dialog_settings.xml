@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
-		<item key="selection" value="dead"/>
+		<item key="selection" value="p"/>
 		<item key="wrap" value="true"/>
 		<item key="casesensitive" value="false"/>
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
 		<list key="findhistory">
+			<item value="event.getPlayer()"/>
+			<item value="event.getBlock()"/>
+			<item value="EntityDamageByBlock"/>
 			<item value="kill"/>
 			<item value="dead"/>
 			<item value="Main.Modifiers"/>
@@ -20,11 +23,10 @@
 			<item value="&#x09;&#x09;playerWorld.setX(x);"/>
 			<item value="((CreatureSpawner) b)"/>
 			<item value="command"/>
-			<item value="(ItemEnderPorter)"/>
-			<item value="World()"/>
-			<item value="dimension"/>
 		</list>
 		<list key="replacehistory">
+			<item value="p"/>
+			<item value="b"/>
 			<item value="InsanityEnums.Modifiers"/>
 			<item value="InsanityEnums.ModelData"/>
 			<item value="Enums.ModelData"/>
