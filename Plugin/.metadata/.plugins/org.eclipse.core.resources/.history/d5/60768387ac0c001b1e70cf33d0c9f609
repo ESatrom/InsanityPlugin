@@ -1,0 +1,7 @@
+package me.Minecraftmage113.InsanityPlugin.listeners;
+
+import me.Minecraftmage113.InsanityPlugin.listeners.InsanityListener;
+
+public class ListenerCommand extends InsanityListener {
+
+}

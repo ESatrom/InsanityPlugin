@@ -100,7 +100,9 @@ public class ListenerInteract extends InsanityListener {
 		if(p.isSneaking()){
 			event.getClickedBlock().setMetadata("Altar", new InsanityMetadata(plugin, event.getItem().getItemMeta().getDisplayName(), event.getClickedBlock()));
 		} else {
-			p.sendMessage(""+event.getClickedBlock().getMetadata("Altar").get(0).value());
+			if(event.getClickedBlock().hasMetadata("Altar")&&event.getClickedBlock().getMetadata("Altar").size()>0) {
+				p.sendMessage(""+event.getClickedBlock().getMetadata("Altar").get(0).value());
+			}
 		}
 	}
 	

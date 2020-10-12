@@ -18,6 +18,7 @@ import me.Minecraftmage113.InsanityPlugin.commands.CommandSuggestRestart;
 import me.Minecraftmage113.InsanityPlugin.helpers.Saver;
 import me.Minecraftmage113.InsanityPlugin.helpers.TimedEvents;
 import me.Minecraftmage113.InsanityPlugin.listeners.ListenerCharge;
+import me.Minecraftmage113.InsanityPlugin.listeners.ListenerCommand;
 import me.Minecraftmage113.InsanityPlugin.listeners.ListenerEntityHit;
 import me.Minecraftmage113.InsanityPlugin.listeners.ListenerInteract;
 import me.Minecraftmage113.InsanityPlugin.listeners.ListenerMetaScrubber;
@@ -77,12 +78,13 @@ public class Main extends JavaPlugin {
 		 */
 		//TODO don't include this yet you moron. saver.load();
 		/** @Deprecated this.getCommand("Sacrifice").setExecutor(new CommandSacrifice(this)); //Registers "/Sacrifice" command (remember to edit plugin.yml) */
-		//saver = new Saver(this);
+		saver = new Saver(this);
 		this.getCommand("GM").setExecutor(new CommandGamemode(this)); //Registers "/GM" command (remember to edit plugin.yml)
 		this.getCommand("Purchase").setExecutor(new CommandPurchase(this)); //Registers "/Purchase" command (remember to edit plugin.yml)
 		this.getCommand("Cleanse").setExecutor(new CommandCleanse(this)); //Registers "/Purchase" command (remember to edit plugin.yml)
 		this.getCommand("sKick").setExecutor(new CommandSuggestKick(this)); //Registers "/suggestKick" command (remember to edit plugin.yml)
 		this.getCommand("sRestart").setExecutor(new CommandSuggestRestart(this)); //Registers "/suggestRestart" command (remember to edit plugin.yml)
+		//this.getCommand("Save").setExecutor(new CommandSave(this)); //Registers "/save" command (remember to edit plugin.yml)
 		this.getServer().getPluginManager().registerEvents(new ListenerMine(this), this);
 		this.getServer().getPluginManager().registerEvents(new ListenerInteract(this), this);
 		this.getServer().getPluginManager().registerEvents(new ListenerCharge(this), this);
@@ -91,6 +93,7 @@ public class Main extends JavaPlugin {
 		this.getServer().getPluginManager().registerEvents(new ListenerMetaScrubber(this), this);
 		this.getServer().getPluginManager().registerEvents(new ListenerEntityHit(this), this);
 		this.getServer().getPluginManager().registerEvents(new ListenerPlacement(this), this);
+		this.getServer().getPluginManager().registerEvents(new ListenerCommand(this), this);
 		TimedEvents.plugin = this;
 	}
 	

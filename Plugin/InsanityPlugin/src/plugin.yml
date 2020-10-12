@@ -4,6 +4,7 @@ version: 1.2.0
 author: Minecraftmage113
 description: A Plugin for various functionalities on InsanityCraft.
 prefix: insanity
+api-version: 1.16
 
 permissions:
   insanity.sacrifice:
@@ -32,5 +33,9 @@ commands:
     usage: /sKick [player]
     description: Suggests that target player leave the server (in case of afk players). Targetted player may deny the command.
     aliases: [softKick, soft-kick, soft_kick]
+    permission: insanity.softOp
+  Save:
+    usage: /save
+    description: saves the server
     permission: insanity.softOp
   

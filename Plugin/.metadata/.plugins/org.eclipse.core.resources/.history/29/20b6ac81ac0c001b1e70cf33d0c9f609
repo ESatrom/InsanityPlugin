@@ -1,0 +1,9 @@
+package me.Minecraftmage113.InsanityPlugin.commands;
+
+import org.bukkit.event.Listener;
+
+import InsanityListener;
+
+public class ListenerCommand extends InsanityListener implements Listener {
+
+}
