@@ -12,7 +12,9 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import me.Minecraftmage113.InsanityPlugin.commands.CommandCleanse;
 import me.Minecraftmage113.InsanityPlugin.commands.CommandGamemode;
+import me.Minecraftmage113.InsanityPlugin.commands.CommandLoad;
 import me.Minecraftmage113.InsanityPlugin.commands.CommandPurchase;
+import me.Minecraftmage113.InsanityPlugin.commands.CommandSave;
 import me.Minecraftmage113.InsanityPlugin.commands.CommandSuggestKick;
 import me.Minecraftmage113.InsanityPlugin.commands.CommandSuggestRestart;
 import me.Minecraftmage113.InsanityPlugin.helpers.Saver;
@@ -76,15 +78,14 @@ public class Main extends JavaPlugin {
 		/**
 		 * TODO GUIs = custom inventory, set the items, make a listener for it that always cancels the action.
 		 */
-		//TODO don't include this yet you moron. saver.load();
 		/** @Deprecated this.getCommand("Sacrifice").setExecutor(new CommandSacrifice(this)); //Registers "/Sacrifice" command (remember to edit plugin.yml) */
-		saver = new Saver(this);
 		this.getCommand("GM").setExecutor(new CommandGamemode(this)); //Registers "/GM" command (remember to edit plugin.yml)
 		this.getCommand("Purchase").setExecutor(new CommandPurchase(this)); //Registers "/Purchase" command (remember to edit plugin.yml)
 		this.getCommand("Cleanse").setExecutor(new CommandCleanse(this)); //Registers "/Purchase" command (remember to edit plugin.yml)
 		this.getCommand("sKick").setExecutor(new CommandSuggestKick(this)); //Registers "/suggestKick" command (remember to edit plugin.yml)
 		this.getCommand("sRestart").setExecutor(new CommandSuggestRestart(this)); //Registers "/suggestRestart" command (remember to edit plugin.yml)
-		//this.getCommand("Save").setExecutor(new CommandSave(this)); //Registers "/save" command (remember to edit plugin.yml)
+		this.getCommand("Save").setExecutor(new CommandSave(this)); //Registers "/save" command (remember to edit plugin.yml)
+		this.getCommand("Load").setExecutor(new CommandLoad(this)); //Registers "/save" command (remember to edit plugin.yml)
 		this.getServer().getPluginManager().registerEvents(new ListenerMine(this), this);
 		this.getServer().getPluginManager().registerEvents(new ListenerInteract(this), this);
 		this.getServer().getPluginManager().registerEvents(new ListenerCharge(this), this);
@@ -95,11 +96,13 @@ public class Main extends JavaPlugin {
 		this.getServer().getPluginManager().registerEvents(new ListenerPlacement(this), this);
 		this.getServer().getPluginManager().registerEvents(new ListenerCommand(this), this);
 		TimedEvents.plugin = this;
+		saver = new Saver(this);
+		saver.load();
 	}
 	
 	@Override
 	public void onDisable() {
-		//TODO SAVER saver.save();
+		saver.save();
 	}
 	
 	@Override

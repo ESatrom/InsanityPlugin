@@ -38,4 +38,6 @@ commands:
     usage: /save
     description: saves the server
     permission: insanity.softOp
-  
+  Load:
+    usage: /load
+    description: loads the server

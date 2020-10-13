@@ -24,7 +24,6 @@ public class ListenerCommand extends InsanityListener {
 		cmd = cmd.substring((cmd.indexOf(' ')==-1?cmd.length():cmd.indexOf(' ')+1));
 		List<String> args = new ArrayList<String>();
 		while(cmd.length()>0) {
-			sender.sendMessage(cmd + " || " + cmd.length());
 			args.add(cmd.substring(0, (cmd.indexOf(' ')==-1?cmd.length():cmd.indexOf(' '))));
 			cmd = cmd.substring((cmd.indexOf(' ')==-1?cmd.length():cmd.indexOf(' ')+1));
 		}

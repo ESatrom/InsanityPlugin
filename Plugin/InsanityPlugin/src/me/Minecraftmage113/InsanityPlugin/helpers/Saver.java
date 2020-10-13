@@ -1,12 +1,14 @@
 package me.Minecraftmage113.InsanityPlugin.helpers;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import org.bukkit.World;
 import org.bukkit.block.Block;
 
 import me.Minecraftmage113.InsanityPlugin.Main;
@@ -18,7 +20,7 @@ public class Saver {
 	Encoder encoder;
 	String[] metaKeys = {"Altar", "manMade"};
 	List<Block> blocks = new ArrayList<Block>();
-	final String endBlockFile = "CelestialBlocks.txt", netherBlockFile = "InfernalBlocks.txt", normalBlockFile = "TerrestrialBlocks.txt", endSequence = "\n§§", breakSequence = "\n|§|";
+	final String endBlockFile = "CelestialBlocks.txt", netherBlockFile = "InfernalBlocks.txt", normalBlockFile = "TerrestrialBlocks.txt", endSequence = "§|§", breakSequence = "\n";
 	public Saver(Main plugin) {
 		this.plugin = plugin;
 		encoder = new Encoder(plugin, metaKeys);
@@ -28,7 +30,7 @@ public class Saver {
 		saveBlocks();
 	}
 	public void load() {
-		
+		loadBlocks();
 	}
 	
 	public void addBlock(Block b) { blocks.add(b); }
@@ -80,6 +82,57 @@ public class Saver {
 			overworld.close();
 		} catch (IOException e) {
 			System.out.println("File not made?");
+		}
+	}
+
+	@SuppressWarnings("deprecation")
+	public void loadBlocks() {
+		List<Block> Bs = new ArrayList<Block>();
+		Scanner end, nether, overworld;
+		try {
+			end = new Scanner(new File(path.getPath()+endBlockFile));
+			nether = new Scanner(new File(path.getPath()+netherBlockFile));
+			overworld = new Scanner(new File(path.getPath()+normalBlockFile));
+		} catch (FileNotFoundException e) {
+			System.out.println("Big bad error has occured");
+			return;
+		}
+		World endWorld = null, netherWorld = null, terraWorld = null;
+		for(World w : plugin.getServer().getWorlds()) {
+			switch(w.getEnvironment().getId()) {
+			case -1:
+				netherWorld = w;
+				break;
+			case 0:
+				terraWorld = w;
+				break;
+			case 1:
+				endWorld = w;
+				break;
+			}
+		}
+		loadWorld(end, endWorld, Bs);
+		loadWorld(nether, netherWorld, Bs);
+		loadWorld(overworld, terraWorld, Bs);
+		end.close();
+		nether.close();
+		overworld.close();
+		blocks = Bs;
+	}
+	
+	public void loadWorld(Scanner scan, World world, List<Block> Bs) {
+		List<String> block = new ArrayList<String>();
+		while(scan.hasNext()) {
+			String temp = scan.nextLine();
+			if(temp.length()>=endSequence.length()&&temp.substring(0, endSequence.length()).equals(endSequence)) {
+				Bs.add(encoder.loadBlockFromString(block, world));
+				block = new ArrayList<String>();
+				if(temp.length()>endSequence.length()) {
+					block.add(temp.substring(endSequence.length()+1));
+				}
+			} else {
+				block.add(temp);
+			}
 		}
 	}
 }
