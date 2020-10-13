@@ -1,0 +1,13 @@
+{
+	"parent": "item/generated",
+	"textures": {
+		"layer0": "minecraft:item/water_bucket"
+	},
+	
+	"overrides": [
+		{"predicate": {"custom_model_data":1}, "model": "item/custom/ender_porter"},
+		{"predicate": {"custom_model_data":5}, "model": "item/custom/blink_wand"},
+		{"predicate": {"custom_model_data":6}, "model": "item/custom/lasso"},
+		{"predicate": {"custom_model_data":11}, "model": "item/custom/soulbinder"}
+	]
+}
