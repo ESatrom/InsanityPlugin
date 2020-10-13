@@ -53,6 +53,7 @@ public class ListenerTick extends InsanityListener {
 	
 	public void coffee(World world) {
 		plugin.coffeeDelay++;
+		plugin.getServer().broadcastMessage(""+plugin.coffeeDelay);
 		if(plugin.coffeeDelay>=2*60*60) {
 			plugin.coffeeDelay=Main.r.nextInt(2*60*30);
 			ItemStack coffee = new ItemStack(Material.POTION);
