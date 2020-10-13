@@ -1,0 +1,5 @@
+package me.Minecraftmage113.InsanityPlugin.listeners;
+
+public class ListenerPlayerLog extends InsanityListener {
+
+}

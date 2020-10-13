@@ -2,6 +2,7 @@ package me.Minecraftmage113.InsanityPlugin.listeners;
 
 import java.util.List;
 
+import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Mob;
@@ -56,11 +57,10 @@ public class ListenerEntityHit extends InsanityListener {
 			if(event.getEntity() instanceof Mob) {
 				Mob m = (Mob) event.getEntity();
 				lore.set(lore.size()-1, lastLine.substring(0, lastLine.indexOf('|')+1)+plugin.lasso((Mob) event.getEntity()));
-				m.remove();
-//				m.damage(m.getHealth()+1);
-//				Location target = event.getEntity().getLocation();
-//				target.setY(-200);
-//				event.getEntity().teleport(target);
+				m.damage(m.getHealth()+1);
+				Location target = event.getEntity().getLocation();
+				target.setY(-200);
+				event.getEntity().teleport(target);
 			}
 		}
 		

@@ -4,3 +4,5 @@
 1602510521098	Rename local variable 'overworld'
 1602591509492	Rename method 'blockFromString'
 1602595655398	Copy compilation unit
+1602610854889	Delete element
+1602611259446	Rename type 'PlayerLogListener'

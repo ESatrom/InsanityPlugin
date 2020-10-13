@@ -12,6 +12,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import me.Minecraftmage113.InsanityPlugin.commands.CommandCleanse;
 import me.Minecraftmage113.InsanityPlugin.commands.CommandGamemode;
+import me.Minecraftmage113.InsanityPlugin.commands.CommandLoad;
 import me.Minecraftmage113.InsanityPlugin.commands.CommandPurchase;
 import me.Minecraftmage113.InsanityPlugin.commands.CommandSave;
 import me.Minecraftmage113.InsanityPlugin.commands.CommandSuggestKick;
@@ -26,7 +27,6 @@ import me.Minecraftmage113.InsanityPlugin.listeners.ListenerMetaScrubber;
 import me.Minecraftmage113.InsanityPlugin.listeners.ListenerMine;
 import me.Minecraftmage113.InsanityPlugin.listeners.ListenerPlacement;
 import me.Minecraftmage113.InsanityPlugin.listeners.ListenerPlayerDeath;
-import me.Minecraftmage113.InsanityPlugin.listeners.ListenerPlayerLog;
 import me.Minecraftmage113.InsanityPlugin.listeners.ListenerTick;
 
 /**
@@ -94,7 +94,6 @@ public class Main extends JavaPlugin {
 		this.getServer().getPluginManager().registerEvents(new ListenerEntityHit(this), this);
 		this.getServer().getPluginManager().registerEvents(new ListenerPlacement(this), this);
 		this.getServer().getPluginManager().registerEvents(new ListenerCommand(this), this);
-		this.getServer().getPluginManager().registerEvents(new ListenerPlayerLog(this), this);
 		TimedEvents.plugin = this;
 		saver = new Saver(this);
 		saver.load();

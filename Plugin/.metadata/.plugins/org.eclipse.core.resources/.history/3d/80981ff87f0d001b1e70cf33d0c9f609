@@ -27,7 +27,6 @@ public class Saver {
 		this.path = plugin.getDataFolder();
 	}
 	public void save() {
-		plugin.getServer().dispatchCommand(plugin.getServer().getConsoleSender(), "save-all");
 		saveBlocks();
 	}
 	public void load() {

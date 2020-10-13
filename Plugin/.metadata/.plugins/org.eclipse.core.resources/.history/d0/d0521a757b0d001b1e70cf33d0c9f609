@@ -48,14 +48,15 @@ public class ListenerPlayerDeath extends InsanityListener {
 				if(e instanceof Attributable) {
 					if(e instanceof Damageable) {
 						Damageable d = (Damageable) e;
+						plugin.getServer().broadcastMessage(d.getName() + " will be Rotted! (" + d.getHealth() + "/" + ((Attributable) d).getAttribute(Attribute.GENERIC_MAX_HEALTH).getValue() + ")");
 						InsanityEnums.Modifiers.ROTTED.apply((Attributable) d);
-						if(d.getHealth()>((Attributable) d).getAttribute(Attribute.GENERIC_MAX_HEALTH).getValue()) {
-							d.setHealth(((Attributable) d).getAttribute(Attribute.GENERIC_MAX_HEALTH).getValue());
-						}
+						plugin.getServer().broadcastMessage(d.getName() + " got Rotted! (" + d.getHealth() + "/" + ((Attributable) d).getAttribute(Attribute.GENERIC_MAX_HEALTH).getValue() + ")");
+					} else {
+						plugin.getServer().broadcastMessage("What are you doing???");
 					}
 				}
 			}
 		}
-		p.getWorld().spawnParticle(Particle.ASH, p.getLocation(), 1210+Main.r.nextInt(4236), 5, 2, 5);
+		p.getWorld().spawnParticle(Particle.CRIMSON_SPORE, p.getLocation(), 605+Main.r.nextInt(4236), 5, 2, 5);
 	}
 }

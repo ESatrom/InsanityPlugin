@@ -90,13 +90,12 @@ public class ListenerInteract extends InsanityListener {
 	
 	public void altar(PlayerInteractEvent event, Player p, Block b) {
 		List<MetadataValue> meta = b.getMetadata("Altar");
-		Collection<Entity> sacrifices = b.getWorld().getNearbyEntities(b.getLocation(), 3, 2, 3);
+		Collection<Entity> sacrifices = b.getWorld().getNearbyEntities(b.getLocation(), 2, 1, 2);
 		boolean stop = true;
 		for(Entity e : sacrifices) {
 			if(e instanceof Item) {
 				if(((Item) e).getItemStack().getType().equals(Material.BEDROCK)) {
 					stop = false;
-					e.remove();
 				}
 			}
 		}

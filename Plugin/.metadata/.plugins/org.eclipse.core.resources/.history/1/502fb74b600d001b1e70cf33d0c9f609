@@ -1,6 +1,5 @@
 package me.Minecraftmage113.InsanityPlugin.listeners;
 
-import java.util.Collection;
 import java.util.List;
 
 import org.bukkit.ChatColor;
@@ -10,8 +9,6 @@ import org.bukkit.Particle;
 import org.bukkit.Sound;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
-import org.bukkit.entity.Entity;
-import org.bukkit.entity.Item;
 import org.bukkit.entity.Mob;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -90,22 +87,13 @@ public class ListenerInteract extends InsanityListener {
 	
 	public void altar(PlayerInteractEvent event, Player p, Block b) {
 		List<MetadataValue> meta = b.getMetadata("Altar");
-		Collection<Entity> sacrifices = b.getWorld().getNearbyEntities(b.getLocation(), 3, 2, 3);
-		boolean stop = true;
-		for(Entity e : sacrifices) {
-			if(e instanceof Item) {
-				if(((Item) e).getItemStack().getType().equals(Material.BEDROCK)) {
-					stop = false;
-					e.remove();
-				}
-			}
-		}
-		if(stop) return;
 		if(meta!=null && meta.size()>0) {
 			switch(meta.get(0).value()+"") {
 			case "Phthisis":
-				if(InsanityEnums.Modifiers.ROTTING_PRESERVATION.apply(p)) {
-					p.sendMessage("You have been preserved by Phthisis.");
+				if(p.getWorld().getNearbyEntities(b, 2, 1, 2).) {
+					if(InsanityEnums.Modifiers.ROTTING_PRESERVATION.apply(p)) {
+						p.sendMessage("You have been preserved by Phthisis.");
+					}
 				}
 				break;
 			}
