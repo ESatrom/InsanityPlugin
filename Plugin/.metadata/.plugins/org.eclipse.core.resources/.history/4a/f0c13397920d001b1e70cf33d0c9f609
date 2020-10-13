@@ -36,11 +36,9 @@ public class ListenerInteract extends InsanityListener {
 		ItemStack item2 = event.getPlayer().getInventory().getItemInOffHand();
 		if(item!=null && InsanityEnums.ModelData.LASSO.instance(item)) {
 			event.setCancelled(true);
-			event.getPlayer().updateInventory();
 		}
 		if(item2!=null && InsanityEnums.ModelData.LASSO.instance(item2)) {
 			event.setCancelled(true);
-			event.getPlayer().updateInventory();
 		}
 	}
 	

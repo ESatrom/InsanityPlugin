@@ -16,7 +16,6 @@ import org.bukkit.entity.Mob;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.block.Action;
-import org.bukkit.event.entity.PlayerLeashEntityEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -31,24 +30,13 @@ public class ListenerInteract extends InsanityListener {
 	public ListenerInteract(Main plugin) { super(plugin); }
 
 	@EventHandler
-	public void onLeash(PlayerLeashEntityEvent event) {
-		ItemStack item = event.getPlayer().getInventory().getItemInMainHand();
-		ItemStack item2 = event.getPlayer().getInventory().getItemInOffHand();
-		if(item!=null && InsanityEnums.ModelData.LASSO.instance(item)) {
-			event.setCancelled(true);
-			event.getPlayer().updateInventory();
-		}
-		if(item2!=null && InsanityEnums.ModelData.LASSO.instance(item2)) {
-			event.setCancelled(true);
-			event.getPlayer().updateInventory();
-		}
-	}
-	
-	@EventHandler
 	public void onInteraction(PlayerInteractEvent event) {
 		Player p = (Player) event.getPlayer();
 		ItemStack item = event.getItem();
 		Block b = event.getClickedBlock();
+		if(item!=null && InsanityEnums.ModelData.LASSO.instance(item)) {
+			event.setCancelled(true);
+		}
 		if(event.getAction().equals(Action.RIGHT_CLICK_AIR)) {
 			if(item!=null && InsanityEnums.ModelData.ENDER_PORTER.instance(item)){
 				enderPorter(event, p);
