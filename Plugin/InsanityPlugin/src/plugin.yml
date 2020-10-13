@@ -24,6 +24,7 @@ commands:
     usage: /cleanse
     description: Removes all active effects from the player. Typically used for residual sacrifice effects.
     aliases: purge
+    permission: insanity.softOp
   Srestart:
     usage: /sRestart
     description: Suggests a restart of the server. Other online players may deny the restart.

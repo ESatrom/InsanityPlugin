@@ -55,7 +55,7 @@ public class ListenerPlayerDeath extends InsanityListener {
 					}
 				}
 			}
+			p.getWorld().spawnParticle(Particle.ASH, p.getLocation(), 1210+Main.r.nextInt(4236), 5, 2, 5);
 		}
-		p.getWorld().spawnParticle(Particle.ASH, p.getLocation(), 1210+Main.r.nextInt(4236), 5, 2, 5);
 	}
 }

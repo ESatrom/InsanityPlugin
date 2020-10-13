@@ -4,9 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import org.bukkit.command.Command;
-import org.bukkit.command.CommandSender;
-import org.bukkit.entity.Mob;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -33,45 +31,41 @@ import me.Minecraftmage113.InsanityPlugin.listeners.ListenerTick;
  * A general plugin for use on the InsanityCraft server.
  * 
  * @author Minecraftmage113
- * @version 30/Sept/2020
+ * @version 13/Oct/2020
  */
 public class Main extends JavaPlugin {
 
-	private List<Mob> lassoMobs = new ArrayList<Mob>();
+	//Instance Vars
+	private List<Entity> lassoMobs = new ArrayList<Entity>();
 	private List<Integer> lassoIDs = new ArrayList<Integer>();
 	public List<Player> creativePlayers = new ArrayList<Player>();
 	private Saver saver;
+	public int coffeeDelay = 0;
+	public static Random r = new Random();
 	
-	public int lasso(Mob mob) {
+	/**
+	 * Capture supplied entity into a lasso
+	 * @return lasso id
+	 */
+	public int lasso(Entity e) {
 		int id = 0;
 		while(lassoIDs.contains(id)) {
 			id++;
 		}
-		lassoMobs.add(mob);
+		lassoMobs.add(e);
 		lassoIDs.add(id);
 		return id;
 	}
-	
-	public Saver getSaver() { return saver; }
-	
-	public Mob releaseLasso(int id) {
+	/**
+	 * Collects entity from lasso id
+	 */
+	public Entity releaseLasso(int id) {
 		int index = lassoIDs.indexOf(id);
 		lassoIDs.remove(index);
 		return lassoMobs.remove(index);
 	}
 	
-	
-	public int coffeeDelay = 0;
-	public static Random r = new Random();
-
-//	public class EnderPorterInfo {
-//		Location target;
-//		int charge;
-//		int maxCharge;
-//	}
-//	
-//	EnderPorterIDs
-	
+	public Saver getSaver() { return saver; }
 	
 	@Override
 	public void onEnable() {
@@ -79,12 +73,14 @@ public class Main extends JavaPlugin {
 		 * TODO GUIs = custom inventory, set the items, make a listener for it that always cancels the action.
 		 */
 		/** @Deprecated this.getCommand("Sacrifice").setExecutor(new CommandSacrifice(this)); //Registers "/Sacrifice" command (remember to edit plugin.yml) */
-		this.getCommand("GM").setExecutor(new CommandGamemode(this)); //Registers "/GM" command (remember to edit plugin.yml)
-		this.getCommand("Purchase").setExecutor(new CommandPurchase(this)); //Registers "/Purchase" command (remember to edit plugin.yml)
-		this.getCommand("Cleanse").setExecutor(new CommandCleanse(this)); //Registers "/Purchase" command (remember to edit plugin.yml)
-		this.getCommand("sKick").setExecutor(new CommandSuggestKick(this)); //Registers "/suggestKick" command (remember to edit plugin.yml)
-		this.getCommand("sRestart").setExecutor(new CommandSuggestRestart(this)); //Registers "/suggestRestart" command (remember to edit plugin.yml)
-		this.getCommand("Save").setExecutor(new CommandSave(this)); //Registers "/save" command (remember to edit plugin.yml)
+		/** Registers supplied commands (remember the plugin.yml */
+		this.getCommand("GM").setExecutor(new CommandGamemode(this));
+		this.getCommand("Purchase").setExecutor(new CommandPurchase(this));
+		this.getCommand("Cleanse").setExecutor(new CommandCleanse(this));
+		this.getCommand("sKick").setExecutor(new CommandSuggestKick(this));
+		this.getCommand("sRestart").setExecutor(new CommandSuggestRestart(this));
+		this.getCommand("Save").setExecutor(new CommandSave(this));
+		/** Registers supplied listeners */
 		this.getServer().getPluginManager().registerEvents(new ListenerMine(this), this);
 		this.getServer().getPluginManager().registerEvents(new ListenerInteract(this), this);
 		this.getServer().getPluginManager().registerEvents(new ListenerCharge(this), this);
@@ -95,16 +91,17 @@ public class Main extends JavaPlugin {
 		this.getServer().getPluginManager().registerEvents(new ListenerPlacement(this), this);
 		this.getServer().getPluginManager().registerEvents(new ListenerCommand(this), this);
 		this.getServer().getPluginManager().registerEvents(new ListenerPlayerLog(this), this);
-		TimedEvents.plugin = this;
+		TimedEvents.plugin = this; //Initializes "TimedEvents"
 		saver = new Saver(this);
-		saver.load();
+		saver.load(); //Load in the world :)
 	}
 	
 	@Override
 	public void onDisable() {
-		saver.save();
+		saver.save(); //Save metas
 	}
 	
+	/** TODO tab complete command menu
 	@Override
 	public List<String> onTabComplete(CommandSender sender, Command cmd, String alias, String[] args) {
 		List<String> possibilities = new ArrayList<String>();
@@ -138,7 +135,12 @@ public class Main extends JavaPlugin {
 		}
 		return possibilities;
 	}
+	*/
 
+	/**
+	 * gives (or takes) the specified amount of xp to the specified player.
+	 * @return the supplied player
+	 */
 	public static Player addXP(Player p, int amount, boolean levels) {
 		boolean add = amount>0;
 		amount = Math.abs(amount);

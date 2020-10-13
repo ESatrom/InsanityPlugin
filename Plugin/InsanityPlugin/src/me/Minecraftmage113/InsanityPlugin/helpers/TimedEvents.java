@@ -69,7 +69,13 @@ public class TimedEvents {
 			started = true;
 			timer = 120;
 		}
-		public static void halt() { started = false; }
+		public static boolean halt() { 
+			if(started) {
+				started = false;
+				return true;
+			}
+			return false;
+		}
 	}
 	
 }

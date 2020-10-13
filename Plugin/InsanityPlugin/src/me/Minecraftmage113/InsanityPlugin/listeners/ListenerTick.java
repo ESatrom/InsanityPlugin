@@ -37,10 +37,10 @@ public class ListenerTick extends InsanityListener {
 		  && !event.getCause().equals(DamageCause.VOID )) {
 			event.setDamage(0);
 			coffee(event.getEntity().getWorld());
-		}
-		updateGamemodes();
-		TimedEvents.KickList.tick();
-		TimedEvents.Restarter.tick();
+			updateGamemodes();
+			TimedEvents.KickList.tick();
+			TimedEvents.Restarter.tick();
+		} else return;
 	}
 	
 	public void updateGamemodes() {
@@ -53,6 +53,7 @@ public class ListenerTick extends InsanityListener {
 	
 	public void coffee(World world) {
 		plugin.coffeeDelay++;
+		plugin.getServer().broadcastMessage(""+plugin.coffeeDelay);
 		if(plugin.coffeeDelay>=2*60*60) {
 			plugin.coffeeDelay=Main.r.nextInt(2*60*30);
 			ItemStack coffee = new ItemStack(Material.POTION);

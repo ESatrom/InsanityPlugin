@@ -30,7 +30,7 @@ public class CommandPurchase extends InsanityCommand {
 		Player p = (Player) sender;
 		if(args.length < 1) {
 			p.sendMessage(ChatColor.translateAlternateColorCodes('&', "Items available for purchase: \n"
-					+ "&2&lEnder&3&lPorter&r - &a15L&r - Fueled by ender pearls, teleports to a bound location.\n"
+					+ "&2&lEnder&3&lPorter&r - &a20L&r - Fueled by ender pearls, teleports to a bound location.\n"
 					+ "&bFish&r - &a5L&r - Use to perform a fish-slapping dance.\n"
 					+ "&6Lasso&r - &a30L&r - Used to transport mobs."));
 			return true;
@@ -46,7 +46,7 @@ public class CommandPurchase extends InsanityCommand {
 		List<String> lore = new ArrayList<String>();
 		switch(args[0].toLowerCase()) {
 		case "enderporter":
-			experienceCost = 15;
+			experienceCost = 20;
 			item = new ItemEnderPorter();
 			message = ChatColor.translateAlternateColorCodes('&', "You have successfully purchased an &2&lEnder&3&lPorter&r™. Fill it full of ender pearls to charge.");
 			break;
@@ -66,7 +66,8 @@ public class CommandPurchase extends InsanityCommand {
 			meta = item.getItemMeta();
 			meta.setDisplayName(ChatColor.RESET + "" + ChatColor.GOLD + "Lasso");
 			meta.setCustomModelData(InsanityEnums.ModelData.LASSO.value());
-			lore.add("Punch a mob to collect it into your lasso. Right click a block with a full lasso to release a mob.");
+			lore.add("Punch a mob to collect it into your lasso.");
+			lore.add("Right click a block with a full lasso to release a mob.");
 			lore.add("Currently Contained: " + ChatColor.DARK_GRAY + "Nothing");
 			lore.add(ChatColor.BLACK+""+ChatColor.MAGIC+"|-1");
 			meta.setLore(lore);

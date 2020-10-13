@@ -94,7 +94,7 @@ public class ListenerInteract extends InsanityListener {
 		boolean stop = true;
 		for(Entity e : sacrifices) {
 			if(e instanceof Item) {
-				if(((Item) e).getItemStack().getType().equals(Material.BEDROCK)) {
+				if(stop&&((Item) e).getItemStack().getType().equals(Material.BEDROCK)) {
 					stop = false;
 					e.remove();
 				}
@@ -126,10 +126,13 @@ public class ListenerInteract extends InsanityListener {
 		event.setCancelled(true);
 		Location l = b.getLocation();
 		BlockFace face = event.getBlockFace();
+		ItemMeta meta = item.getItemMeta();
+		List<String> lore = meta.getLore();
+		Entity releasee = plugin.releaseLasso(Integer.parseInt(lore.get(lore.size()-1).substring(lore.get(lore.size()-1).indexOf('|')+1)));
 		if(face.equals(BlockFace.UP)) {
 			l.setY(l.getY()+1);
 		} else if(face.equals(BlockFace.DOWN)) {
-			l.setY(l.getY()+1);
+			l.setY(l.getY()-releasee.getHeight());
 		} else if(face.equals(BlockFace.EAST)) {
 			l.setX(l.getX()+1);
 		} else if(face.equals(BlockFace.WEST)) {
@@ -139,13 +142,13 @@ public class ListenerInteract extends InsanityListener {
 		} else if(face.equals(BlockFace.SOUTH)) {
 			l.setZ(l.getZ()+1);
 		}
-		ItemMeta meta = item.getItemMeta();
-		List<String> lore = meta.getLore();
-		Mob releasee = plugin.releaseLasso(Integer.parseInt(lore.get(lore.size()-1).substring(lore.get(lore.size()-1).indexOf('|')+1)));
+		l.setZ(l.getZ()+.5);
+		l.setX(l.getX()+.5);
 		lore.set(lore.size()-1, lore.get(lore.size()-1).substring(0, lore.get(lore.size()-1).indexOf('|')+1)+"-1");
-		Mob r2 = l.getWorld().spawn(l, releasee.getClass());
-		r2 = releasee;
+		Mob r2 = (Mob) l.getWorld().spawn(l, releasee.getClass());
+		r2 = (Mob) releasee;
 		r2.teleport(l);
+		lore.set(lore.size()-2, "Currently Contained: " + ChatColor.DARK_GRAY + "Nothing");
 		meta.setLore(lore);
 		item.setItemMeta(meta);
 	}

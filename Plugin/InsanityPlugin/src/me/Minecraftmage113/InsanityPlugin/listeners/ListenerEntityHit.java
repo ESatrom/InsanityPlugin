@@ -2,6 +2,7 @@ package me.Minecraftmage113.InsanityPlugin.listeners;
 
 import java.util.List;
 
+import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Mob;
@@ -45,17 +46,19 @@ public class ListenerEntityHit extends InsanityListener {
 		String lastLine = lore.get(lore.size()-1);
 		if(lastLine.indexOf("-1")==-1){
 			int ID = Integer.parseInt(lastLine.substring(lastLine.indexOf('|')+1));
-			Mob release = plugin.releaseLasso(ID);
+			Mob release = (Mob) plugin.releaseLasso(ID);
 			Mob r2 = event.getEntity().getWorld().spawn(event.getEntity().getLocation(), release.getClass());
 			r2 = release;
 			r2.teleport(event.getEntity().getLocation());
 			r2.setVelocity(p.getLocation().getDirection().multiply(3));
 			lore.set(lore.size()-1, lastLine.substring(0, lastLine.indexOf('|')+1)+"-1");
+			lore.set(lore.size()-2, "Currently Contained: " + ChatColor.DARK_GRAY + "Nothing");
 		} else {
 			event.setCancelled(true);
 			if(event.getEntity() instanceof Mob) {
 				Mob m = (Mob) event.getEntity();
 				lore.set(lore.size()-1, lastLine.substring(0, lastLine.indexOf('|')+1)+plugin.lasso((Mob) event.getEntity()));
+				lore.set(lore.size()-2, "Currently Contained: " + ChatColor.DARK_GRAY + m.getName());
 				m.remove();
 //				m.damage(m.getHealth()+1);
 //				Location target = event.getEntity().getLocation();
