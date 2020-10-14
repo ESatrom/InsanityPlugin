@@ -45,14 +45,24 @@ public class TimedEvents {
 	public static class Restarter {
 		private static int timer;
 		private static boolean started = false;
+		private static int doom = -1;
 		public static void tick() {
 			if(started) {
-				System.out.println("Restart in " + timer + "ticks");
 				timer--;
 				if(timer==0) {
+					doom = 20;
+				}
+			}
+			if(doom>=0) {
+				if(doom==0) {
 					plugin.getServer().broadcastMessage("Server restarting...");
 					plugin.getServer().dispatchCommand(plugin.getServer().getConsoleSender(), "restart");
+				} else {
+					if(doom%2==0) {
+						plugin.getServer().broadcastMessage("Server restarting in " + doom/2);
+					}
 				}
+				doom--;
 			}
 		}
 		public static void initiate() {
