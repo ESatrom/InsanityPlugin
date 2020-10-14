@@ -119,23 +119,11 @@ public class ItemEnderPorter extends ItemStack {
 	}
 	public void decodeData(String data) {
 		String dat = data.substring(data.indexOf('|')+1);
-		try{
-			x = Integer.parseInt(dat.substring(0, dat.indexOf('|')));
-		} catch(NumberFormatException e) {
-			x = (int) Double.parseDouble(dat.substring(0, dat.indexOf('|')));
-		}
+		x = Integer.parseInt(dat.substring(0, dat.indexOf('|')));
 		dat = dat.substring(dat.indexOf('|')+1);
-		try{
-			y = Integer.parseInt(dat.substring(0, dat.indexOf('|')));
-		} catch(NumberFormatException e) {
-			y = (int) Double.parseDouble(dat.substring(0, dat.indexOf('|')));
-		}
+		y = Integer.parseInt(dat.substring(0, dat.indexOf('|')));
 		dat = dat.substring(dat.indexOf('|')+1);
-		try{
-			z = Integer.parseInt(dat.substring(0, dat.indexOf('|')));
-		} catch(NumberFormatException e) {
-			z = (int) Double.parseDouble(dat.substring(0, dat.indexOf('|')));
-		}
+		z = Integer.parseInt(dat.substring(0, dat.indexOf('|')));
 		dat = dat.substring(dat.indexOf('|')+1);
 		id = Integer.parseInt(dat.substring(0, dat.indexOf('|')));
 		dat = dat.substring(dat.indexOf('|')+1);
