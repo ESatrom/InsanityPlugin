@@ -1,13 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
-		<item key="selection" value="p"/>
+		<item key="selection" value="b"/>
 		<item key="wrap" value="true"/>
 		<item key="casesensitive" value="false"/>
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
 		<list key="findhistory">
+			<item value="event.getClickedBlock()"/>
+			<item value="System.out.print"/>
+			<item value="end"/>
+			<item value="endSequence"/>
 			<item value="event.getPlayer()"/>
 			<item value="event.getBlock()"/>
 			<item value="EntityDamageByBlock"/>
@@ -19,14 +23,13 @@
 			<item value="reapers"/>
 			<item value="lore.get(lore.size()-1)"/>
 			<item value="coffeeDelay"/>
-			<item value="playerWorld"/>
-			<item value="&#x09;&#x09;playerWorld.setX(x);"/>
-			<item value="((CreatureSpawner) b)"/>
-			<item value="command"/>
 		</list>
 		<list key="replacehistory">
-			<item value="p"/>
 			<item value="b"/>
+			<item value="overworld"/>
+			<item value="nether"/>
+			<item value="scan"/>
+			<item value="p"/>
 			<item value="InsanityEnums.Modifiers"/>
 			<item value="InsanityEnums.ModelData"/>
 			<item value="Enums.ModelData"/>
@@ -37,12 +40,11 @@
 			<item value="plugin.coffeeDelay"/>
 			<item value="player.getLocation()"/>
 			<item value="bState"/>
-			<item value="getCharge()"/>
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
-		<item key="DIALOG_X_ORIGIN" value="1160"/>
-		<item key="DIALOG_Y_ORIGIN" value="221"/>
+		<item key="DIALOG_X_ORIGIN" value="1403"/>
+		<item key="DIALOG_Y_ORIGIN" value="224"/>
 		<item key="DIALOG_WIDTH" value="284"/>
 		<item key="DIALOG_HEIGHT" value="391"/>
 		<item key="DIALOG_FONT_NAME" value="1|Segoe UI|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI"/>

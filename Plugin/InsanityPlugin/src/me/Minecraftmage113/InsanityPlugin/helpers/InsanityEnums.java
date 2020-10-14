@@ -47,7 +47,7 @@ public class InsanityEnums {
 			return -1;
 		}
 		public boolean instance(ItemStack item) {
-			return item.getItemMeta().hasCustomModelData() && item.getItemMeta().getCustomModelData()==value();
+			return item!=null && item.hasItemMeta() && item.getItemMeta().hasCustomModelData() && item.getItemMeta().getCustomModelData()==value();
 		}
 	}
 	

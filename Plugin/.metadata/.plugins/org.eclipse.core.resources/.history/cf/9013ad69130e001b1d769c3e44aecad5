@@ -14,7 +14,11 @@ public class InsanityEnums {
 		DEPRESSION_WAND,
 		BLINK_WAND,
 		LASSO,
-		REAPERS_SCYTHE;
+		REAPERS_SCYTHE,
+		CHALK,
+		CHALK_PLACED,
+		CHALK_PLACED_TURN,
+		SOULBINDING_ROCK;
 		public int value() {
 			switch(this) {
 			case ENDER_PORTER:
@@ -31,9 +35,16 @@ public class InsanityEnums {
 				return 6;
 			case REAPERS_SCYTHE:
 				return 7;
-			default:
-				return -1;
+			case CHALK:
+				return 8;
+			case CHALK_PLACED:
+				return 9;
+			case CHALK_PLACED_TURN:
+				return 10;
+			case SOULBINDING_ROCK:
+				return 11;
 			}
+			return -1;
 		}
 		public boolean instance(ItemStack item) {
 			return item.getItemMeta().hasCustomModelData() && item.getItemMeta().getCustomModelData()==value();

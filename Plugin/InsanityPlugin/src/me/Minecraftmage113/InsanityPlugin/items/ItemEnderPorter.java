@@ -25,7 +25,7 @@ public class ItemEnderPorter extends ItemStack {
 		this(0);
 	}
 	public ItemEnderPorter(int charge) {
-		super(Material.WATER_BUCKET);
+		super(Material.ENDER_PEARL);
 		meta = this.getItemMeta();
 		this.maxCharge = 1000;
 		bound = false;
@@ -34,7 +34,7 @@ public class ItemEnderPorter extends ItemStack {
 	}
 	public ItemEnderPorter(ItemStack item, Player p) {
 		//time to extract important bits
-		super(Material.WATER_BUCKET);
+		super(Material.ENDER_PEARL);
 		meta = item.getItemMeta();
 		player = p;
 		decodeData(meta.getLore().get(meta.getLore().size()-1));

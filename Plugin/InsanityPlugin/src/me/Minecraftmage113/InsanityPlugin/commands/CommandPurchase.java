@@ -62,7 +62,7 @@ public class CommandPurchase extends InsanityCommand {
 		case "lasso":
 		case "lassoo":
 			experienceCost = 30;
-			item = new ItemStack(Material.WATER_BUCKET);
+			item = new ItemStack(Material.LEAD);
 			meta = item.getItemMeta();
 			meta.setDisplayName(ChatColor.RESET + "" + ChatColor.GOLD + "Lasso");
 			meta.setCustomModelData(InsanityEnums.ModelData.LASSO.value());
