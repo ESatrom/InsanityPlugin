@@ -44,18 +44,25 @@ public class ListenerPlayerDeath extends InsanityListener {
 		InsanityEnums.Modifiers.ROTTED.remove(p);
 		if(InsanityEnums.Modifiers.ROTTING_PRESERVATION.remove(p)) {
 			InsanityEnums.Modifiers.ROTTED.apply(p);
+			p.sendMessage("Your flesh decays as Phthisis' preservation fades.");
 			for(Entity e : p.getNearbyEntities(5, 2, 5)) {
 				if(e instanceof Attributable) {
 					if(e instanceof Damageable) {
 						Damageable d = (Damageable) e;
-						InsanityEnums.Modifiers.ROTTED.apply((Attributable) d);
-						if(d.getHealth()>((Attributable) d).getAttribute(Attribute.GENERIC_MAX_HEALTH).getValue()) {
-							d.setHealth(((Attributable) d).getAttribute(Attribute.GENERIC_MAX_HEALTH).getValue());
+						d.damage(0);
+						if(InsanityEnums.Modifiers.ROTTED.apply((Attributable) d)) {
+							if(e instanceof Player) {
+								e.sendMessage("Your flesh has been decayed by the mighty Phthisis. Patron of the Cult of Shrooms.");
+							}
+							if(d.getHealth()>((Attributable) d).getAttribute(Attribute.GENERIC_MAX_HEALTH).getValue()) {
+								d.setHealth(((Attributable) d).getAttribute(Attribute.GENERIC_MAX_HEALTH).getValue());
+							}
 						}
 					}
 				}
 			}
 			p.getWorld().spawnParticle(Particle.ASH, p.getLocation(), 1210+Main.r.nextInt(4236), 5, 2, 5);
 		}
+		InsanityEnums.Modifiers.VULCANITE.remove(p);
 	}
 }

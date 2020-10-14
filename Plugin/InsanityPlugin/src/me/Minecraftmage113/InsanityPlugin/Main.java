@@ -72,6 +72,7 @@ public class Main extends JavaPlugin {
 		/**
 		 * TODO GUIs = custom inventory, set the items, make a listener for it that always cancels the action.
 		 */
+		//TODO new BukkitRunnable(){ /** Code. include a public void run(){} */ }.runTaskTimer(bool, int, int);
 		/** @Deprecated this.getCommand("Sacrifice").setExecutor(new CommandSacrifice(this)); //Registers "/Sacrifice" command (remember to edit plugin.yml) */
 		/** Registers supplied commands (remember the plugin.yml */
 		this.getCommand("GM").setExecutor(new CommandGamemode(this));

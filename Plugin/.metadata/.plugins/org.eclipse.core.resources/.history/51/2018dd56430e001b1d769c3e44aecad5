@@ -1,0 +1,26 @@
+package me.Minecraftmage113.InsanityPlugin.listeners;
+
+import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.entity.EntityDamageEvent;
+
+import me.Minecraftmage113.InsanityPlugin.Main;
+import me.Minecraftmage113.InsanityPlugin.helpers.InsanityEnums;
+/**
+ * Ticks twice per second.
+ */
+public class ListenerDamage extends InsanityListener {
+	public ListenerDamage(Main plugin) { super(plugin); }
+	
+	
+	@EventHandler
+	public void onDamage(EntityDamageEvent event) {
+		if(event.getEntity()!=null && event.getEntity() instanceof Player) {
+			Player p = (Player) event.getEntity();
+			if(InsanityEnums.Modifiers.ROTTING_PRESERVATION.hasMod(p)) {
+				
+			}
+		}
+	}
+	
+}

@@ -1,0 +1,12 @@
+package me.Minecraftmage113.InsanityPlugin.listeners;
+
+import org.bukkit.event.Listener;
+
+import me.Minecraftmage113.InsanityPlugin.Main;
+
+public class ListenerDamage implements Listener {
+	protected Main plugin;
+	public ListenerDamage(Main plugin) {
+		this.plugin = plugin;
+	}
+}

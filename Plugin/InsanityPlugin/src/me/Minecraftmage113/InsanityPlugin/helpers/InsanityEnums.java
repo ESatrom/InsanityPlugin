@@ -53,50 +53,51 @@ public class InsanityEnums {
 	
 	public enum Modifiers {
 		ROTTING_PRESERVATION,
-		ROTTED;
+		ROTTED,
+		VULCANITE;
 		private AttributeModifier value() {
 			switch(this) {
 			case ROTTING_PRESERVATION:
-				return new AttributeModifier("Rotting Preservation", -2, Operation.ADD_NUMBER);
+				return new AttributeModifier("Rotting Preservation", -0, Operation.ADD_NUMBER);
 			case ROTTED:
 				return new AttributeModifier("Rotted", -.5, Operation.MULTIPLY_SCALAR_1 );
-			default:
-				return null;
+			case VULCANITE:
+				return new AttributeModifier("Vulcanite", 3, Operation.ADD_NUMBER);
 			}
+			return null;
 		}
-		private AttributeModifier getApplied(Attributable a, Attribute at) {
-			for(AttributeModifier m : a.getAttribute(at).getModifiers()) {
+		private Attribute getAttribute() {
+			switch(this) {
+			case ROTTING_PRESERVATION:
+			case ROTTED:
+				return Attribute.GENERIC_MAX_HEALTH;
+			case VULCANITE:
+				return Attribute.GENERIC_ARMOR;
+			}
+			return null;
+		}
+		private AttributeModifier getApplied(Attributable a) {
+			for(AttributeModifier m : a.getAttribute(getAttribute()).getModifiers()) {
 				if(m.getName().equals(value().getName())) {
 					return m;
 				}
 			}
 			return null;
 		}
+		
 		public boolean apply(Attributable a) {
-			switch(this) {
-			case ROTTING_PRESERVATION:
-			case ROTTED:
-				if(getApplied(a, Attribute.GENERIC_MAX_HEALTH)!=null) {
-					return false;
-				}
-				a.getAttribute(Attribute.GENERIC_MAX_HEALTH).addModifier(value());
-				break;
-			}
+			if(hasMod(a)) { return false; }
+			a.getAttribute(getAttribute()).addModifier(value());
 			return true;
 		}
 		public boolean remove(Attributable a) {
-			
-			switch(this) {
-			case ROTTING_PRESERVATION:
-			case ROTTED:
-				AttributeModifier targetMod = getApplied(a, Attribute.GENERIC_MAX_HEALTH);
-				if(targetMod==null) {
-					return false;
-				}
-				a.getAttribute(Attribute.GENERIC_MAX_HEALTH).removeModifier(targetMod);
-				break;
-			}
+			AttributeModifier targetMod = getApplied(a);
+			if(targetMod==null) { return false; }
+			a.getAttribute(getAttribute()).removeModifier(targetMod);
 			return true;
+		}
+		public boolean hasMod(Attributable a) {
+			return (getApplied(a)!=null);
 		}
 	}
 }

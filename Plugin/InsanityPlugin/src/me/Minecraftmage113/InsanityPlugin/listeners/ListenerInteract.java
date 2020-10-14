@@ -13,6 +13,7 @@ import org.bukkit.block.BlockFace;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Item;
 import org.bukkit.entity.Mob;
+import org.bukkit.entity.MushroomCow;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.block.Action;
@@ -101,26 +102,74 @@ public class ListenerInteract extends InsanityListener {
 		event.getItem().setItemMeta(porter.getItemMeta());
 	}
 	
+	private interface SacrificeCondition { public boolean execute(); }
+	private interface SacrificeBoon { public void execute(); }
 	public void altar(PlayerInteractEvent event, Player p, Block b) {
 		List<MetadataValue> meta = b.getMetadata("Altar");
 		Collection<Entity> sacrifices = b.getWorld().getNearbyEntities(b.getLocation(), 3, 2, 3);
-		boolean stop = true;
-		for(Entity e : sacrifices) {
-			if(e instanceof Item) {
-				if(stop&&((Item) e).getItemStack().getType().equals(Material.BEDROCK)) {
-					stop = false;
-					e.remove();
-				}
-			}
-		}
-		if(stop) return;
+		SacrificeCondition cond = () -> { return false; };
+		SacrificeBoon boon = () -> {};
+		long day = b.getWorld().getFullTime()/24000;
+		long phase = day%8; // 0=full, 4=new
 		if(meta!=null && meta.size()>0) {
 			switch(meta.get(0).value()+"") {
 			case "Phthisis":
-				if(InsanityEnums.Modifiers.ROTTING_PRESERVATION.apply(p)) {
-					p.sendMessage("You have been preserved by Phthisis.");
-				}
+				cond = () -> {
+					if(phase==4&&b.getWorld().getTime()>17000&&b.getWorld().getTime()<19000) {
+						for(Entity e : sacrifices) {
+							if(e instanceof MushroomCow) {
+								if(!((MushroomCow) e).isAdult()) {
+									e.remove();
+									return true;		
+								}
+							}
+						}
+						p.sendMessage("Phthisis desires the slaughter of an infected calf. (RClick altar, do not kill calf)");
+					} else {
+						if(phase!=4) {
+							p.sendMessage("Phthisis desires a moon of darkness.");
+						} else {
+							p.sendMessage("Phthisis requires the height of the moon to touch the land.");
+						}
+					}
+					return false; 
+				};
+				boon = () -> {
+					p.getWorld().spawnParticle(Particle.ASH, p.getLocation(), 1024+Main.r.nextInt(3073), 1, 2, 1);
+					if(InsanityEnums.Modifiers.ROTTING_PRESERVATION.apply(p)) {
+						p.sendMessage("You have been preserved by Phthisis.");
+					}
+				};
 				break;
+			case "Vulcan":
+				cond = () -> {
+					for(Entity e : sacrifices) {
+						if(e instanceof Item) {
+							Item i = (Item) e;
+							if(i.getItemStack().getType().equals(Material.NETHERITE_SCRAP)) {
+								if(i.getItemStack().getAmount()==1) {
+									i.remove();
+								} else {
+									i.getItemStack().setAmount(i.getItemStack().getAmount()-1);
+								}
+								p.sendMessage("Vulcan blessed you with skin of steel.");
+								return true;		
+							}
+						}
+					}
+					p.sendMessage("Vulcan desires a scrap of netherite to work into your flesh.");
+					return false; 
+				};
+				boon = () -> {
+					p.getWorld().spawnParticle(Particle.LAVA, p.getLocation(), 1024+Main.r.nextInt(3073), 1, 2, 1);
+					if(InsanityEnums.Modifiers.VULCANITE.apply(p)) {
+						p.sendMessage("Your flesh has been hardened by Vulcan.");
+					}
+				};
+				break;
+			}
+			if(cond.execute()) {
+				boon.execute();
 			}
 		}
 	}
