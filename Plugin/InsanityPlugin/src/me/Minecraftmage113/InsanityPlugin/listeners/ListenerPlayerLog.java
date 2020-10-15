@@ -15,6 +15,7 @@ public class ListenerPlayerLog extends InsanityListener {
 		
 	}
 	
+	@EventHandler
 	public void onLeave(PlayerQuitEvent event) {
 		plugin.getSaver().save();
 	}

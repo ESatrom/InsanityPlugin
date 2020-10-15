@@ -22,6 +22,8 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.metadata.MetadataValue;
+import org.bukkit.potion.PotionEffect;
+import org.bukkit.potion.PotionEffectType;
 
 import me.Minecraftmage113.InsanityPlugin.InsanityMetadata;
 import me.Minecraftmage113.InsanityPlugin.Main;
@@ -67,7 +69,6 @@ public class ListenerInteract extends InsanityListener {
 				}
 			}
 		}
-			
 	}
 	
 	public void enderPorter(PlayerInteractEvent event, Player p) {
@@ -136,6 +137,7 @@ public class ListenerInteract extends InsanityListener {
 				};
 				boon = () -> {
 					p.getWorld().spawnParticle(Particle.ASH, p.getLocation(), 1024+Main.r.nextInt(3073), 1, 2, 1);
+					p.addPotionEffect(new PotionEffect(PotionEffectType.WITHER, 200, 0, false, false, false));
 					if(InsanityEnums.Modifiers.ROTTING_PRESERVATION.apply(p)) {
 						p.sendMessage("You have been preserved by Phthisis.");
 					}

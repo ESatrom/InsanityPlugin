@@ -18,6 +18,7 @@ import me.Minecraftmage113.InsanityPlugin.helpers.Saver;
 import me.Minecraftmage113.InsanityPlugin.helpers.TimedEvents;
 import me.Minecraftmage113.InsanityPlugin.listeners.ListenerCharge;
 import me.Minecraftmage113.InsanityPlugin.listeners.ListenerCommand;
+import me.Minecraftmage113.InsanityPlugin.listeners.ListenerDamage;
 import me.Minecraftmage113.InsanityPlugin.listeners.ListenerEntityHit;
 import me.Minecraftmage113.InsanityPlugin.listeners.ListenerInteract;
 import me.Minecraftmage113.InsanityPlugin.listeners.ListenerMetaScrubber;
@@ -41,6 +42,9 @@ public class Main extends JavaPlugin {
 	public List<Player> creativePlayers = new ArrayList<Player>();
 	private Saver saver;
 	public int coffeeDelay = 0;
+//	public int[] listenerCalls = new int[11];
+//	public int[] listenerTicks = new int[11];
+//	public String[] listenerNames = {"Charge", "Command", "Damage", "EntityHit", "Interact", "MetaScrubber", "Mine", "Placement", "PlayerDeath", "PlayerLog", "Tick"};
 	public static Random r = new Random();
 	
 	/**
@@ -92,6 +96,7 @@ public class Main extends JavaPlugin {
 		this.getServer().getPluginManager().registerEvents(new ListenerPlacement(this), this);
 		this.getServer().getPluginManager().registerEvents(new ListenerCommand(this), this);
 		this.getServer().getPluginManager().registerEvents(new ListenerPlayerLog(this), this);
+		this.getServer().getPluginManager().registerEvents(new ListenerDamage(this), this);
 		TimedEvents.plugin = this; //Initializes "TimedEvents"
 		saver = new Saver(this);
 		saver.load(); //Load in the world :)
