@@ -11,7 +11,7 @@ import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
 import me.Minecraftmage113.InsanityPlugin.Main;
-import me.Minecraftmage113.InsanityPlugin.helpers.InsanityEnums;
+import me.Minecraftmage113.InsanityPlugin.helpers.InsanityModifiers;
 /**
  * Ticks twice per second.
  */
@@ -23,7 +23,7 @@ public class ListenerDamage extends InsanityListener {
 	public void onDamage(EntityDamageEvent event) {
 		if(event.getEntity()!=null && event.getEntity() instanceof Attributable) {
 			Attributable a = (Attributable) event.getEntity();
-			if(InsanityEnums.Modifiers.ROTTING_PRESERVATION.hasMod(a)) {
+			if(InsanityModifiers.ROTTING_PRESERVATION.hasMod(a)) {
 				if(event.getCause().equals(DamageCause.WITHER)) {
 					if(event.getEntity() instanceof Mob) {
 						((Mob) event.getEntity()).addPotionEffect(new PotionEffect(PotionEffectType.WITHER, 200, 0, false, false, false));
@@ -34,7 +34,7 @@ public class ListenerDamage extends InsanityListener {
 					event.setCancelled(true);
 				}
 			}
-			if(InsanityEnums.Modifiers.VULCANITE.hasMod(a)) {
+			if(InsanityModifiers.VULCANITE.hasMod(a)) {
 				if(event.getCause().equals(DamageCause.FIRE)||event.getCause().equals(DamageCause.FIRE_TICK)) {
 					event.setCancelled(true);
 				}

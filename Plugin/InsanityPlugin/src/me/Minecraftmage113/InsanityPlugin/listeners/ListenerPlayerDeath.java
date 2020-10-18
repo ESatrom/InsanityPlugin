@@ -16,7 +16,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.SkullMeta;
 
 import me.Minecraftmage113.InsanityPlugin.Main;
-import me.Minecraftmage113.InsanityPlugin.helpers.InsanityEnums;
+import me.Minecraftmage113.InsanityPlugin.helpers.InsanityModifiers;
 
 public class ListenerPlayerDeath extends InsanityListener {
 	public ListenerPlayerDeath(Main plugin) { super(plugin); }
@@ -41,16 +41,16 @@ public class ListenerPlayerDeath extends InsanityListener {
 	}
 	
 	void tags(Player p) {
-		InsanityEnums.Modifiers.ROTTED.remove(p);
-		if(InsanityEnums.Modifiers.ROTTING_PRESERVATION.remove(p)) {
-			InsanityEnums.Modifiers.ROTTED.apply(p);
+		InsanityModifiers.ROTTED.remove(p);
+		if(InsanityModifiers.ROTTING_PRESERVATION.remove(p)) {
+			InsanityModifiers.ROTTED.apply(p);
 			p.sendMessage("Your flesh decays as Phthisis' preservation fades.");
 			for(Entity e : p.getNearbyEntities(5, 2, 5)) {
 				if(e instanceof Attributable) {
 					if(e instanceof Damageable) {
 						Damageable d = (Damageable) e;
 						d.damage(0);
-						if(InsanityEnums.Modifiers.ROTTED.apply((Attributable) d)) {
+						if(InsanityModifiers.ROTTED.apply((Attributable) d)) {
 							if(e instanceof Player) {
 								e.sendMessage("Your flesh has been decayed by the mighty Phthisis. Patron of the Cult of Shrooms.");
 							}
@@ -63,6 +63,6 @@ public class ListenerPlayerDeath extends InsanityListener {
 			}
 			p.getWorld().spawnParticle(Particle.ASH, p.getLocation(), 1210+Main.r.nextInt(4236), 5, 2, 5);
 		}
-		InsanityEnums.Modifiers.VULCANITE.remove(p);
+		InsanityModifiers.VULCANITE.remove(p);
 	}
 }

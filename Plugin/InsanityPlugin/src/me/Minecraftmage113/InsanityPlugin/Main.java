@@ -6,6 +6,7 @@ import java.util.Random;
 
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.Inventory;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import me.Minecraftmage113.InsanityPlugin.commands.CommandCleanse;
@@ -14,6 +15,8 @@ import me.Minecraftmage113.InsanityPlugin.commands.CommandPurchase;
 import me.Minecraftmage113.InsanityPlugin.commands.CommandSave;
 import me.Minecraftmage113.InsanityPlugin.commands.CommandSuggestKick;
 import me.Minecraftmage113.InsanityPlugin.commands.CommandSuggestRestart;
+import me.Minecraftmage113.InsanityPlugin.guis.CommandShop;
+import me.Minecraftmage113.InsanityPlugin.guis.ListenerGUI;
 import me.Minecraftmage113.InsanityPlugin.helpers.Saver;
 import me.Minecraftmage113.InsanityPlugin.helpers.TimedEvents;
 import me.Minecraftmage113.InsanityPlugin.listeners.ListenerCharge;
@@ -46,6 +49,7 @@ public class Main extends JavaPlugin {
 //	public int[] listenerTicks = new int[11];
 //	public String[] listenerNames = {"Charge", "Command", "Damage", "EntityHit", "Interact", "MetaScrubber", "Mine", "Placement", "PlayerDeath", "PlayerLog", "Tick"};
 	public static Random r = new Random();
+	public Inventory shopGUI;
 	
 	/**
 	 * Capture supplied entity into a lasso
@@ -73,6 +77,7 @@ public class Main extends JavaPlugin {
 	
 	@Override
 	public void onEnable() {
+		shopGUI = CommandShop.createGUI();
 		/**
 		 * TODO GUIs = custom inventory, set the items, make a listener for it that always cancels the action.
 		 */
@@ -85,6 +90,7 @@ public class Main extends JavaPlugin {
 		this.getCommand("sKick").setExecutor(new CommandSuggestKick(this));
 		this.getCommand("sRestart").setExecutor(new CommandSuggestRestart(this));
 		this.getCommand("Save").setExecutor(new CommandSave(this));
+		this.getCommand("Shop").setExecutor(new CommandShop(this));
 		/** Registers supplied listeners */
 		this.getServer().getPluginManager().registerEvents(new ListenerMine(this), this);
 		this.getServer().getPluginManager().registerEvents(new ListenerInteract(this), this);
@@ -97,6 +103,7 @@ public class Main extends JavaPlugin {
 		this.getServer().getPluginManager().registerEvents(new ListenerCommand(this), this);
 		this.getServer().getPluginManager().registerEvents(new ListenerPlayerLog(this), this);
 		this.getServer().getPluginManager().registerEvents(new ListenerDamage(this), this);
+		this.getServer().getPluginManager().registerEvents(new ListenerGUI(this), this);
 		TimedEvents.plugin = this; //Initializes "TimedEvents"
 		saver = new Saver(this);
 		saver.load(); //Load in the world :)

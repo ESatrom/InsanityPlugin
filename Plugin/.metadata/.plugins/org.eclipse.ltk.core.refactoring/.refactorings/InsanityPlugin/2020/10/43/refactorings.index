@@ -1,0 +1,5 @@
+1603022972910	Move member 'Items'
+1603023006670	Move member 'items'
+1603023241592	Rename type 'InsanityEnums'
+1603023484514	Rename type 'ListenerShop'
+1603023499512	Rename method 'onShop'

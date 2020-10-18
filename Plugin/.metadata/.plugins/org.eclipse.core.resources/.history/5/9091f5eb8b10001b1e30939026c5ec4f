@@ -1,0 +1,47 @@
+package me.Minecraftmage113.InsanityPlugin.guis;
+
+import java.util.List;
+
+import org.bukkit.Bukkit;
+import org.bukkit.Material;
+import org.bukkit.command.Command;
+import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
+import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
+
+import me.Minecraftmage113.InsanityPlugin.Main;
+import me.Minecraftmage113.InsanityPlugin.commands.InsanityCommand;
+import net.md_5.bungee.api.ChatColor;
+
+public class CommandShop extends InsanityCommand {
+
+	public CommandShop(Main plugin) { super(plugin); }
+
+	@Override
+	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
+		if(!(sender instanceof Player)) {
+			sender.sendMessage("Console may not open interfaces.");
+			return true;
+		}
+		Player p = (Player) sender;
+		return false;
+	}
+	
+	public Inventory createGUI() {
+		Inventory gui = Bukkit.createInventory(null, 18, ChatColor.GREEN + "" + ChatColor.BOLD + "Shop");
+		
+		return gui;
+	}
+	
+	public ItemStack createButton(Material material, String name, List<String> lore) {
+		ItemStack button = new ItemStack(material);
+		ItemMeta meta = button.getItemMeta();
+		meta.setDisplayName(name);
+		meta.setLore(lore);
+		button.setItemMeta(meta);
+		return button;
+	}
+
+}

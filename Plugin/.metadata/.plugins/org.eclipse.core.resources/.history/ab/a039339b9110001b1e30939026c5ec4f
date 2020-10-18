@@ -1,0 +1,33 @@
+package me.Minecraftmage113.InsanityPlugin.guis;
+
+import org.bukkit.Material;
+import org.bukkit.command.Command;
+import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
+import org.bukkit.inventory.Inventory;
+
+import me.Minecraftmage113.InsanityPlugin.Main;
+import me.Minecraftmage113.InsanityPlugin.commands.InsanityCommand;
+import net.md_5.bungee.api.ChatColor;
+
+public class CommandShop extends InsanityCommand implements GUI {
+
+	public CommandShop(Main plugin) { super(plugin); }
+
+	@Override
+	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
+		if(!(sender instanceof Player)) {
+			sender.sendMessage("Console may not open interfaces.");
+			return true;
+		}
+		Player p = (Player) sender;
+		return false;
+	}
+	
+	public Inventory createGUI() {
+		Inventory gui = GUIBase.createGUI(18, ChatColor.GREEN + "" + ChatColor.BOLD + "Shop");
+		GUIBase.addButton(gui, 4, 1, new GUIBase.Button(Material.BARRIER, ChatColor.RED + "Cancel"));
+		return gui;
+	}
+
+}

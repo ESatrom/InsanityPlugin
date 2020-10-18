@@ -1,0 +1,102 @@
+package me.Minecraftmage113.InsanityPlugin.guis;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.bukkit.Bukkit;
+import org.bukkit.Material;
+import org.bukkit.enchantments.Enchantment;
+import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.ItemFlag;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
+
+public class GUIBase {
+	public static class Button extends ItemStack {
+		ItemMeta meta;
+		
+		public Button(Material material, ItemMeta meta, int amount) {
+			super(material);
+			this.setItemMeta(meta);
+			this.setAmount(amount);
+		}
+		public Button(Material material, ItemMeta meta) {
+			this(material, meta, 1);
+		}
+		
+
+		public Button(Material material, String name, boolean shiny, int amount) {
+			super(material);
+			meta = this.getItemMeta();
+			meta.setDisplayName(name);
+			if(shiny) {
+				meta.addEnchant(Enchantment.DURABILITY, 0, true);
+				meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+			}
+			this.setItemMeta(meta);
+			this.setAmount(amount);
+		}
+		public Button(Material material, String name, boolean shiny) {
+			this(material, name, shiny, 1);
+		}
+		public Button(Material material, String name, int amount) {
+			this(material, name, false, amount);
+		}
+		public Button(Material material, String name) {
+			this(material, name, false, 1);
+		}
+		
+		public Button(Material material, String name, List<String> lore, boolean shiny, int amount) {
+			this(material, name, shiny, amount);
+			meta.setLore(lore);
+			this.setItemMeta(meta);
+		}
+		public Button(Material material, String name, List<String> lore, boolean shiny) {
+			this(material, name, lore, shiny, 1);
+		}
+		public Button(Material material, String name, List<String> lore, int amount) {
+			this(material, name, lore, false, amount);
+		}
+		public Button(Material material, String name, List<String> lore) {
+			this(material, name, lore, false, 1);
+		}
+		
+		public Button(Material material, String name, String[] lore, boolean shiny, int amount) {
+			this(material, name, shiny, amount);
+			List<String> lores = new ArrayList<String>();
+			meta.setLore(lores);
+			this.setItemMeta(meta);
+		}
+		public Button(Material material, String name, String[] lore, boolean shiny) {
+			this(material, name, lore, shiny, 1);
+		}
+		public Button(Material material, String name, String[] lore, int amount) {
+			this(material, name, lore, false, amount);
+		}
+		public Button(Material material, String name, String[] lore) {
+			this(material, name, lore, false, 1);
+		}
+	}
+	
+	public static class ButtonBuilder {
+		private ItemStack stack;
+		private ItemMeta meta;
+		
+		public ButtonBuilder(Material material) {
+			stack = new ItemStack(material);
+			meta = stack.getItemMeta();
+		}
+		
+		public ItemStack build() {
+			return stack;
+		}
+	}
+	
+	public static Inventory createGUI(int size, String name) {
+		return Bukkit.createInventory(null, size, name);
+	}
+	public static Inventory addButton(Inventory inv, int x, int y, ItemStack item) {
+		inv.setItem(x+(9*y), item);
+		return inv;
+	}
+}

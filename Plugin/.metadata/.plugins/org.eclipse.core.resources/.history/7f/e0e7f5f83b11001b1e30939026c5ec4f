@@ -1,0 +1,19 @@
+package me.Minecraftmage113.InsanityPlugin.guis;
+
+import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.inventory.InventoryClickEvent;
+
+import me.Minecraftmage113.InsanityPlugin.Main;
+import me.Minecraftmage113.InsanityPlugin.listeners.InsanityListener;
+
+public class ListenerShop extends InsanityListener {
+	public ListenerShop(Main plugin) { super(plugin); }
+	
+	@EventHandler
+	public void onShop(InventoryClickEvent event) {
+		for(Player p : plugin.getServer().getOnlinePlayers()) {
+			p.sendMessage("spam");
+		}
+	}
+}

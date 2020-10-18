@@ -1,0 +1,46 @@
+package me.Minecraftmage113.InsanityPlugin.guis;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.bukkit.Material;
+import org.bukkit.enchantments.Enchantment;
+import org.bukkit.inventory.ItemFlag;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
+
+public class GUIBase {
+	public class Button extends ItemStack {
+		ItemMeta meta;
+		public Button(Material material, String name, boolean shiny) {
+			super(material);
+			meta = this.getItemMeta();
+			meta.setDisplayName(name);
+			if(shiny) {
+				meta.addEnchant(Enchantment.DURABILITY, 0, true);
+				meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+			}
+			this.setItemMeta(meta);
+		}
+		public Button(Material material, String name) {
+			this(material, name, false);
+		}
+		public Button(Material material, String name, List<String> lore, boolean shiny) {
+			this(material, name, shiny);
+			meta.setLore(lore);
+			this.setItemMeta(meta);
+		}
+		public Button(Material material, String name, String[] lore, boolean shiny) {
+			this(material, name, shiny);
+			List<String> lores = new ArrayList<String>();
+			meta.setLore(lores);
+			this.setItemMeta(meta);
+		}
+		public Button(Material material, String name, List<String> lore) {
+			this(material, name, lore, false);
+		}
+		public Button(Material material, String name, String[] lore) {
+			this(material, name, lore, false);
+		}
+	}
+}

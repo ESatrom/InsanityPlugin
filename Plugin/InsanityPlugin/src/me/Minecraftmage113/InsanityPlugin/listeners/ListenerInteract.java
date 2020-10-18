@@ -27,7 +27,8 @@ import org.bukkit.potion.PotionEffectType;
 
 import me.Minecraftmage113.InsanityPlugin.InsanityMetadata;
 import me.Minecraftmage113.InsanityPlugin.Main;
-import me.Minecraftmage113.InsanityPlugin.helpers.InsanityEnums;
+import me.Minecraftmage113.InsanityPlugin.helpers.InsanityModifiers;
+import me.Minecraftmage113.InsanityPlugin.helpers.InsanityItems;
 import me.Minecraftmage113.InsanityPlugin.items.ItemEnderPorter;
 
 public class ListenerInteract extends InsanityListener {
@@ -37,11 +38,11 @@ public class ListenerInteract extends InsanityListener {
 	public void onLeash(PlayerLeashEntityEvent event) {
 		ItemStack item = event.getPlayer().getInventory().getItemInMainHand();
 		ItemStack item2 = event.getPlayer().getInventory().getItemInOffHand();
-		if(item!=null && InsanityEnums.ModelData.LASSO.instance(item)) {
+		if(item!=null && InsanityItems.LASSO.instance(item)) {
 			event.setCancelled(true);
 			event.getPlayer().updateInventory();
 		}
-		if(item2!=null && InsanityEnums.ModelData.LASSO.instance(item2)) {
+		if(item2!=null && InsanityItems.LASSO.instance(item2)) {
 			event.setCancelled(true);
 			event.getPlayer().updateInventory();
 		}
@@ -53,18 +54,18 @@ public class ListenerInteract extends InsanityListener {
 		ItemStack item = event.getItem();
 		Block b = event.getClickedBlock();
 		if(event.getAction().equals(Action.RIGHT_CLICK_AIR)) {
-			if(item!=null && InsanityEnums.ModelData.ENDER_PORTER.instance(item)){
+			if(item!=null && InsanityItems.ENDER_PORTER.instance(item)){
 				enderPorter(event, p);
 			}
 		}
 		if(event.getAction().equals(Action.RIGHT_CLICK_BLOCK)) {
 			altar(event, p, b);
 			if(item!=null) {
-				if(InsanityEnums.ModelData.ENDER_PORTER.instance(item)) {
+				if(InsanityItems.ENDER_PORTER.instance(item)) {
 					enderPorter(event, p);
-				} else if(InsanityEnums.ModelData.BLOCK_FLAGGER.instance(item)) {
+				} else if(InsanityItems.BLOCK_FLAGGER.instance(item)) {
 					flagBlock(event, p, b);
-				} else if(InsanityEnums.ModelData.LASSO.instance(item)) {
+				} else if(InsanityItems.LASSO.instance(item)) {
 					lassoRelease(event, item, b);
 				}
 			}
@@ -138,7 +139,7 @@ public class ListenerInteract extends InsanityListener {
 				boon = () -> {
 					p.getWorld().spawnParticle(Particle.ASH, p.getLocation(), 1024+Main.r.nextInt(3073), 1, 2, 1);
 					p.addPotionEffect(new PotionEffect(PotionEffectType.WITHER, 200, 0, false, false, false));
-					if(InsanityEnums.Modifiers.ROTTING_PRESERVATION.apply(p)) {
+					if(InsanityModifiers.ROTTING_PRESERVATION.apply(p)) {
 						p.sendMessage("You have been preserved by Phthisis.");
 					}
 				};
@@ -164,7 +165,7 @@ public class ListenerInteract extends InsanityListener {
 				};
 				boon = () -> {
 					p.getWorld().spawnParticle(Particle.LAVA, p.getLocation(), 1024+Main.r.nextInt(3073), 1, 2, 1);
-					if(InsanityEnums.Modifiers.VULCANITE.apply(p)) {
+					if(InsanityModifiers.VULCANITE.apply(p)) {
 						p.sendMessage("Your flesh has been hardened by Vulcan.");
 					}
 				};

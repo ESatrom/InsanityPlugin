@@ -1,0 +1,19 @@
+package me.Minecraftmage113.InsanityPlugin.helpers;
+
+import org.bukkit.Material;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
+
+public class ItemBuilder {
+	ItemStack stack;
+	ItemMeta meta;
+	public ItemBuilder(Material material) { stack = new ItemStack(material); }
+	public ItemBuilder(ItemStack stack) { this.stack = stack; }
+	
+	public ItemBuilder setName(String name) {
+		meta = stack.getItemMeta();
+		meta.setDisplayName(name);
+		stack.setItemMeta(meta);
+		return this;
+	}
+}

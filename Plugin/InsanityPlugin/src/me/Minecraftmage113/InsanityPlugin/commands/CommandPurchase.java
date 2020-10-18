@@ -13,7 +13,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
 import me.Minecraftmage113.InsanityPlugin.Main;
-import me.Minecraftmage113.InsanityPlugin.helpers.InsanityEnums;
+import me.Minecraftmage113.InsanityPlugin.helpers.InsanityItems;
 import me.Minecraftmage113.InsanityPlugin.items.ItemEnderPorter;
 import net.md_5.bungee.api.ChatColor;
 
@@ -30,7 +30,7 @@ public class CommandPurchase extends InsanityCommand {
 		Player p = (Player) sender;
 		if(args.length < 1) {
 			p.sendMessage(ChatColor.translateAlternateColorCodes('&', "Items available for purchase: \n"
-					+ "&2&lEnder&3&lPorter&r - &a20L&r - Fueled by ender pearls, teleports to a bound location.\n"
+					+ "&2&lEnder&3&lPorter&r - &a15L&r - Fueled by ender pearls, teleports to a bound location.\n"
 					+ "&bFish&r - &a5L&r - Use to perform a fish-slapping dance.\n"
 					+ "&6Lasso&r - &a30L&r - Used to transport mobs."));
 			return true;
@@ -46,7 +46,7 @@ public class CommandPurchase extends InsanityCommand {
 		List<String> lore = new ArrayList<String>();
 		switch(args[0].toLowerCase()) {
 		case "enderporter":
-			experienceCost = 20;
+			experienceCost = 15;
 			item = new ItemEnderPorter();
 			message = ChatColor.translateAlternateColorCodes('&', "You have successfully purchased an &2&lEnder&3&lPorter&r™. Fill it full of ender pearls to charge.");
 			break;
@@ -62,16 +62,7 @@ public class CommandPurchase extends InsanityCommand {
 		case "lasso":
 		case "lassoo":
 			experienceCost = 30;
-			item = new ItemStack(Material.LEAD);
-			meta = item.getItemMeta();
-			meta.setDisplayName(ChatColor.RESET + "" + ChatColor.GOLD + "Lasso");
-			meta.setCustomModelData(InsanityEnums.ModelData.LASSO.value());
-			lore.add("Punch a mob to collect it into your lasso.");
-			lore.add("Right click a block with a full lasso to release a mob.");
-			lore.add("Currently Contained: " + ChatColor.DARK_GRAY + "Nothing");
-			lore.add(ChatColor.BLACK+""+ChatColor.MAGIC+"|-1");
-			meta.setLore(lore);
-			item.setItemMeta(meta);
+			item = InsanityItems.LASSO.build();
 			message = ChatColor.translateAlternateColorCodes('&', "You have successfully purchased a &6Lasso&r.");
 			break;
 		case "scythe":
@@ -89,7 +80,7 @@ public class CommandPurchase extends InsanityCommand {
 			meta = item.getItemMeta();
 			meta.addEnchant(Enchantment.VANISHING_CURSE, 1, true);
 			meta.setDisplayName(ChatColor.RESET + "" + ChatColor.DARK_GRAY + "Reaper's Scythe");
-			meta.setCustomModelData(InsanityEnums.ModelData.REAPERS_SCYTHE.value());
+			meta.setCustomModelData(InsanityItems.REAPERS_SCYTHE.modelData());
 			lore.add("Punch a player to harvest their head.");
 			meta.setLore(lore);
 			item.setItemMeta(meta);

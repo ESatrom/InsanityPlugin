@@ -18,7 +18,7 @@ import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
 import me.Minecraftmage113.InsanityPlugin.Main;
-import me.Minecraftmage113.InsanityPlugin.helpers.InsanityEnums;
+import me.Minecraftmage113.InsanityPlugin.helpers.InsanityItems;
 
 public class ListenerEntityHit extends InsanityListener {
 	public ListenerEntityHit(Main plugin) { super(plugin); }
@@ -29,11 +29,11 @@ public class ListenerEntityHit extends InsanityListener {
 			Player p = (Player) event.getDamager();
 			ItemStack item = p.getInventory().getItemInMainHand();
 			if(item!=null) {
-				if(InsanityEnums.ModelData.DEPRESSION_WAND.instance(item)) {
+				if(InsanityItems.DEPRESSION_WAND.instance(item)) {
 					saddify(event);
-				} else if(InsanityEnums.ModelData.REAPERS_SCYTHE.instance(item)) {
+				} else if(InsanityItems.REAPERS_SCYTHE.instance(item)) {
 					behead(event, p);
-				} else if(InsanityEnums.ModelData.LASSO.instance(item)) {
+				} else if(InsanityItems.LASSO.instance(item)) {
 					lasso(event, p, item);
 				}
 			}
@@ -44,6 +44,7 @@ public class ListenerEntityHit extends InsanityListener {
 		ItemMeta meta = item.getItemMeta();
 		List<String> lore = meta.getLore();
 		String lastLine = lore.get(lore.size()-1);
+		p.sendMessage(""+lastLine);
 		if(lastLine.indexOf("-1")==-1){
 			int ID = Integer.parseInt(lastLine.substring(lastLine.indexOf('|')+1));
 			Mob release = (Mob) plugin.releaseLasso(ID);
