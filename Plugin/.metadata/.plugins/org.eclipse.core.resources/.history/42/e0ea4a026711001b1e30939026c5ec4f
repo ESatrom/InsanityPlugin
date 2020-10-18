@@ -18,8 +18,8 @@ import me.Minecraftmage113.InsanityPlugin.commands.CommandSuggestKick;
 import me.Minecraftmage113.InsanityPlugin.commands.CommandSuggestRestart;
 import me.Minecraftmage113.InsanityPlugin.guis.CommandShop;
 import me.Minecraftmage113.InsanityPlugin.guis.ListenerGUI;
-import me.Minecraftmage113.InsanityPlugin.helpers.Saver;
 import me.Minecraftmage113.InsanityPlugin.helpers.Ticker;
+import me.Minecraftmage113.InsanityPlugin.helpers.Saver;
 import me.Minecraftmage113.InsanityPlugin.helpers.TimedEvents;
 import me.Minecraftmage113.InsanityPlugin.listeners.ListenerCharge;
 import me.Minecraftmage113.InsanityPlugin.listeners.ListenerCommand;
@@ -98,6 +98,7 @@ public class Main extends JavaPlugin {
 		this.getServer().getPluginManager().registerEvents(new ListenerInteract(this), this);
 		this.getServer().getPluginManager().registerEvents(new ListenerCharge(this), this);
 		this.getServer().getPluginManager().registerEvents(new ListenerPlayerDeath(this), this);
+		this.getServer().getPluginManager().registerEvents(new Ticker(this), this);
 		this.getServer().getPluginManager().registerEvents(new ListenerMetaScrubber(this), this);
 		this.getServer().getPluginManager().registerEvents(new ListenerEntityHit(this), this);
 		this.getServer().getPluginManager().registerEvents(new ListenerPlacement(this), this);
@@ -115,7 +116,7 @@ public class Main extends JavaPlugin {
 			public void run() { 
 				ticker.tick();
 			} 
-		}, 0, 10);
+			}, 0, 10);
 	}
 	
 	@Override

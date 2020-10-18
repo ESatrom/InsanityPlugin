@@ -18,8 +18,8 @@ import me.Minecraftmage113.InsanityPlugin.commands.CommandSuggestKick;
 import me.Minecraftmage113.InsanityPlugin.commands.CommandSuggestRestart;
 import me.Minecraftmage113.InsanityPlugin.guis.CommandShop;
 import me.Minecraftmage113.InsanityPlugin.guis.ListenerGUI;
-import me.Minecraftmage113.InsanityPlugin.helpers.Saver;
 import me.Minecraftmage113.InsanityPlugin.helpers.Ticker;
+import me.Minecraftmage113.InsanityPlugin.helpers.Saver;
 import me.Minecraftmage113.InsanityPlugin.helpers.TimedEvents;
 import me.Minecraftmage113.InsanityPlugin.listeners.ListenerCharge;
 import me.Minecraftmage113.InsanityPlugin.listeners.ListenerCommand;
@@ -115,7 +115,7 @@ public class Main extends JavaPlugin {
 			public void run() { 
 				ticker.tick();
 			} 
-		}, 0, 10);
+			}, 0, 10);
 	}
 	
 	@Override
