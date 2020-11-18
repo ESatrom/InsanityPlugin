@@ -1,0 +1,40 @@
+package me.Minecraftmage113.InsanityPlugin.helpers;
+
+import org.bukkit.Material;
+import org.bukkit.block.Block;
+
+public enum InsanityStructures {
+	ENDER_GATE,
+	ENDER_RIFT,
+	ARCANE_ALTAR;
+	public Structure create(Block origin, Material... materialVariants) {
+		Material M1 = null, M2 = null, M3 = null;
+		Material NU = null, AI = Material.AIR;
+		switch(materialVariants.length) {
+		case 3:
+			M3=materialVariants[2];
+		case 2:
+			M2=materialVariants[1];
+		case 1:
+			M1=materialVariants[0];
+		}
+		switch(this) {
+		case ARCANE_ALTAR:
+			return null;
+		case ENDER_GATE:
+			if(materialVariants.length!=2) { return null; }
+			return new Structure(1, 1, 0, origin, new Material[][][]{
+				{{M1, M1, M1}},
+				
+				{{M1, AI, M1}},
+				
+				{{M1, AI, M1}},
+				
+				{{M1, M2, M1}}});
+		case ENDER_RIFT:
+			if(materialVariants.length!=3) { return null; }
+			return null;
+		}
+		return null;
+	}
+}

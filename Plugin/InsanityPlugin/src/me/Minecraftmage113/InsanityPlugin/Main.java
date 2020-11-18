@@ -1,12 +1,16 @@
 package me.Minecraftmage113.InsanityPlugin;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 
+import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitScheduler;
 
@@ -18,9 +22,10 @@ import me.Minecraftmage113.InsanityPlugin.commands.CommandSuggestKick;
 import me.Minecraftmage113.InsanityPlugin.commands.CommandSuggestRestart;
 import me.Minecraftmage113.InsanityPlugin.guis.CommandShop;
 import me.Minecraftmage113.InsanityPlugin.guis.ListenerGUI;
+import me.Minecraftmage113.InsanityPlugin.helpers.Pair;
 import me.Minecraftmage113.InsanityPlugin.helpers.Saver;
-import me.Minecraftmage113.InsanityPlugin.helpers.Ticker;
-import me.Minecraftmage113.InsanityPlugin.helpers.TimedEvents;
+import me.Minecraftmage113.InsanityPlugin.helpers.gameplay.Ticker;
+import me.Minecraftmage113.InsanityPlugin.helpers.gameplay.TimedEvents;
 import me.Minecraftmage113.InsanityPlugin.listeners.ListenerCharge;
 import me.Minecraftmage113.InsanityPlugin.listeners.ListenerCommand;
 import me.Minecraftmage113.InsanityPlugin.listeners.ListenerDamage;
@@ -31,6 +36,7 @@ import me.Minecraftmage113.InsanityPlugin.listeners.ListenerMine;
 import me.Minecraftmage113.InsanityPlugin.listeners.ListenerPlacement;
 import me.Minecraftmage113.InsanityPlugin.listeners.ListenerPlayerDeath;
 import me.Minecraftmage113.InsanityPlugin.listeners.ListenerPlayerLog;
+import me.Minecraftmage113.InsanityPlugin.listeners.ListenerPlayerRespawn;
 
 /**
  * A general plugin for use on the InsanityCraft server.
@@ -41,9 +47,11 @@ import me.Minecraftmage113.InsanityPlugin.listeners.ListenerPlayerLog;
 public class Main extends JavaPlugin {
 
 	//Instance Vars
-	private List<Entity> lassoMobs = new ArrayList<Entity>();
-	private List<Integer> lassoIDs = new ArrayList<Integer>();
-	public List<Player> creativePlayers = new ArrayList<Player>();
+	public Map<Integer, Entity> lassos = new HashMap<Integer, Entity>();
+//	private List<Entity> lassoMobs = new ArrayList<Entity>();
+//	private List<Integer> lassoIDs = new ArrayList<Integer>();
+	public List<OfflinePlayer> creativePlayers = new ArrayList<OfflinePlayer>();
+	public Map<Player, Inventory> soulbinds = new HashMap<Player, Inventory>();
 	private Saver saver;
 	public int coffeeDelay = 0;
 //	public int[] listenerCalls = new int[11];
@@ -52,6 +60,7 @@ public class Main extends JavaPlugin {
 	public static Random r = new Random();
 	public Inventory shopGUI;
 	private Ticker ticker;
+	public int runTime = 0;
 	
 	/**
 	 * Capture supplied entity into a lasso
@@ -59,21 +68,16 @@ public class Main extends JavaPlugin {
 	 */
 	public int lasso(Entity e) {
 		int id = 0;
-		while(lassoIDs.contains(id)) {
+		while(lassos.containsKey(id)) {
 			id++;
 		}
-		lassoMobs.add(e);
-		lassoIDs.add(id);
+		lassos.put(id, e);
 		return id;
 	}
 	/**
 	 * Collects entity from lasso id
 	 */
-	public Entity releaseLasso(int id) {
-		int index = lassoIDs.indexOf(id);
-		lassoIDs.remove(index);
-		return lassoMobs.remove(index);
-	}
+	public Entity releaseLasso(int id) { return lassos.remove(id); }
 	
 	public Saver getSaver() { return saver; }
 	
@@ -98,6 +102,7 @@ public class Main extends JavaPlugin {
 		this.getServer().getPluginManager().registerEvents(new ListenerInteract(this), this);
 		this.getServer().getPluginManager().registerEvents(new ListenerCharge(this), this);
 		this.getServer().getPluginManager().registerEvents(new ListenerPlayerDeath(this), this);
+		this.getServer().getPluginManager().registerEvents(new ListenerPlayerRespawn(this), this);
 		this.getServer().getPluginManager().registerEvents(new ListenerMetaScrubber(this), this);
 		this.getServer().getPluginManager().registerEvents(new ListenerEntityHit(this), this);
 		this.getServer().getPluginManager().registerEvents(new ListenerPlacement(this), this);

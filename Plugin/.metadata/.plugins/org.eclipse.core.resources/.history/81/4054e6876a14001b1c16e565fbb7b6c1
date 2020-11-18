@@ -1,0 +1,7 @@
+package me.Minecraftmage113.InsanityPlugin.helpers;
+
+public enum InsanityStructures {
+	ENDER_GATE,
+	ENDER_RIFT,
+	ARCANE_ALTAR;
+}

@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy element &apos;ListenerPlayerDeath.java&apos; to &apos;InsanityPlugin/src/me.Minecraftmage113.InsanityPlugin.listeners&apos;&#x0D;&#x0A;- Original project: &apos;InsanityPlugin&apos;&#x0D;&#x0A;- Destination element: &apos;InsanityPlugin/src/me.Minecraftmage113.InsanityPlugin.listeners&apos;&#x0D;&#x0A;- Original element: &apos;me.Minecraftmage113.InsanityPlugin.listeners.ListenerPlayerDeath.java&apos;" description="Copy compilation unit" destination="/src&lt;me.Minecraftmage113.InsanityPlugin.listeners" element1="/src&lt;me.Minecraftmage113.InsanityPlugin.listeners{ListenerPlayerDeath.java" files="0" flags="589830" folders="0" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyResources" stamp="1603744800285" units="1" version="1.0"/>
+</session>

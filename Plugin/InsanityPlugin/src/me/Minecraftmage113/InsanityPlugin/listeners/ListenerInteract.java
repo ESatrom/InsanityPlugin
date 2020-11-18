@@ -10,9 +10,9 @@ import org.bukkit.Particle;
 import org.bukkit.Sound;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
+import org.bukkit.block.data.type.EndPortalFrame;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Item;
-import org.bukkit.entity.Mob;
 import org.bukkit.entity.MushroomCow;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -27,8 +27,10 @@ import org.bukkit.potion.PotionEffectType;
 
 import me.Minecraftmage113.InsanityPlugin.InsanityMetadata;
 import me.Minecraftmage113.InsanityPlugin.Main;
-import me.Minecraftmage113.InsanityPlugin.helpers.InsanityModifiers;
-import me.Minecraftmage113.InsanityPlugin.helpers.InsanityItems;
+import me.Minecraftmage113.InsanityPlugin.helpers.enums.InsanityItems;
+import me.Minecraftmage113.InsanityPlugin.helpers.enums.InsanityModifiers;
+import me.Minecraftmage113.InsanityPlugin.helpers.enums.InsanityStructures;
+import me.Minecraftmage113.InsanityPlugin.helpers.objects.InsanityEntity;
 import me.Minecraftmage113.InsanityPlugin.items.ItemEnderPorter;
 
 public class ListenerInteract extends InsanityListener {
@@ -53,6 +55,15 @@ public class ListenerInteract extends InsanityListener {
 		Player p = (Player) event.getPlayer();
 		ItemStack item = event.getItem();
 		Block b = event.getClickedBlock();
+		//TODO probably breaks coffee lol
+		if(item!=null) {
+			for(InsanityItems enu : InsanityItems.values()) {
+				if(enu.instance(item)) {
+					event.setCancelled(true);
+				}
+			}
+			if(InsanityItems.COFFEE.instance(item)) { event.setCancelled(false); }
+		}
 		if(event.getAction().equals(Action.RIGHT_CLICK_AIR)) {
 			if(item!=null && InsanityItems.ENDER_PORTER.instance(item)){
 				enderPorter(event, p);
@@ -67,6 +78,8 @@ public class ListenerInteract extends InsanityListener {
 					flagBlock(event, p, b);
 				} else if(InsanityItems.LASSO.instance(item)) {
 					lassoRelease(event, item, b);
+				} else if(InsanityItems.ENDER_CORE.instance(item)) {
+					enderCreate(b, p, item);
 				}
 			}
 		}
@@ -188,33 +201,67 @@ public class ListenerInteract extends InsanityListener {
 	}
 	
 	public void lassoRelease(PlayerInteractEvent event, ItemStack item, Block b){
-		Location l = b.getLocation();
-		BlockFace face = event.getBlockFace();
 		ItemMeta meta = item.getItemMeta();
 		List<String> lore = meta.getLore();
+		if(Integer.parseInt(lore.get(lore.size()-1).substring(lore.get(lore.size()-1).indexOf('|')+1))==-1) {return;}
+		Location l = b.getLocation();
+		BlockFace face = event.getBlockFace();
 		Entity releasee = plugin.releaseLasso(Integer.parseInt(lore.get(lore.size()-1).substring(lore.get(lore.size()-1).indexOf('|')+1)));
-		if(face.equals(BlockFace.UP)) {
-			l.setY(l.getY()+1);
-		} else if(face.equals(BlockFace.DOWN)) {
-			l.setY(l.getY()-releasee.getHeight());
-		} else if(face.equals(BlockFace.EAST)) {
-			l.setX(l.getX()+1);
-		} else if(face.equals(BlockFace.WEST)) {
-			l.setX(l.getX()-1);
-		} else if(face.equals(BlockFace.NORTH)) {
-			l.setZ(l.getZ()-1);
-		} else if(face.equals(BlockFace.SOUTH)) {
-			l.setZ(l.getZ()+1);
-		}
-		l.setZ(l.getZ()+.5);
-		l.setX(l.getX()+.5);
+		if(releasee!=null) {
+			if(face.equals(BlockFace.UP)) {
+				l.setY(l.getY()+1);
+			} else if(face.equals(BlockFace.DOWN)) {
+				l.setY(l.getY()-releasee.getHeight());
+			} else if(face.equals(BlockFace.EAST)) {
+				l.setX(l.getX()+1);
+			} else if(face.equals(BlockFace.WEST)) {
+				l.setX(l.getX()-1);
+			} else if(face.equals(BlockFace.NORTH)) {
+				l.setZ(l.getZ()-1);
+			} else if(face.equals(BlockFace.SOUTH)) {
+				l.setZ(l.getZ()+1);
+			}
+			l.setZ(l.getZ()+.5);
+			l.setX(l.getX()+.5);
+			Entity spawned = l.getWorld().spawn(l, releasee.getClass());
+			InsanityEntity.clone(releasee, spawned);
+			spawned.teleport(l);
+		} else { System.out.println("Lasso entity glitched"); }
 		lore.set(lore.size()-1, lore.get(lore.size()-1).substring(0, lore.get(lore.size()-1).indexOf('|')+1)+"-1");
-		Mob r2 = (Mob) l.getWorld().spawn(l, releasee.getClass());
-		r2 = (Mob) releasee;
-		r2.teleport(l);
 		lore.set(lore.size()-2, "Currently Contained: " + ChatColor.DARK_GRAY + "Nothing");
 		meta.setLore(lore);
 		item.setItemMeta(meta);
+	}
+	
+	public void enderCreate(Block b, Player p, ItemStack item) {
+		Material[] materials = InsanityStructures.ENDER_RIFT.check(b, p.getFacing());
+		InsanityStructures type = InsanityStructures.ENDER_RIFT;
+		if(materials==null) {
+			type = InsanityStructures.ENDER_GATE;
+			materials = InsanityStructures.ENDER_GATE.check(b, BlockFace.EAST);
+			if(materials==null) {
+				materials = InsanityStructures.ENDER_GATE.check(b, BlockFace.NORTH);
+			}
+		}
+		if(materials==null) {
+			p.sendMessage("You didn't build anything!");
+			return;
+		}
+		if(type==InsanityStructures.ENDER_RIFT) {
+			p.sendMessage("You built a rift of " + materials[0] + ", " + materials[1] + ", and " + materials[2]);
+		} else {
+			p.sendMessage("You built a gate of " + materials[0] + " and " + materials[1]);
+		}
+		b.setType(Material.END_PORTAL_FRAME);
+		EndPortalFrame dat = (EndPortalFrame) b.getBlockData();
+		dat.setEye(true);
+		b.setBlockData(dat);
+		if(item.getAmount()==1) {
+			item = null;
+		} else {
+			item.setAmount(item.getAmount()-1);
+			p.dropItem(true);
+		}
 	}
 	
 }

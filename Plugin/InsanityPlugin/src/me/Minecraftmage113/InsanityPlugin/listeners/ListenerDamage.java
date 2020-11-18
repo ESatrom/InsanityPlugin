@@ -11,7 +11,7 @@ import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
 import me.Minecraftmage113.InsanityPlugin.Main;
-import me.Minecraftmage113.InsanityPlugin.helpers.InsanityModifiers;
+import me.Minecraftmage113.InsanityPlugin.helpers.enums.InsanityModifiers;
 /**
  * Ticks twice per second.
  */

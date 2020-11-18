@@ -5,7 +5,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import me.Minecraftmage113.InsanityPlugin.Main;
-import me.Minecraftmage113.InsanityPlugin.helpers.TimedEvents;
+import me.Minecraftmage113.InsanityPlugin.helpers.gameplay.TimedEvents;
 import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.chat.ClickEvent;
 import net.md_5.bungee.api.chat.ClickEvent.Action;

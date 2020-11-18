@@ -6,10 +6,16 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Scanner;
+import java.util.UUID;
 
+import org.bukkit.OfflinePlayer;
 import org.bukkit.World;
 import org.bukkit.block.Block;
+import org.bukkit.entity.Entity;
+import org.bukkit.inventory.ItemStack;
 
 import me.Minecraftmage113.InsanityPlugin.Main;
 
@@ -29,9 +35,51 @@ public class Saver {
 	public void save() {
 		plugin.getServer().dispatchCommand(plugin.getServer().getConsoleSender(), "save-all");
 		saveBlocks();
+		//saveLassos();
+		saveSoulbinds();
 	}
 	public void load() {
 		loadBlocks();
+		//loadLassos();
+		loadSoulbinds();
+	}
+	
+	public void saveSoulbinds() {
+		for(Entry<OfflinePlayer, List<Pair<Integer, ItemStack>>> complexInv : plugin.soulbinds.entrySet()) {
+			ItemStack[] simpleInv = new ItemStack[complexInv.getValue().size()];
+			for(int i = 0; i < complexInv.getValue().size(); i++) {
+				simpleInv[i] = complexInv.getValue().get(i).second();
+			}
+			plugin.getConfig().set("data.soulbinds." + complexInv.getKey().getUniqueId(), simpleInv);
+		}
+		plugin.saveConfig();
+	}
+	public void loadSoulbinds() {
+		plugin.getConfig().getConfigurationSection("data.soulbinds").getKeys(false).forEach(key ->{
+			@SuppressWarnings("unchecked")
+			ItemStack[] inv = ((List<ItemStack>) plugin.getConfig().get("data.soulbinds." + key)).toArray(new ItemStack[0]);
+			plugin.soulbinds.put(plugin.getServer().getOfflinePlayer(UUID.fromString(key)), new ArrayList<>());
+			for(int i = 0; i < inv.length; i++) {
+				plugin.soulbinds.get(plugin.getServer().getOfflinePlayer(UUID.fromString(key))).add(new Pair<Integer, ItemStack>(i, inv[i]));
+			}
+		});
+	}
+	
+	public void saveLassos() {
+		plugin.getConfig().set("data.lasso", null);
+		for(Map.Entry<Integer, Entity> e : plugin.lassos.entrySet()) {
+			plugin.getConfig().set("data.lasso." + e.getKey(), e.getValue());
+		}
+		plugin.saveConfig();
+	}
+	
+	public void loadLassos() {
+		if(plugin==null||plugin.getConfig()==null||plugin.getConfig().getConfigurationSection("data.lasso")==null||plugin.getConfig().getConfigurationSection("data.lasso").getKeys(false)==null)
+			return;
+		plugin.getConfig().getConfigurationSection("data.lasso").getKeys(false).forEach(key ->{
+			Entity entity = (Entity) plugin.getConfig().get("data.lasso." + key);
+			plugin.lassos.put(Integer.parseInt(key), entity);
+		});
 	}
 	
 	public void addBlock(Block b) { blocks.add(b); }

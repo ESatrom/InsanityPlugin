@@ -1,5 +1,9 @@
 package me.Minecraftmage113.InsanityPlugin.listeners;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.bukkit.GameRule;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.Particle;
@@ -16,7 +20,8 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.SkullMeta;
 
 import me.Minecraftmage113.InsanityPlugin.Main;
-import me.Minecraftmage113.InsanityPlugin.helpers.InsanityModifiers;
+import me.Minecraftmage113.InsanityPlugin.helpers.enums.InsanityItems;
+import me.Minecraftmage113.InsanityPlugin.helpers.enums.InsanityModifiers;
 
 public class ListenerPlayerDeath extends InsanityListener {
 	public ListenerPlayerDeath(Main plugin) { super(plugin); }
@@ -26,6 +31,30 @@ public class ListenerPlayerDeath extends InsanityListener {
 		Player p = event.getEntity();
 		dropHead(p);
 		tags(p);
+		boolean soulbound = false;
+		List<ItemStack> boundItems = new ArrayList<ItemStack>();
+		if(!plugin.getServer().getWorlds().get(0).getGameRuleValue(GameRule.KEEP_INVENTORY)) {
+			for(ItemStack stack : p.getInventory().getStorageContents()) {
+				if(InsanityItems.SOULBINDING_ROCK.instance(stack)) {
+					soulbound = true;
+					if(stack.getAmount()==1) {
+						stack = null;
+					} else {
+						stack.setAmount(stack.getAmount()-1);
+					}
+					break;
+				}
+				if(InsanityItems.REAPERS_SCYTHE.instance(stack)) {
+					boundItems.add(stack);
+				}
+			}
+			if(soulbound) {
+				plugin.soulbinds.put(p, p.getInventory());
+			} else {
+				p.getInventory().setArmorContents(null);
+				p.getInventory().setStorageContents((ItemStack[]) boundItems.toArray());
+			}
+		}
 	}
 	
 	void dropHead(Player p) {

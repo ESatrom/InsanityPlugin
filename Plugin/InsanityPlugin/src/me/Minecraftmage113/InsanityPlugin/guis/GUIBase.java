@@ -149,11 +149,16 @@ public class GUIBase {
 		Inventory gui;
 		public GUIBuilder(int size, String name) {
 			gui = Bukkit.createInventory(null, size, name);
+			gui.setMaxStackSize(999);
 		}
 		public GUIBuilder addButton(int x, int y, ItemStack stack) {
+			gui.setMaxStackSize(999);
 			gui.setItem(x+(9*y), stack);
 			return this;
 		}
-		public Inventory build() { return gui; }
+		public Inventory build() { 
+			gui.setMaxStackSize(999);
+			return gui; 
+		}
 	}
 }

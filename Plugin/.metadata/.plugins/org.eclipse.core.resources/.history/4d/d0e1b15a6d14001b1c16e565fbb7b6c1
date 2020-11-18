@@ -1,0 +1,22 @@
+package me.Minecraftmage113.InsanityPlugin.helpers;
+
+import org.bukkit.Material;
+
+public enum InsanityStructures {
+	Map
+	ENDER_GATE,
+	ENDER_RIFT,
+	ARCANE_ALTAR;
+	public Structure create(Material... materialVariants) {
+		switch(this) {
+		case ARCANE_ALTAR:
+			return;
+		case ENDER_GATE:
+			break;
+		case ENDER_RIFT:
+			break;
+		
+		}
+		return null;
+	}
+}

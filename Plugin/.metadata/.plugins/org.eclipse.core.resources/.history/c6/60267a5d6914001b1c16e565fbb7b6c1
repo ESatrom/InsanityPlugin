@@ -1,0 +1,5 @@
+package me.Minecraftmage113.InsanityPlugin.helpers;
+
+public enum InsanityStructures {
+	
+}

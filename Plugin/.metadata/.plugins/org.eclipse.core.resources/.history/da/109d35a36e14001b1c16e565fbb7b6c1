@@ -1,0 +1,30 @@
+package me.Minecraftmage113.InsanityPlugin.helpers;
+
+import java.util.Map;
+
+import org.bukkit.Material;
+
+import com.google.common.collect.ImmutableMap;
+
+public enum InsanityStructures {
+	ENDER_GATE,
+	ENDER_RIFT,
+	ARCANE_ALTAR;
+	static final Map<InsanityStructures, Structure> structures = ImmutableMap.<InsanityStructures, Structure>builder().
+		put(ENDER_GATE).
+	build();
+	public Structure create(Material... materialVariants) {
+		if(materialVariants.length>1) {
+			return null;
+		}
+		switch(this) {
+		case ARCANE_ALTAR:
+			return null;
+		case ENDER_GATE:
+			return new Structure();
+		case ENDER_RIFT:
+			return null;
+		}
+		return null;
+	}
+}

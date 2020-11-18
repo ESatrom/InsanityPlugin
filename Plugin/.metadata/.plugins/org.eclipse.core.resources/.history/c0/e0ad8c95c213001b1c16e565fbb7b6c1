@@ -1,0 +1,26 @@
+package me.Minecraftmage113.InsanityPlugin.helpers;
+
+import org.bukkit.block.Block;
+
+public class Structure {
+	int xOffset, yOffset, zOffset;
+	Block origin;
+	int[][][] structure;
+	public Structure(int xOffset, int yOffset, int zOffset, Block origin, int[][][] structure) {
+		this.xOffset = xOffset;
+		this.yOffset = yOffset;
+		this.zOffset = zOffset;
+		this.origin = origin;
+		this.structure = structure;
+	}
+	public void setOrigin(Block origin) {
+		this.origin = origin;
+	}
+	public boolean test() {
+		//structure read as {height{depth{width}}}
+		return false;
+	}
+	public void build() {
+		
+	}
+}

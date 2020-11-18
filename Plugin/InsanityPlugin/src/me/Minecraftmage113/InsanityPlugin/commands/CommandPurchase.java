@@ -13,7 +13,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
 import me.Minecraftmage113.InsanityPlugin.Main;
-import me.Minecraftmage113.InsanityPlugin.helpers.InsanityItems;
+import me.Minecraftmage113.InsanityPlugin.helpers.enums.InsanityItems;
 import me.Minecraftmage113.InsanityPlugin.items.ItemEnderPorter;
 import net.md_5.bungee.api.ChatColor;
 

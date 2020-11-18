@@ -6,3 +6,20 @@
 1603041884146	Move compilation unit
 1603041890996	Rename type 'ListenerTick'
 1603041926401	Rename local variable 'ticker'
+1603300015752	Rename type 'StructureTester'
+1603314809610	Rename field 'xOffset'
+1603314815376	Rename field 'yOffset'
+1603314821270	Rename field 'zOffset'
+1603314832468	Rename local variable 'xOffset'
+1603314842985	Rename local variable 'yOffset'
+1603314851570	Rename local variable 'zOffset'
+1603453418289	Move compilation units
+1603453455770	Move compilation units
+1603453484236	Move compilation units
+1603455880118	Rename local variable 'e'
+1603457780715	Rename local variable 'a'
+1603476305686	Rename method 'cloneDamageable'
+1603476310366	Rename method 'cloneAgeable'
+1603476316467	Rename method 'cloneBreedable'
+1603476363631	Rename method 'cloneLiving'
+1603487988785	Rename local variable 'release'

@@ -1,7 +1,0 @@
-package me.Minecraftmage113.InsanityPlugin.guis;
-
-import org.bukkit.inventory.Inventory;
-
-public interface GUI {
-	public static Inventory gui;
-}

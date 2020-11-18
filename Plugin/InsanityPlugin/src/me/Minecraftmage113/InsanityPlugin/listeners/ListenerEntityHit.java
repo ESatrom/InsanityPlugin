@@ -3,10 +3,13 @@ package me.Minecraftmage113.InsanityPlugin.listeners;
 import java.util.List;
 
 import org.bukkit.ChatColor;
+import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Mob;
 import org.bukkit.entity.Player;
+import org.bukkit.entity.Wither;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
@@ -18,13 +21,16 @@ import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
 import me.Minecraftmage113.InsanityPlugin.Main;
-import me.Minecraftmage113.InsanityPlugin.helpers.InsanityItems;
+import me.Minecraftmage113.InsanityPlugin.helpers.enums.InsanityItems;
+import me.Minecraftmage113.InsanityPlugin.helpers.enums.InsanityModifiers;
+import me.Minecraftmage113.InsanityPlugin.helpers.objects.InsanityEntity;
 
 public class ListenerEntityHit extends InsanityListener {
 	public ListenerEntityHit(Main plugin) { super(plugin); }
 	
 	@EventHandler
 	public void onHit(EntityDamageByEntityEvent event) {
+		LivingEntity target = (LivingEntity) event.getEntity();
 		if(event.getDamager() instanceof Player) {
 			Player p = (Player) event.getDamager();
 			ItemStack item = p.getInventory().getItemInMainHand();
@@ -37,34 +43,39 @@ public class ListenerEntityHit extends InsanityListener {
 					lasso(event, p, item);
 				}
 			}
+			if(InsanityModifiers.ROTTING_PRESERVATION.hasMod(p)) {
+				rot(target);
+			}
 		}
+	}
+	
+	public void rot(LivingEntity target) {
+		target.addPotionEffect(new PotionEffect(PotionEffectType.WITHER, 40, 1, false, false, true));
 	}
 	
 	public void lasso(EntityDamageByEntityEvent event, Player p, ItemStack item) {
 		ItemMeta meta = item.getItemMeta();
 		List<String> lore = meta.getLore();
 		String lastLine = lore.get(lore.size()-1);
-		p.sendMessage(""+lastLine);
+		event.setCancelled(true);
 		if(lastLine.indexOf("-1")==-1){
 			int ID = Integer.parseInt(lastLine.substring(lastLine.indexOf('|')+1));
-			Mob release = (Mob) plugin.releaseLasso(ID);
-			Mob r2 = event.getEntity().getWorld().spawn(event.getEntity().getLocation(), release.getClass());
-			r2 = release;
-			r2.teleport(event.getEntity().getLocation());
-			r2.setVelocity(p.getLocation().getDirection().multiply(3));
+			Entity releasee = plugin.releaseLasso(ID);
+			if(releasee!=null) {
+				Location l = event.getEntity().getLocation();
+				Entity spawned = l.getWorld().spawn(l, releasee.getClass());
+				InsanityEntity.clone(releasee, spawned);
+				spawned.teleport(l);
+				event.getEntity().setVelocity(event.getEntity().getVelocity().add(p.getLocation().getDirection().multiply(2)));
+			} else { System.out.println("Lasso entity glitched"); }
 			lore.set(lore.size()-1, lastLine.substring(0, lastLine.indexOf('|')+1)+"-1");
 			lore.set(lore.size()-2, "Currently Contained: " + ChatColor.DARK_GRAY + "Nothing");
 		} else {
-			event.setCancelled(true);
-			if(event.getEntity() instanceof Mob) {
-				Mob m = (Mob) event.getEntity();
-				lore.set(lore.size()-1, lastLine.substring(0, lastLine.indexOf('|')+1)+plugin.lasso((Mob) event.getEntity()));
-				lore.set(lore.size()-2, "Currently Contained: " + ChatColor.DARK_GRAY + m.getName());
-				m.remove();
-//				m.damage(m.getHealth()+1);
-//				Location target = event.getEntity().getLocation();
-//				target.setY(-200);
-//				event.getEntity().teleport(target);
+			if(event.getEntity() instanceof Mob && !(event.getEntity() instanceof Wither)) {
+				Entity e = event.getEntity();
+				lore.set(lore.size()-1, lastLine.substring(0, lastLine.indexOf('|')+1)+plugin.lasso(e));
+				lore.set(lore.size()-2, "Currently Contained: " + ChatColor.DARK_GRAY + e.getName());
+				e.remove();
 			}
 		}
 		
