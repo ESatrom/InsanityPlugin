@@ -49,7 +49,7 @@ public class ListenerPlayerDeath extends InsanityListener {
 				}
 			}
 			if(soulbound) {
-				plugin.soulbinds.put(p, p.getInventory());
+				//I don't even know.    plugin.soulbinds.put(p, p.getInventory());
 			} else {
 				p.getInventory().setArmorContents(null);
 				p.getInventory().setStorageContents((ItemStack[]) boundItems.toArray());
