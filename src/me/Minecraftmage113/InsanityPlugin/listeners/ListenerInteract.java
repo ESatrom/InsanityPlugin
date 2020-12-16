@@ -4,6 +4,7 @@ import java.util.Collection;
 import java.util.List;
 
 import org.bukkit.ChatColor;
+import org.bukkit.FluidCollisionMode;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.Particle;
@@ -11,8 +12,11 @@ import org.bukkit.Sound;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 import org.bukkit.block.data.type.EndPortalFrame;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Entity;
+import org.bukkit.entity.IronGolem;
 import org.bukkit.entity.Item;
+import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.MushroomCow;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -24,6 +28,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.metadata.MetadataValue;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
+import org.bukkit.util.RayTraceResult;
 
 import me.Minecraftmage113.InsanityPlugin.InsanityMetadata;
 import me.Minecraftmage113.InsanityPlugin.Main;
@@ -65,8 +70,12 @@ public class ListenerInteract extends InsanityListener {
 			if(InsanityItems.COFFEE.instance(item)) { event.setCancelled(false); }
 		}
 		if(event.getAction().equals(Action.RIGHT_CLICK_AIR)) {
-			if(item!=null && InsanityItems.ENDER_PORTER.instance(item)){
-				enderPorter(event, p);
+			if(item!=null) {
+					if(InsanityItems.ENDER_PORTER.instance(item)){
+						enderPorter(event, p);
+					} else if(InsanityItems.LIGHTNING_STAFF.instance(item)) {
+						lightning(p, item);
+					}
 			}
 		}
 		if(event.getAction().equals(Action.RIGHT_CLICK_BLOCK)) {
@@ -80,6 +89,8 @@ public class ListenerInteract extends InsanityListener {
 					lassoRelease(event, item, b);
 				} else if(InsanityItems.ENDER_CORE.instance(item)) {
 					enderCreate(b, p, item);
+				} else if(InsanityItems.LIGHTNING_STAFF.instance(item)) {
+					lightning(p, item);
 				}
 			}
 		}
@@ -264,4 +275,141 @@ public class ListenerInteract extends InsanityListener {
 		}
 	}
 	
+	public void lightning(Player p, ItemStack i) {
+		if(p.isSneaking()) {
+			String charges = i.getItemMeta().getLore().get(2);
+			int cha = Integer.parseInt(""+charges.charAt(charges.length()-1));
+			if(cha>0) {
+				i.addUnsafeEnchantment(Enchantment.DURABILITY, i.getEnchantmentLevel(Enchantment.DURABILITY)+100);
+				ItemMeta meta = i.getItemMeta();
+				charges = charges.substring(0, charges.length()-1);
+				charges = charges + (cha-1);
+				List<String> lore = meta.getLore();
+				lore.set(2, charges);
+				meta.setLore(lore);
+				i.setItemMeta(meta);
+				p.getWorld().strikeLightning(p.getLocation());
+			} else {
+				p.sendMessage("Your staff is not yet ready to channel lightning again.");
+			}
+		} else {
+			if(i.getEnchantmentLevel(Enchantment.DURABILITY)>0) {
+				//shoot
+				if(i.getEnchantmentLevel(Enchantment.DURABILITY)==1) {
+					i.removeEnchantment(Enchantment.DURABILITY);
+				} else {
+					i.addUnsafeEnchantment(Enchantment.DURABILITY, i.getEnchantmentLevel(Enchantment.DURABILITY)-1);
+				}
+				boolean done = false;
+				int damageTotal = 30;
+				int damageMax = 5;
+				int blockDamage = 10;
+				Location src = p.getEyeLocation();
+				while(!done) {
+					src.add(p.getEyeLocation().getDirection().multiply(.5));
+					RayTraceResult target = p.getWorld().rayTrace(src, p.getEyeLocation().getDirection(), 300.0, FluidCollisionMode.ALWAYS, false, 0, null);
+					Location src1 = src.clone();
+					if(target!=null&&target.getHitPosition()!=null) {
+						src = target.getHitPosition().toLocation(p.getWorld());
+					}
+					if(target==null||(target.getHitBlock()==null&&target.getHitEntity()==null)) {
+						src.add(p.getEyeLocation().multiply(300));
+						done = true;
+					} else {
+						if(target.getHitBlock()!=null) {
+							Block b = (Block) target.getHitBlock();
+							switch(b.getType()) {
+							case ACACIA_LOG: case BIRCH_LOG: case DARK_OAK_LOG: case JUNGLE_LOG: case OAK_LOG: case SPRUCE_LOG:
+							case STRIPPED_ACACIA_LOG: case STRIPPED_BIRCH_LOG: case STRIPPED_DARK_OAK_LOG: case STRIPPED_JUNGLE_LOG: case STRIPPED_OAK_LOG: case STRIPPED_SPRUCE_LOG:
+								b.getWorld().dropItemNaturally(b.getLocation(), new ItemStack(Material.CHARCOAL));
+								b.getWorld().spawnParticle(Particle.SMOKE_LARGE, b.getLocation(), 50, .5, .5, .5);
+								b.setType(Material.AIR);
+								if(damageTotal<=blockDamage) {
+									done = true;
+								} else {
+									damageTotal-=blockDamage;
+								}
+								break;
+							case SAND: case RED_SAND:
+								b.getWorld().spawnParticle(Particle.CLOUD, b.getLocation(), 150, .75, 1, .75);
+								b.setType(Material.GLASS);
+								done=true;
+								break;
+							case ACACIA_LEAVES: case BIRCH_LEAVES: case DARK_OAK_LEAVES: case JUNGLE_LEAVES: case OAK_LEAVES: case SPRUCE_LEAVES: 
+								b.getWorld().spawnParticle(Particle.SMOKE_LARGE, b.getLocation(), 50, .5, .5, .5);
+								b.setType(Material.AIR);
+								break;
+							case NETHER_BRICKS:
+								b.setType(Material.CRACKED_NETHER_BRICKS);
+								BlockFace f = target.getHitBlockFace();
+								b.getWorld().getBlockAt(b.getX()+f.getModX(), b.getY()+f.getModY(), b.getZ()+f.getModZ()).setType(Material.FIRE);
+								done=true;
+								break;
+							case POLISHED_BLACKSTONE_BRICKS:
+								b.setType(Material.CRACKED_POLISHED_BLACKSTONE_BRICKS);
+								f = target.getHitBlockFace();
+								b.getWorld().getBlockAt(b.getX()+f.getModX(), b.getY()+f.getModY(), b.getZ()+f.getModZ()).setType(Material.FIRE);
+								done=true;
+								break;
+							case STONE_BRICKS:
+								b.setType(Material.CRACKED_STONE_BRICKS);
+								f = target.getHitBlockFace();
+								b.getWorld().getBlockAt(b.getX()+f.getModX(), b.getY()+f.getModY(), b.getZ()+f.getModZ()).setType(Material.FIRE);
+								done=true;
+								break;
+							case INFESTED_STONE_BRICKS:
+								b.setType(Material.INFESTED_CRACKED_STONE_BRICKS);
+								f = target.getHitBlockFace();
+								b.getWorld().getBlockAt(b.getX()+f.getModX(), b.getY()+f.getModY(), b.getZ()+f.getModZ()).setType(Material.FIRE);
+								done=true;
+								break;
+							default:
+								
+								if(b.getType().isBurnable()) {
+									b.setType(Material.FIRE);
+									if(!b.isPassable()) {
+										if(damageTotal<=blockDamage) {
+											done = true;
+										} else {
+											damageTotal-=blockDamage;
+										}
+									}
+								} else {
+									f = target.getHitBlockFace();
+									if(b.getWorld().getBlockAt(b.getX()+f.getModX(), b.getY()+f.getModY(), b.getZ()+f.getModZ()).getType().equals(Material.AIR)) {
+										b.getWorld().getBlockAt(b.getX()+f.getModX(), b.getY()+f.getModY(), b.getZ()+f.getModZ()).setType(Material.FIRE);
+									}
+									if(!b.isPassable()) { done=true; }
+								}
+								break;
+							}
+						}
+						if(target.getHitEntity()!=null && target.getHitEntity() instanceof LivingEntity) {
+							LivingEntity l = (LivingEntity) target.getHitEntity();
+							if(l instanceof IronGolem) {
+								l.getWorld().playSound(l.getLocation(), Sound.ENTITY_GENERIC_EXPLODE, 1000, 1);
+								done = true;
+								l.damage(damageTotal, p);
+							} else {
+								l.damage(damageTotal<damageMax?damageTotal:damageMax, p);
+								damageTotal-=damageMax;
+								if(damageTotal<=0) { done = true; }
+							}
+						}
+					}
+					if(!src.equals(src1)) {
+						int iterator = 0;
+						while(src.distance(src1)>1) {
+							src1.add(p.getEyeLocation().getDirection().multiply(.1));
+							p.getWorld().spawnParticle(Particle.CRIT_MAGIC, src1.clone(), 1, 0, 0, 0, 0);
+							iterator++;
+							if(iterator==30000) { break; }
+						}
+					}
+				}
+			} else {
+				p.sendMessage("Your staff must be recharged. Shift+RClick to call lightning down upon you, charging the staff.");
+			}
+		}
+	}
 }

@@ -86,6 +86,11 @@ public class CommandPurchase extends InsanityCommand {
 			item.setItemMeta(meta);
 			message = ChatColor.translateAlternateColorCodes('&', "&8You have successfully summoned Death's own blade.");
 			break;
+		case "ls":
+			experienceCost = 1000;
+			item = InsanityItems.LIGHTNING_STAFF.build();
+			message = "Welcome, Lord of Thunder.";
+			break;
 		default:
 			p.sendMessage(ChatColor.RED + "Invalid item specified.");
 			return true;

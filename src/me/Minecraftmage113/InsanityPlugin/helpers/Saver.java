@@ -36,12 +36,12 @@ public class Saver {
 		plugin.getServer().dispatchCommand(plugin.getServer().getConsoleSender(), "save-all");
 		saveBlocks();
 		//saveLassos();
-		saveSoulbinds();
+		//saveSoulbinds();
 	}
 	public void load() {
 		loadBlocks();
 		//loadLassos();
-		loadSoulbinds();
+		//loadSoulbinds();
 	}
 	
 	public void saveSoulbinds() {

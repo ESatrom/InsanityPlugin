@@ -1,6 +1,7 @@
 package me.Minecraftmage113.InsanityPlugin.helpers.enums;
 
 import java.util.Map;
+import java.util.UUID;
 
 import org.bukkit.ChatColor;
 import org.bukkit.Color;
@@ -29,7 +30,8 @@ public enum InsanityItems {
 	CHALK_PLACED, //9
 	CHALK_PLACED_TURN, //10
 	SOULBINDING_ROCK, //11
-	ENDER_CORE; //12
+	ENDER_CORE,
+	LIGHTNING_STAFF; //12
 	
 	static final Map<InsanityItems, ItemStack> items = ImmutableMap.<InsanityItems, ItemStack>builder().
 		put(ENDER_PORTER, (ItemStack) new ItemEnderPorter()).
@@ -86,6 +88,12 @@ public enum InsanityItems {
 			setModelData(ENDER_CORE.modelData()).
 			setName(ChatColor.translateAlternateColorCodes('&', "&r&1&lEnder Core")).
 			build()).
+		put(LIGHTNING_STAFF, new ItemBuilder(Material.STICK).
+			setModelData(LIGHTNING_STAFF.modelData()).
+			setName(ChatColor.translateAlternateColorCodes('&', "&r&e&lLightning &b&lStaff")).
+			setLore("§8Sneak+RClick: Summon lightning upon yourself, charging the staff", "§8RClick: Fire a lance of lightning", "§6Lightning Calls: 3", "§0§k" + UUID.randomUUID()).
+			addFlag(ItemFlag.HIDE_ENCHANTS).
+			build()).
 	build();
 	
 	public int modelData() {
@@ -114,6 +122,8 @@ public enum InsanityItems {
 			return 11;
 		case ENDER_CORE:
 			return 12;
+		case LIGHTNING_STAFF:
+			return 13;
 		}
 		return -1;
 	}
