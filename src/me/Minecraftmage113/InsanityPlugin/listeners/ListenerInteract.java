@@ -277,21 +277,8 @@ public class ListenerInteract extends InsanityListener {
 	
 	public void lightning(Player p, ItemStack i) {
 		if(p.isSneaking()) {
-			String charges = i.getItemMeta().getLore().get(2);
-			int cha = Integer.parseInt(""+charges.charAt(charges.length()-1));
-			if(cha>0) {
-				i.addUnsafeEnchantment(Enchantment.DURABILITY, i.getEnchantmentLevel(Enchantment.DURABILITY)+100);
-				ItemMeta meta = i.getItemMeta();
-				charges = charges.substring(0, charges.length()-1);
-				charges = charges + (cha-1);
-				List<String> lore = meta.getLore();
-				lore.set(2, charges);
-				meta.setLore(lore);
-				i.setItemMeta(meta);
-				p.getWorld().strikeLightning(p.getLocation());
-			} else {
-				p.sendMessage("Your staff is not yet ready to channel lightning again.");
-			}
+			i.addUnsafeEnchantment(Enchantment.DURABILITY, i.getEnchantmentLevel(Enchantment.DURABILITY)+1);
+			p.getWorld().strikeLightning(p.getLocation());
 		} else {
 			if(i.getEnchantmentLevel(Enchantment.DURABILITY)>0) {
 				//shoot
