@@ -51,7 +51,7 @@ public class Main extends JavaPlugin {
 //	private List<Entity> lassoMobs = new ArrayList<Entity>();
 //	private List<Integer> lassoIDs = new ArrayList<Integer>();
 	public List<OfflinePlayer> creativePlayers = new ArrayList<OfflinePlayer>();
-	public Map<Player, Inventory> soulbinds = new HashMap<Player, Inventory>();
+	public Map<OfflinePlayer, List<Pair<Integer, ItemStack>>> soulbinds = new HashMap<OfflinePlayer, List<Pair<Integer, ItemStack>>>();
 	private Saver saver;
 	public int coffeeDelay = 0;
 //	public int[] listenerCalls = new int[11];

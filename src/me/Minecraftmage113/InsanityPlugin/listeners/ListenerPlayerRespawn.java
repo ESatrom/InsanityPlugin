@@ -1,19 +1,13 @@
 package me.Minecraftmage113.InsanityPlugin.listeners;
 
-import org.bukkit.Location;
-import org.bukkit.Material;
 import org.bukkit.Particle;
-import org.bukkit.World;
 import org.bukkit.attribute.Attributable;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.entity.Damageable;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
-import org.bukkit.event.entity.EntityDamageEvent.DamageCause;
 import org.bukkit.event.player.PlayerRespawnEvent;
-import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.SkullMeta;
 
 import me.Minecraftmage113.InsanityPlugin.Main;
 import me.Minecraftmage113.InsanityPlugin.helpers.enums.InsanityModifiers;
@@ -24,19 +18,7 @@ public class ListenerPlayerRespawn extends InsanityListener {
 	@EventHandler
 	public void onPlayerRespawn(PlayerRespawnEvent event) {
 		Player p = event.getPlayer();
-		loadinv
-	}
-	
-	void dropHead(Player p) {
-		if(p.getLastDamageCause().getCause().equals(DamageCause.ENTITY_ATTACK)){
-			World world = p.getWorld();
-			Location location = p.getLocation();
-			ItemStack item = new ItemStack(Material.PLAYER_HEAD);
-			SkullMeta meta = (SkullMeta) item.getItemMeta();
-			meta.setOwningPlayer(p);
-			item.setItemMeta(meta);
-			world.dropItem(location, item);
-		}
+		p.getInventory();
 	}
 	
 	void tags(Player p) {
