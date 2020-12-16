@@ -5,7 +5,6 @@
 	},
 	
 	"overrides": [
-		{"predicate": {"custom_model_data":3}, "model": "item/custom/flagger"},
-		{"predicate": {"custom_model_data":4}, "model": "item/custom/big_sad"}
+		{"predicate": {"custom_model_data":13}, "model": "item/custom/lightning_staff"}
 	]
 }

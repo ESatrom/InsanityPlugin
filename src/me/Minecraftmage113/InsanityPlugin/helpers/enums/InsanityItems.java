@@ -1,5 +1,6 @@
 package me.Minecraftmage113.InsanityPlugin.helpers.enums;
 
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
@@ -9,6 +10,7 @@ import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
@@ -91,7 +93,7 @@ public enum InsanityItems {
 		put(LIGHTNING_STAFF, new ItemBuilder(Material.STICK).
 			setModelData(LIGHTNING_STAFF.modelData()).
 			setName(ChatColor.translateAlternateColorCodes('&', "&r&e&lLightning &b&lStaff")).
-			setLore("§8Sneak+RClick: Summon lightning upon yourself, charging the staff", "§8RClick: Fire a lance of lightning", "§6Lightning Calls: 3", "§0§k" + UUID.randomUUID()).
+			setLore("§7Sneak+RClick: Summon lightning upon yourself, charging the staff", "§7RClick: Fire a lance of lightning").
 			addFlag(ItemFlag.HIDE_ENCHANTS).
 			build()).
 	build();
@@ -130,5 +132,15 @@ public enum InsanityItems {
 	public boolean instance(ItemStack item) {
 		return item!=null && item.hasItemMeta() && item.getItemMeta().hasCustomModelData() && item.getItemMeta().getCustomModelData()==modelData();
 	}
-	public ItemStack build() { return items.get(this).clone(); }
+	public ItemStack build() {
+		ItemStack result = items.get(this).clone();
+		if(this.equals(BLINK_WAND)||this.equals(LIGHTNING_STAFF)) {
+			ItemMeta meta = result.getItemMeta();
+			List<String> lore = meta.getLore();
+			lore.add("§0§k" + UUID.randomUUID());
+			meta.setLore(lore);
+			result.setItemMeta(meta);
+		}
+		return result;
+	}
 }
