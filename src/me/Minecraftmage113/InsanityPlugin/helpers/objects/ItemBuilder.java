@@ -25,9 +25,7 @@ public class ItemBuilder {
 	}
 	public ItemBuilder setLore(String... lore) {
 		List<String> lores = new ArrayList<String>();
-		for(String s : lore) { lores.add(s); 
-		System.out.println(s);}
-		System.out.println(lore);
+		for(String s : lore) { lores.add(s); }
 		meta = stack.getItemMeta();
 		meta.setLore(lores);
 		stack.setItemMeta(meta);

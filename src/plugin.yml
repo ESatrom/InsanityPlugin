@@ -11,6 +11,8 @@ permissions:
     default: false
   insanity.softOp:
     default: true
+  insanity.op:
+    default: op
     
 commands:
   GM:
@@ -42,3 +44,7 @@ commands:
     usage: /save
     description: saves the server
     permission: insanity.softOp
+  Spawn:
+    usage: /spawn [boss]
+    description: spawn a boss from the plugin
+    permissions: insanity.op

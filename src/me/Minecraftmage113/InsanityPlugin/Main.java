@@ -18,14 +18,17 @@ import me.Minecraftmage113.InsanityPlugin.commands.CommandCleanse;
 import me.Minecraftmage113.InsanityPlugin.commands.CommandGamemode;
 import me.Minecraftmage113.InsanityPlugin.commands.CommandPurchase;
 import me.Minecraftmage113.InsanityPlugin.commands.CommandSave;
+import me.Minecraftmage113.InsanityPlugin.commands.CommandSpawn;
 import me.Minecraftmage113.InsanityPlugin.commands.CommandSuggestKick;
 import me.Minecraftmage113.InsanityPlugin.commands.CommandSuggestRestart;
+import me.Minecraftmage113.InsanityPlugin.entities.Beholder;
 import me.Minecraftmage113.InsanityPlugin.guis.CommandShop;
 import me.Minecraftmage113.InsanityPlugin.guis.ListenerGUI;
 import me.Minecraftmage113.InsanityPlugin.helpers.Pair;
 import me.Minecraftmage113.InsanityPlugin.helpers.Saver;
 import me.Minecraftmage113.InsanityPlugin.helpers.gameplay.Ticker;
 import me.Minecraftmage113.InsanityPlugin.helpers.gameplay.TimedEvents;
+import me.Minecraftmage113.InsanityPlugin.listeners.ListenerBeholder;
 import me.Minecraftmage113.InsanityPlugin.listeners.ListenerCharge;
 import me.Minecraftmage113.InsanityPlugin.listeners.ListenerCommand;
 import me.Minecraftmage113.InsanityPlugin.listeners.ListenerDamage;
@@ -51,7 +54,9 @@ public class Main extends JavaPlugin {
 //	private List<Entity> lassoMobs = new ArrayList<Entity>();
 //	private List<Integer> lassoIDs = new ArrayList<Integer>();
 	public List<OfflinePlayer> creativePlayers = new ArrayList<OfflinePlayer>();
+	public List<Beholder> beholders = new ArrayList<Beholder>();
 	public Map<OfflinePlayer, List<Pair<Integer, ItemStack>>> soulbinds = new HashMap<OfflinePlayer, List<Pair<Integer, ItemStack>>>();
+	public Map<Player, Integer> plague = new HashMap<Player, Integer>();
 	private Saver saver;
 	public int coffeeDelay = 0;
 //	public int[] listenerCalls = new int[11];
@@ -97,6 +102,7 @@ public class Main extends JavaPlugin {
 		this.getCommand("sRestart").setExecutor(new CommandSuggestRestart(this));
 		this.getCommand("Save").setExecutor(new CommandSave(this));
 		this.getCommand("Shop").setExecutor(new CommandShop(this));
+		this.getCommand("Spawn").setExecutor(new CommandSpawn(this));
 		/** Registers supplied listeners */
 		this.getServer().getPluginManager().registerEvents(new ListenerMine(this), this);
 		this.getServer().getPluginManager().registerEvents(new ListenerInteract(this), this);
@@ -110,6 +116,7 @@ public class Main extends JavaPlugin {
 		this.getServer().getPluginManager().registerEvents(new ListenerPlayerLog(this), this);
 		this.getServer().getPluginManager().registerEvents(new ListenerDamage(this), this);
 		this.getServer().getPluginManager().registerEvents(new ListenerGUI(this), this);
+		this.getServer().getPluginManager().registerEvents(new ListenerBeholder(this), this);
 		TimedEvents.plugin = this; //Initializes "TimedEvents"
 		ticker = new Ticker(this);
 		saver = new Saver(this);

@@ -30,6 +30,7 @@ public class ListenerEntityHit extends InsanityListener {
 	
 	@EventHandler
 	public void onHit(EntityDamageByEntityEvent event) {
+		if(!(event.getEntity() instanceof LivingEntity)) { return; }
 		LivingEntity target = (LivingEntity) event.getEntity();
 		if(event.getDamager() instanceof Player) {
 			Player p = (Player) event.getDamager();
