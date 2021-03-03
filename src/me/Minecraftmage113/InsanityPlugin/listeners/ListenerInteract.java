@@ -60,7 +60,7 @@ public class ListenerInteract extends InsanityListener {
 		Player p = (Player) event.getPlayer();
 		ItemStack item = event.getItem();
 		Block b = event.getClickedBlock();
-		//TODO probably breaks coffee lol
+		//TO DO probably breaks coffee lol
 		if(item!=null) {
 			for(InsanityItems enu : InsanityItems.values()) {
 				if(enu.instance(item)) {

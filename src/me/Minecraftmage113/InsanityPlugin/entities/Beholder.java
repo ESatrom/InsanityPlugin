@@ -109,7 +109,7 @@ public class Beholder {
 			case WITHER:
 				deathMessage = "A beholder has rotted away.";
 				dropTypes = 4;
-				//TODO beholder zombie
+				//TO DO beholder zombie
 				break;
 			case FALL:
 				deathMessage = "A beholder fell to an untimely demise!";

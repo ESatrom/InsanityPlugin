@@ -89,10 +89,6 @@ public class Main extends JavaPlugin {
 	@Override
 	public void onEnable() {
 		shopGUI = CommandShop.createGUI();
-		/**
-		 * TODO GUIs = custom inventory, set the items, make a listener for it that always cancels the action.
-		 */
-		//TODO new BukkitRunnable(){ /** Code. include a public void run(){} */ }.runTaskTimer(bool, int, int);
 		/** @Deprecated this.getCommand("Sacrifice").setExecutor(new CommandSacrifice(this)); //Registers "/Sacrifice" command (remember to edit plugin.yml) */
 		/** Registers supplied commands (remember the plugin.yml */
 		this.getCommand("GM").setExecutor(new CommandGamemode(this));
@@ -135,7 +131,7 @@ public class Main extends JavaPlugin {
 		saver.save(); //Save metas
 	}
 	
-	/** TODO tab complete command menu
+	/** TO DO tab complete command menu
 	@Override
 	public List<String> onTabComplete(CommandSender sender, Command cmd, String alias, String[] args) {
 		List<String> possibilities = new ArrayList<String>();

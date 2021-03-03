@@ -68,7 +68,7 @@ public class Structure {
 		}
 		return true;
 	}
-	public void build(BlockFace facing) { //TODO make it return a list of replaced blocks || make it fail if it attempts to replace blocks.
+	public void build(BlockFace facing) { //TO DO make it return a list of replaced blocks || make it fail if it attempts to replace blocks.
 		World w = origin.getWorld();
 		int x = origin.getX();
 		int y = origin.getY()+heightShift;
